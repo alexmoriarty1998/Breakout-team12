@@ -1,4 +1,16 @@
-Minimum Features:
+Milestone 1 goals:
+1. Display of brick layer at the top of the screen where each brick is an individual object.
+2. Player paddle at the bottom of the screen.
+3. A ball placed randomly between the bricks and the paddle and given a random initial direction.
+4. Detection of when the ball hits a side wall and appropriate change in direction.
+5. Detection of when the ball hits the ceiling and indication of a level completed.
+6. Detection of when the ball hits the floor and indication of a level failed.
+7. Player ability to control the paddle via keyboard or mouse interface.
+8. Change in angle of reflection of the ball depending on where it hits the player paddle.
+9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball
+
+
+Minimum Features (for full game):
 Structure that stores all bricks, and a way to fill this (from a file or randomly)
 Multiple levels, with appropriate transitions in between
 Bricks with different score values and hitpoints (absolutely necessary if levels will be hand crafted, not as necessary but could still be useful for randomly generated levels)
