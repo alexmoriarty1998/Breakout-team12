@@ -1,0 +1,63 @@
+Minimum Features:
+Structure that stores all bricks, and a way to fill this (from a file or randomly)
+Multiple levels, with appropriate transitions in between
+Bricks with different score values and hitpoints (absolutely necessary if levels will be hand crafted, not as necessary but could still be useful for randomly generated levels)
+Pause
+Score counter + save to file
+Main menu and game over screens
+Scoring must take into account bricks destroyed (lower is better) and time (faster is better)
+Instructions - can be integrated into main menu - example below; otherwise need to have instructions screen
+Or could not have any instructions - game is self explanatory; Apple doesn’t give people an instruction manual with their iPhones
+
+
+Questions:
+Low res or high res graphics?
+Widescreen (like picture in assignment) or tall (like original)?
+Are we implementing sound?
+What additional brick features (powerup drops, etc.) will be implemented?
+How do we handle menu input (buttons that need to be clicked with mouse, or keyboard driven menus? In-game can use both mouse and keys to move paddle, but should stick with one way to navigate the menus - or not?)
+
+
+Game Design:
+Need the following screens:
+Loading (inits pygame, loads all assets into an asset holder class, displays progress bar)
+Main menu
+Game level
+Pause (can be entered anytime from game level)
+Between-levels (loop with this and game level screen until game is over)
+Game over -> goes to a highscore screen
+Highscore Input (only if user set a highscore)
+Highscore Display (if user didn’t set a highscore, or after entering name)
+-> return to main menu or exit
+
+Set up structure for separating game state, logic, and rendering
+
+Consider animation-based system.
+
+Game screens:
+Main menu:
+	Fancy decorations (title, image, etc.)
+	Very simple tutorial, if we choose to put it here
+	Possibly display highscores here too
+	Buttons for audio mute toggle, volume slider, fullscreen/windowed, and exit
+	Button to start, or have it bound to a keypress
+
+Game level:
+	game goes here, press esc to pause
+
+Between levels:
+	Button to continue to next level, or go to main menu or, or quit the game
+
+Pause:
+	Options to continue, exit to main menu, and exit game. Also mute/unmute buttons. Should we show the last state of the game in the background (pictured below)? May or may not be possible, depends on how rendering is designed and performed.
+
+
+Game over:
+	Just a temporary screen that notifies the user the game is over, should move on to one of the highscore screens.
+
+Highscore display:
+	Simple, just show highscores, have buttons to go to main menu or exit.
+
+Highscore input:
+	Need to figure out how to implement this.
+	Also, this screen needs to be reachable from the between-level and pause screen, in case the user decides to quit but has a highscore
