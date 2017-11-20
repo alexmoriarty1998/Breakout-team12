@@ -15,5 +15,9 @@ class Screen:
 		if pygame.key.get_pressed()[pygame.K_F4] and pygame.key.get_mods() & pygame.KMOD_ALT:
 			ScreenManager.exit()
 
+		# update window size on resize
+		for e in pygame.event.get(pygame.VIDEORESIZE):
+			Graphics.resizeWindow(e.size)
+
 		# clear the screen [super.update() is the first thing called by subclasses, so clearing can be done here]
 		Graphics.surface.fill((0, 0, 0))

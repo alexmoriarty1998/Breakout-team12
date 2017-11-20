@@ -1,5 +1,11 @@
-# ScreenManager:
+# ScreenManager
 # contains main game loop, manages game screens
+
+# in python, modules act like static classes from other languages
+# there don't need to be multiple instances of this, so leave it as
+# a module instead of making a ScreenManager class
+
+# same concept applies to many other modules in this project
 
 import pygame
 import sys
