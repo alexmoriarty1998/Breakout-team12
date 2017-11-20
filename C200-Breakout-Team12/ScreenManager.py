@@ -4,7 +4,7 @@
 import pygame
 import sys
 
-from Screens import Screen
+from screens import Screen
 from GameConstants import FRAME_TIME
 
 currentScreen: Screen = None

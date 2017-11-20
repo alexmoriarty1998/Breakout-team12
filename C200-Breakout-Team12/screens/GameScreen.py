@@ -1,6 +1,6 @@
 import pygame
 
-from Screens.Screen import Screen
+from screens.Screen import Screen
 
 
 class GameScreen(Screen):

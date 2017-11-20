@@ -1,4 +1,4 @@
-from Screens.Screen import Screen
+from screens.Screen import Screen
 
 
 # creates a new game and starts it

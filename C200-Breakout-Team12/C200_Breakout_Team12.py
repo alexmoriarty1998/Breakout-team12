@@ -11,7 +11,7 @@ import pygame
 from GameConstants import WORLD_SIZE
 import Graphics
 import ScreenManager
-from Screens.LoadingScreen import LoadingScreen
+from screens.LoadingScreen import LoadingScreen
 
 pygame.init()
 

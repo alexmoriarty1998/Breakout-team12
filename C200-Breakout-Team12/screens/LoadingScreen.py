@@ -6,15 +6,15 @@ import pygame
 
 import Graphics
 import ScreenManager
-from Screens.MainMenuScreen import MainMenuScreen
-from Screens.Screen import Screen
+from screens.MainMenuScreen import MainMenuScreen
+from screens.Screen import Screen
 
 
 class LoadingScreen(Screen):
 	background: pygame.Surface = None
 
 	def __init__(self):
-		self.background = pygame.image.load("assets/loadingBackground.png")
+		self.background = pygame.image.load("assets/loadingScreen/background.png")
 
 	def update(self):
 		super().update()
