@@ -9,3 +9,12 @@
 # GameRenderer to display the current game state.
 # Name derived from the model-view-controller separation that
 # is present here.
+
+class GameController:
+	def __init__(self, state):
+		# TODO: store game state
+		pass
+
+	def update(self):
+		# TODO: do stuff
+		pass
