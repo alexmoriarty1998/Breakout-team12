@@ -76,12 +76,14 @@ The Screen implementation takes care of some small things that are universal to 
 
 Thus, these things shouldn't be done in individual screens.
 
+A note about the pygame event queue does need to be made here. Keys are 'polled' using pygame.key.get_pressed(). I believe the mouse can also be polled similarly. Thus many screens may not have a need to use any pygame events other than pygame.QUIT. All of the screens right now in their current states certainly don't. However, you still need to take care of the pygame event queue. So after calling `super().update()` in each screen's update method, you should call `pygame.event.clear()` to clear (discard) the event queue. Not doing so will result in bad things happening. Obviously, if events do need to be used within a particular screen, don't call `pygame.event.clear()`, instead use the normal `for event in pygame.event.get(): ...`.
+
 #### The Loading Screen
 This draws a 'loading' image onto the screen, loads all content, and then immediately passes control to the Main Menu Screen.
 
 When you add an asset, aside from declaring its name in Assets.py (which actually is not necessary, but should be done for code cleanliness and to help out the IDE read your code), you will need to load it here. Normally, images are loaded with `pygame.image.load(path to image)`, which returns a `Surface`. In addition, images should be converted to a mode that allows pygame to render it quickly. The Surface class has a convert() method that does this. However, this will discard any transparency present in the image, so you should instead use the `convert_alpha()` method which preserves this. So the final code would be `pygame.image.load(path).convert_alpha()`.
 
-LoadingScreen provides a helper method to reduce repetitive typing of this. Since all assets are located in the 'assets' folder and are PNG files, the `li` (load image) method takes in a path and returns the loaded image. You can exclude the assets directory and .png from the path, and `li` also performs `convert_alpha()`.
+LoadingScreen provides a helper method to reduce repetitive typing of this. All assets are located in the 'assets' folder and are PNG files, and must be convert_alpha()d. The `li` (load image) method takes in a path and returns the loaded image. You can exclude the assets directory and .png from the path, and `li` also performs `convert_alpha()`.
 
 Thus, instead of writing
 
@@ -105,14 +107,14 @@ The New Screen Loader Screen initializes these three things for level 1, and swi
 
 #### The Game Screen
 
-If the GameController is in charge of all the game processing, what does the Game Screen do? It's update method does three things:
+If the GameController is in charge of all the game processing, what does the Game Screen do? It's update method does four things:
 
 * controller.update()
 * renderer.render(state)
 * check for pauses and switch to the pause screen when this happens
 * switch to the between-levels screen if the user beats the current level
 
-Note that the pause screen hasn't been implemented yet.
+Note that the pause screen and between-levels screen haven't been implemented yet. Actually, only the loading, main menu, new game loader, and game screens have been added.
 
 ## The Game
 This section delves into the current implementation of the actual game (which is split into the state, controller, and renderer classes).
@@ -126,7 +128,7 @@ Everything in the game is made up of some basic components:
 
 The `PosPoint` class stores two floats, x and y. `PosRect` and `PosCircle` extend `PosPoint`, so they both have an x and y, and they add in a width and height, or a radius. Note that the `PosRect` x and y refer to its top left corner, whereas the `PosCircle` x and y refer to its center. PosRect and PosCircle also have methods to determine whether they collide with one of the other classes (e.g. you can give a `PosRect` a `PosCircle` or vice versa and it will tell you whether they collide). There are no rectangle-rectangle collisions in the game; only rectangle-circle collisions exist.
 
-The `Velocity` class stores two floats, dx and dy. It has an `apply(pos)` method, which takes in a `PosPoint` (and thus also its subclasses or rect and circle), and apply the velocity to the position (add dx/dy to x/y). The `Acceleration` class is the same, with a ddx and ddy, which can be `apply()`ed to a velocity.
+The `Velocity` class stores two floats, dx and dy. It has an `apply(pos)` method, which takes in a `PosPoint` (and thus also its subclasses of rect and circle), and applies the velocity to the position (add dx/dy to x/y). The `Acceleration` class is the same, with a ddx and ddy, which can be `apply()`ed to a velocity.
 
 The Blittable class almost shouldn't be a class, but is present so that animations can be very easily added in the future. Here's the class:
 ```
@@ -135,6 +137,8 @@ class Blittable:
     
     def getImage(self, frame: int):
         return self.image
+
+# no, there's no __init__
 ``` 
 
 The `frame` parameter will be necessary for animations, but right now it's useless, so it's ignored. But you still need to provide a frame parameter when using getImage().
@@ -169,7 +173,8 @@ Displayable is a subclass of Blittable; it has an image and a position, velocity
 * `won`: boolean; whether the level is complete
 
 #### Game Renderer
-Should be complete, take a look at the code if you want
+A very simple class. For each brick/ball/paddle/displayable, draw its `getImage()` at its position.
+Should be completely finished, take a look at the code if you want
 
 ## Next Steps
 The GameController class needs to be implemented.
@@ -190,18 +195,18 @@ We have to implement #4, 5, 6, 7, 8, 9.
 
 \#1 shold be complete but needs to be tested. The code to render bricks is there, but the NewGameLoaderScreen needs to put a list of bricks into the game state so that they can be drawn.
 
-\#2 is complete, no changes to the draw code should be required to support movement.
+\#2 should be complete but other tasks need to be completed before this can be tested.
 
-\#3 is complete, but since the velocity of the ball isn't used, it just stays still for now.
+\#3 same status as #2.
 
 #### What to do
 
-\# 7 should be implemented first. Each frame, get the input for left/right buttons (or mouse position, but only if it moved). Then set the paddle's velocity's dx value based on which key is pressed, or change its position to follow the mouse.
+\# 7 should be implemented first. Each frame, get the input for left/right buttons (or mouse position, but only if it moved). Then set the paddle's velocity's dx value based on which key is pressed, or 0 if no key is pressed, or change its position directly so it follows the mouse.
 
 The gamecontroller needs to apply() the velocity of the ball and paddle each tick. This will complete #7 and should confirm that #2 and 3 are complete.
 
 The next ones to do are #4, 5, 6. Bouncing off a wall is checking that `ball x < GC_WALL_SIZE` or `ball x > GC_WORLD_WIDTH - GC_WALL_SIZE` and reversing the ball's velocity's x-component (`ball.velocity.dx *= -1`). Ceiling is `ball.y < GC_BALL_RADIUS` and setting gameState.won = True. Floor presents a problem - gameState.won is already False. So there needs to be a change to the code. The `won` variable should be an integer instead of a boolean. 0 is the default, indicates in-progress game. 1 means won, and -1 means lost. A basic `ball.y > GC_WORLD_HEIGHT - GC_BALL_RADIUS` check will complete these three things. 
 
-\#1 should be done next. It doesn't have to be anything fancy like reading in from a file or generating randomly; we can manually enter a list of bricks and test that they render.\
+\#1 should be done next, needs to be implemented in New Game Loader Screen. It doesn't have to be anything fancy like reading in from a file or generating randomly; we can manually enter a list of bricks and test that they render.
 
 Now only #8 and 9 remain.
