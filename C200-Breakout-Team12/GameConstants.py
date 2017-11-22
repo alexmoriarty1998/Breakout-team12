@@ -25,7 +25,7 @@ GC_KEY_GAME_PAUSE = pygame.K_ESCAPE
 
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
 
-GC_BALL_RADIUS: int = 10
+GC_BALL_RADIUS: int = 13
 GC_BALL_INITIAL_ANGLE_VARIATION: int = 60  # degrees to either side of straight down
 GC_BALL_INITIAL_VELOCITY_RANGE: Tuple[int, int] = (10, 20)  # initial velocity of ball is within these
 GC_GRAVITY_ACCEL = 0.5
