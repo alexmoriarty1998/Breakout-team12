@@ -11,8 +11,9 @@ from screens.MainMenuScreen import MainMenuScreen
 from screens.Screen import Screen
 
 
-# abbreviation for pygame.image.load() that also adds assets/ and .png onto the path
-# will need to make a copy for sound & music, if they are ever implemented
+# Abbreviation for pygame.image.load() that also assets/ and .png onto the path and
+# also does convert_alpha(). Moved outside of class so 'self.' doesn't have to be typed.
+# Will need to make a copy for sound & music, if they are ever implemented.
 def li(path: str):
 	return pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
 
@@ -26,10 +27,10 @@ class LoadingScreen(Screen):
 		# Main Menu
 		Assets.I_MAINMENU_BACKGROUND = li("mainMenuScreen/background")
 
-		# ball and paddle
+		# Ball and Paddle
 		Assets.I_BALL = li("gameScreen/ball")
 		Assets.I_PADDLE = li("gameScreen/paddle")
-		# bricks
+		# Bricks
 		Assets.I_BRICK_LEVEL1 = li("gameScreen/brick11")
 		Assets.I_BRICK_LEVEL2_2 = li("gameScreen/brick22")
 		Assets.I_BRICK_LEVEL2_1 = li("gameScreen/brick21")

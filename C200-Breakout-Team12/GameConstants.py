@@ -4,7 +4,7 @@
 # Thus, use the GC_ prefix to avoid namespace conflicts.
 
 # ball/paddle/brick width/height values should match up
-# with graphics assets, so avoid changing
+# with graphics assets, so avoid changing those
 
 from typing import Tuple
 import pygame
@@ -38,5 +38,5 @@ GC_BRICK_LAYERS: int = 10
 GC_BRICK_COLUMNS: int = 20
 GC_BRICK_HEIGHT: int = 50
 GC_BRICK_WIDTH: int = (GC_WORLD_WIDTH - 2 * GC_WALL_SIZE) // GC_BRICK_COLUMNS
-GC_BRICK_TOP_HEIGHT: int = 200
+GC_BRICK_TOP_HEIGHT: int = 150
 GC_BRICK_BOTTOM_HEIGHT: int = GC_BRICK_TOP_HEIGHT + GC_BRICK_LAYERS * GC_BRICK_HEIGHT

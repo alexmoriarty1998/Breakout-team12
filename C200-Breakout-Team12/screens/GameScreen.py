@@ -29,3 +29,6 @@ class GameScreen(Screen):
 
 		if pygame.key.get_pressed()[GC_KEY_GAME_PAUSE]:
 			pass  # TODO: pause
+
+		# TODO: move to next level if won or lost
+		pass

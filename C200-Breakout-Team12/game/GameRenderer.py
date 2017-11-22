@@ -5,7 +5,8 @@ import pygame
 
 
 class GameRenderer:
-	def render(self, state: GameState, frame: int):
+	@staticmethod
+	def render(state: GameState, frame: int):
 		surface: pygame.Surface = Graphics.surface
 		# things to draw: bricks, paddle, ball, displayables
 		# ball should be drawn last

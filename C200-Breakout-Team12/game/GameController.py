@@ -20,9 +20,5 @@ class GameController:
 
 	def update(self):
 		# TODO: update game state
-		# things to do:
-		# move ball and paddle (apply velocity and acceleration)
-		# do collision detection with paddle
-		# do collision detection and damage bricks
-		# remove dead bricks and add score
+		# see end of engine.md for things that need to go here
 		pass
