@@ -10,6 +10,7 @@
 # Name derived from the model-view-controller separation that
 # is present here.
 from game.GameState import GameState
+import pygame
 
 
 class GameController:
@@ -21,9 +22,9 @@ class GameController:
 	def update(self):
 		keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
-			self.state.paddle.velocity.dx = -7
+			self.state.paddle.rectangle = -7
 		if keystate[pygame.K_RIGHT]:
-			self.state.paddle.velocity.dx = 7
-			
+			self.state.paddle.rectangle = 7
+
 
 		pass
