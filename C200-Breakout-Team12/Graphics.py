@@ -2,18 +2,18 @@
 # Stores pygame surface, manages windowed/fullscreen and display scaling / abstraction
 
 import pygame
+from typing import Tuple
+from GameConstants import GC_WORLD_WIDTH, GC_WORLD_HEIGHT
 
-from GameConstants import WORLD_WIDTH, WORLD_HEIGHT
+DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
+MODE_WINDOWED: int = 1
+MODE_FULLSCREEN: int = 2
 
-DEFAULT_WINDOW_RESOLUTION = (WORLD_WIDTH // 2, WORLD_HEIGHT // 2)
-MODE_WINDOWED = 1
-MODE_FULLSCREEN = 2
-
-GAME_ASPECT_RATIO = WORLD_WIDTH / WORLD_HEIGHT
+GAME_ASPECT_RATIO: float = GC_WORLD_WIDTH / GC_WORLD_HEIGHT
 
 surface: pygame.Surface = None  # surface that the game draws on; in world coordinates
 windowSurface: pygame.Surface = None  # surface that appears on the screen
-currentMode = None
+currentMode: int = None
 
 
 def resizeWindow(size):

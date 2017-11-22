@@ -1,12 +1,11 @@
-from game.gameClasses.Position import Position
-from game.gameClasses.HitCircle import HitCircle
+from game.gameClasses.PosPoint import PosPoint
 
 
-class HitBox(Position):
+class PosRect(PosPoint):
 	width: int
 	height: int
 
-	def __init__(self, x, y, width, height):
+	def __init__(self, x: float, y: float, width: int, height: int):
 		super().__init__(x, y)
 		self.width = width
 		self.height = height
@@ -15,7 +14,8 @@ class HitBox(Position):
 	# thus, no need for box-box collision detection
 	# hit detection algorithm taken from
 	# https://yal.cc/rectangle-circle-intersection-test/
-	def intersectsCircle(self, circle: HitCircle):
+	# also, DO NOT annotate circle to be a PosCircle (causes circular import)
+	def intersectsCircle(self, circle):
 		# cull impossible collisions
 		# test in the following order: circle is below, left/right, above box
 		# this is what you want for bricks, but backwards for paddle

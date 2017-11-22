@@ -16,10 +16,8 @@ class NewGameLoaderScreen(Screen):
 		# no need to display loading screen here, this should only take a split second
 
 		# TODO: need to load bricks for first level
-		state = GameState([], 0)
+		state = GameState([], 1, 0)
 		controller = GameController(state)
 		renderer = GameRenderer()
 
 		ScreenManager.setScreen(GameScreen(state, controller, renderer))
-
-		pass

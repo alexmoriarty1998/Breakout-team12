@@ -1,16 +1,16 @@
-from game.gameClasses.Position import Position
-from game.gameClasses.HitBox import HitBox
+from game.gameClasses.PosPoint import PosPoint
 
 
-class HitCircle(Position):
+class PosCircle(PosPoint):
 	radius: int
 
-	def __init__(self, x, y, radius):
+	def __init__(self, x: float, y: float, radius: int):
 		super().__init__(x, y)
 		self.radius = radius
 
 	# clone of HitBox.intersectsCircle()
-	def intersectsBox(self, box: HitBox):
+	# DO NOT type annotate box to be a PosRect
+	def intersectsBox(self, box):
 		if (self.y > box.y + box.height + self.radius
 			or self.x < box.x - self.radius
 			or self.x > box.x + box.width + self.radius

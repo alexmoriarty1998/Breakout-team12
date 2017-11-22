@@ -8,7 +8,22 @@ import ScreenManager
 class Screen:
 	def update(self):
 		# handle pygame.QUIT events without messing with the event queue
+		# Very, very weird & spooky bug:
+		# Pygame will randomly refuse to quit, often requiring many presses of the
+		# quit button on the window to actually quit, if the following two print()
+		# statements are removed.
+		# This behaviour (refusing to quit) has *never* been observed while the
+		# two print()s are present below.
+		# Interestingly, removing them does not cause the behaviour to come back
+		# immediately, even after many attempts to trigger it. Only when you
+		# go away from this class and start working on other code does this bug
+		# start to occur again. Then, you must re-add the print() statements to
+		# stop the bug.
+		# It is yet to be determined whether commenting out the print()s without
+		# removing them entirely works for stopping the bug.
+		print("looking for quit events")
 		if pygame.event.peek(pygame.QUIT):
+			print("quit event found")
 			ScreenManager.exit()
 		# for some reason fullscreen mode disables alt-f4, at least on Linux
 		# so simulate alt-f4 working by exiting when both are pressed

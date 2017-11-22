@@ -5,6 +5,8 @@ import pygame
 import ScreenManager, Graphics
 from screens.NewGameLoaderScreen import NewGameLoaderScreen
 from screens.Screen import Screen
+from Assets import Assets
+from GameConstants import *
 
 
 class MainMenuScreen(Screen):
@@ -12,17 +14,16 @@ class MainMenuScreen(Screen):
 	begin: bool = False
 
 	def __init__(self):
-		self.background = pygame.image.load("assets/mainMenuScreen/background.png")
+		self.background = Assets.I_MAINMENU_BACKGROUND
 
 	def update(self):
 		super().update()
+		pygame.event.clear()  # polling for keypress instead of getting keydown event, so pump event queue
 
 		Graphics.surface.blit(self.background, (0, 0))
 		Graphics.flip()
 
-		pygame.event.pump()  # polling for keypress instead of getting keydown event, so pump event queue
-
-		if pygame.key.get_pressed()[pygame.K_SPACE]:  # may need to change this key, or add a clickable button
+		if pygame.key.get_pressed()[GC_KEY_MAINMENU_BEGIN]:  # may need to change this key, or add a clickable button
 			self.begin = True
 
 		if self.begin:

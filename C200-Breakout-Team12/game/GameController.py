@@ -9,12 +9,20 @@
 # GameRenderer to display the current game state.
 # Name derived from the model-view-controller separation that
 # is present here.
+from game.GameState import GameState
+
 
 class GameController:
-	def __init__(self, state):
-		# TODO: store game state
-		pass
+	state: GameState
+
+	def __init__(self, state: GameState):
+		self.state = state
 
 	def update(self):
-		# TODO: do stuff
+		# TODO: update game state
+		# things to do:
+		# move ball and paddle (apply velocity and acceleration)
+		# do collision detection with paddle
+		# do collision detection and damage bricks
+		# remove dead bricks and add score
 		pass
