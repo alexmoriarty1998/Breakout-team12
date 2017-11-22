@@ -14,7 +14,7 @@ from screens.Screen import Screen
 # abbreviation for pygame.image.load() that also adds assets/ and .png onto the path
 # will need to make a copy for sound & music, if they are ever implemented
 def li(path: str):
-	return pygame.image.load("assets/" + path + ".png")
+	return pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
 
 class LoadingScreen(Screen):
 	background: pygame.Surface = None
