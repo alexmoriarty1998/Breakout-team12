@@ -1,3 +1,4 @@
+# testing :)
 # this module 'runs' a level of the game
 # The NewGameLoader screen inits a new game state, and makes a
 # Game screen for level 0. Each level, the StateManager is given
@@ -21,10 +22,10 @@ class GameController:
 
 	def update(self):
 		keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_LEFT]:
-			self.state.paddle.rectangle = -7
+		if keystate[pygame.K_LEFT]:
+			self.state.paddle.rectangle	= -7
 		if keystate[pygame.K_RIGHT]:
-			self.state.paddle.rectangle = 7
+			self.state.paddle.rectangle	= 7
 
 
 		pass
