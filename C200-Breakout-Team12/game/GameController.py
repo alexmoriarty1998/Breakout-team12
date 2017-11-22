@@ -19,6 +19,11 @@ class GameController:
 		self.state = state
 
 	def update(self):
-		# TODO: update game state
-		# see end of engine.md for things that need to go here
+		keystate = pygame.key.get_pressed()
+        if keystate[pygame.K_LEFT]:
+			self.state.paddle.velocity.dx = -7
+		if keystate[pygame.K_RIGHT]:
+			self.state.paddle.velocity.dx = 7
+			
+
 		pass
