@@ -6,24 +6,18 @@ import ScreenManager
 
 
 class Screen:
+	frame: int = 0
+
 	def update(self):
-		# handle pygame.QUIT events without messing with the event queue
-		# Very, very weird & spooky bug:
-		# Pygame will randomly refuse to quit, often requiring many presses of the
-		# quit button on the window to actually quit, if the following two print()
-		# statements are removed.
-		# This behaviour (refusing to quit) has *never* been observed while the
-		# two print()s are present below.
-		# Interestingly, removing them does not cause the behaviour to come back
-		# immediately, even after many attempts to trigger it. Only when you
-		# go away from this class and start working on other code does this bug
-		# start to occur again. Then, you must re-add the print() statements to
-		# stop the bug.
-		# It is yet to be determined whether commenting out the print()s without
-		# removing them entirely works for stopping the bug.
-		print("looking for quit events")
+		# screen is not cleared here to allow for motion blur effects
+
+		# this pump is necessary for quit events to reliably be found below
+		# it still allows for events to be gotten via event.get(), so while
+		# there is a small performance cost, it allows the rest of the code
+		# to be simplified and does not interfere
+		pygame.event.pump()
+		# this won't reliably work without the pump() above
 		if pygame.event.peek(pygame.QUIT):
-			print("quit event found")
 			ScreenManager.exit()
 		# for some reason fullscreen mode disables alt-f4, at least on Linux
 		# so simulate alt-f4 working by exiting when both are pressed
@@ -34,5 +28,4 @@ class Screen:
 		for e in pygame.event.get(pygame.VIDEORESIZE):
 			Graphics.resizeWindow(e.size)
 
-		# clear the screen [super.update() is the first thing called by subclasses, so clearing can be done here]
-		Graphics.surface.fill((0, 0, 0))
+		self.frame += 1  # advance frame number, for animations

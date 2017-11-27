@@ -1,5 +1,6 @@
 import pygame
 
+import Graphics
 from GameConstants import *
 from game.GameController import GameController
 from game.GameRenderer import GameRenderer
@@ -25,7 +26,10 @@ class GameScreen(Screen):
 		self.frame += 1
 
 		self.controller.update()
+
+		Graphics.clear()
 		self.renderer.render(self.state, self.frame)
+		Graphics.flip()
 
 		if pygame.key.get_pressed()[GC_KEY_GAME_PAUSE]:
 			pass  # TODO: pause

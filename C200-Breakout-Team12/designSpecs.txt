@@ -9,6 +9,14 @@ Milestone 1 goals:
 8. Change in angle of reflection of the ball depending on where it hits the player paddle.
 9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball
 
+TODO:
+draw walls on screen
+paddle movement and constraints
+ball movement (initial) and constraints/bouncing
+add default set of bricks
+paddle collision onto bricks/paddle
+win/loss detection
+move paddle velocity init code into appropriate location
 
 Minimum Features (for full game):
 Structure that stores all bricks, and a way to fill this (from a file or randomly)

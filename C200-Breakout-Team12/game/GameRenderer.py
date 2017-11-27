@@ -25,5 +25,3 @@ class GameRenderer:
 		ballULX = ballPosition.x - ballPosition.radius  # ball upper left x
 		ballULY = ballPosition.y - ballPosition.radius  # ball upper left y
 		surface.blit(state.ball.getImage(frame), (ballULX, ballULY))
-
-		Graphics.flip()

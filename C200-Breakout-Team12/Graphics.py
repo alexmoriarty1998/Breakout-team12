@@ -16,6 +16,9 @@ windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
 
 
+def clear():
+	surface.fill((0, 0, 0))
+
 def resizeWindow(size):
 	pygame.display.set_mode(size, pygame.RESIZABLE)
 
