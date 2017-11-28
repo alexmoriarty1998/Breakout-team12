@@ -24,9 +24,9 @@ For lists and tuples, you will need to do: `from typing import List` or `Tuple`,
 A tuple is a list with () instead of []. A tuple is immutable, meaning it can't be changed once created. It's main use is passing around multiple values as a single variable (like a list), and is faster than a list.
 
 #### Assets.py
-This contains game assets - images, and perhaps eventually sound/music. Each asset is declared here as a Surface (which is what pyagme uses to store images). They are initialized in the Loading Screen. To use them, `from Assets import Assets` (this imports the class `Assets` from the file `Assets.py`), and then use `Assets.<name>` to get an asset out of the class.
+This contains game assets - images, and perhaps eventually sound/music. Each asset is declared here as a Surface (which is what pyagme uses to store images).To use them, `from Assets import Assets` (this imports the class `Assets` from the file `Assets.py`), and then use `Assets.<name>` to get an asset out of the class.
 
-To add an asset, you will need to add it's name here, and add the code to load it into the LoadingScreen class. Image names should start with `I_`, and should be organized by the screen on which the image appears (e.g. `I_MAINMENU_BACKGROUND` or `I_GAMESCREEN_BALL`).
+To add an asset, you will need to add it's name here, and add the code to load it. The li function can reduce typing required. Image names should start with `I_`, and should be organized by the screen on which the image appears (e.g. `I_MAINMENU_BACKGROUND` or `I_GAMESCREEN_BALL`).
 
 #### Graphics.py
 This contains the code for graphics abstraction (explained in the GroupMe). Functions to note are `goWindowed()`, `goFullscreen()`, and `swapWindowMode()`, which toggles between windowed and fullscreen.
