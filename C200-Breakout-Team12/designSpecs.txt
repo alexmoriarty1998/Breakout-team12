@@ -10,8 +10,6 @@ Milestone 1 goals:
 9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball
 
 TODO:
-draw walls on screen
-paddle movement and constraints
 ball movement (initial) and constraints/bouncing
 add default set of bricks
 paddle collision onto bricks/paddle
