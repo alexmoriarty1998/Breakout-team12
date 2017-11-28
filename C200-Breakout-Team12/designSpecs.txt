@@ -16,7 +16,8 @@ ball movement (initial) and constraints/bouncing
 add default set of bricks
 paddle collision onto bricks/paddle
 win/loss detection
-move paddle velocity init code into appropriate location
+move ball velocity init code into appropriate location
+update win variable in GameState
 
 Minimum Features (for full game):
 Structure that stores all bricks, and a way to fill this (from a file or randomly)
