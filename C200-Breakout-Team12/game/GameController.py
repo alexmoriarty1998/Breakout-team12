@@ -11,6 +11,7 @@
 # Name derived from the model-view-controller separation that
 # is present here.
 from game.GameState import GameState
+from GameConstants import GC_PADDLE_SPEED
 import pygame
 
 
@@ -21,11 +22,14 @@ class GameController:
 		self.state = state
 
 	def update(self):
+		self.state.paddle.rectangle = 0
 		keystate = pygame.key.get_pressed()
-		if keystate[pygame.K_LEFT]:
-			self.state.paddle.rectangle	= -7
-		if keystate[pygame.K_RIGHT]:
-			self.state.paddle.rectangle	= 7
+		for event in pygame.event.get():
+			if keystate[pygame.K_LEFT]:
+				paddle	= -GC_PADDLE_SPEED
+			elif keystate[pygame.K_RIGHT]:
+				self.state.paddle.rectangle	= GC_PADDLE_SPEED
+
 
 
 		pass

@@ -16,3 +16,8 @@ class Paddle(Blittable):
 		self.rect = PosRect(x, GC_PADDLE_TOP_HEIGHT, GC_PADDLE_WIDTH, GC_PADDLE_HEIGHT)
 
 		self.image = Assets.I_PADDLE
+
+	'''def updateVelocity(self):
+		self.velocity = Velocity(0, 0)
+		for event in pygame.event.get():'''
+

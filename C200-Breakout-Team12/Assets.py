@@ -33,3 +33,4 @@ class Assets:
 	I_BRICK_LEVEL3_2: Surface = li("game/brick32")  # 3 HP brick at 2 HP
 	I_BRICK_LEVEL3_1: Surface = li("game/brick31")  # 3 HP brick at 1 HP
 	I_BRICK_BOSS: Surface = li("game/brickBOSS")  # undestroyable brick
+	I_WALL: Surface = li("game/wall")
