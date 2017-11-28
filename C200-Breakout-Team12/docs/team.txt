@@ -1,0 +1,79 @@
+Teamwork coordination and project goals:
+
+Milestone 1 goals:
+- 1. Display of brick layer at the top of the screen where each brick is an individual object.			11/28
+- 2. Player paddle at the bottom of the screen.															11/21
+- 3. A ball placed randomly between the bricks and the paddle and given a random initial direction.		11/21
+- 4. Detection of when the ball hits a side wall and appropriate change in direction.					11/28
+5. Detection of when the ball hits the ceiling and indication of a level completed.						11/28 and
+6. Detection of when the ball hits the floor and indication of a level failed.							11/28 and
+- 7. Player ability to control the paddle via keyboard or mouse interface.								11/22 and 11/28
+8. Change in angle of reflection of the ball depending on where it hits the player paddle.				TBD
+9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball.	TBD
+
+TODO: discuss at Wednesday's meeting
+printing checklist from milestone 1 pdf
+commit policy: commit frequently, pull/push at beginning/end of sessions
+
+TODO: Milestone 1: basic features
+add default set of bricks
+collision onto bricks/paddle, appropriate bouncing
+win/loss notifications
+move ball velocity init code into appropriate location, also look at same for paddle
+implement angle detection for collisions, use for part 8
+
+TODO: Milestone 1: post-completion
+add brick generation
+clean up & comment code
+add statement for commits from shared work
+look into motion blur
+
+
+
+
+
+
+
+Game Design:
+Need the following screens:
+Loading (inits pygame, loads all assets into an asset holder class, displays progress bar)
+Main menu
+Game level
+Pause (can be entered anytime from game level)
+Between-levels (loop with this and game level screen until game is over)
+Game over -> goes to a highscore screen
+Highscore Input (only if user set a highscore)
+Highscore Display (if user didn’t set a highscore, or after entering name)
+-> return to main menu or exit
+
+Set up structure for separating game state, logic, and rendering
+
+Consider animation-based system.
+
+Game screens:
+Main menu:
+	Fancy decorations (title, image, etc.)
+	Very simple tutorial, if we choose to put it here
+	Possibly display highscores here too
+	Buttons for audio mute toggle, volume slider, fullscreen/windowed, and exit
+	Button to start, or have it bound to a keypress
+
+Game level:
+	game goes here, press esc to pause
+
+Between levels:
+	Button to continue to next level, or go to main menu or, or quit the game
+
+Pause:
+	Options to continue, exit to main menu, and exit game. Also mute/unmute buttons. Should we show the last state of the game in the background (pictured below)? May or may not be possible, depends on how rendering is designed and performed.
+
+
+Game over:
+	Just a temporary screen that notifies the user the game is over, should move on to one of the highscore screens.
+
+Highscore display:
+	Simple, just show highscores, have buttons to go to main menu or exit.
+
+Highscore input:
+	Need to figure out how to implement this.
+	Also, this screen needs to be reachable from the between-level and pause screen, in case the user decides to quit but has a highscore
