@@ -6,7 +6,7 @@ import ScreenManager, Graphics
 from screens.NewGameLoaderScreen import NewGameLoaderScreen
 from screens.Screen import Screen
 from Assets import Assets
-from GameConstants import *
+from GameConstants import GC_KEY_MAINMENU_BEGIN
 
 
 class MainMenuScreen(Screen):

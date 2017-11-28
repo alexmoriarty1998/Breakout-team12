@@ -13,13 +13,10 @@
 # this class initializes pygame and graphics, then
 # starts the screen manager with the loading screen
 
-# should this init stuff go here or in LoadingScreen.__init__()?
 import pygame
-
 from GameConstants import GC_WORLD_SIZE
 import Graphics
 import ScreenManager
-from screens.LoadingScreen import LoadingScreen
 
 pygame.init()
 
@@ -31,5 +28,6 @@ Graphics.surface = pygame.Surface(GC_WORLD_SIZE)  # this is the surface with wor
 Graphics.goWindowed()  # call goFullscreen() instead to start game in fullscreen
 
 # start the game
+from screens.LoadingScreen import LoadingScreen  # import this after pygame is fully initialized
 ScreenManager.currentScreen = LoadingScreen()
 ScreenManager.start()

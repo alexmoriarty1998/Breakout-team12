@@ -1,5 +1,3 @@
-import pygame
-
 import Graphics
 from GameConstants import *
 from game.GameController import GameController
