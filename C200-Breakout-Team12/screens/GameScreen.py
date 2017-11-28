@@ -19,7 +19,7 @@ class GameScreen(Screen):
 
 	def update(self):
 		super().update()
-		pygame.event.clear()
+
 
 		self.frame += 1
 
