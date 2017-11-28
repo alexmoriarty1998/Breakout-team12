@@ -14,7 +14,7 @@ class GameRenderer:
 		# ball should be drawn last
 
 		for b in state.bricks:
-			surface.blit(b.getImage(), (b.rect.x, b.rect.y))
+			surface.blit(b.getImage(frame), (b.rect.x, b.rect.y))
 
 		surface.blit(state.paddle.getImage(frame), (state.paddle.rect.x, state.paddle.rect.y))
 
@@ -23,7 +23,7 @@ class GameRenderer:
 			surface.blit(image, (d.pos.x - d.image.get_width() // 2, d.pos.y - d.image.get_height() // 2))
 
 		###   BALL   ##########################################################
-		ballPosition = state.ball.pos
+		ballPosition = state.ball.circle
 		ballULX = ballPosition.x - ballPosition.radius  # ball upper left x
 		ballULY = ballPosition.y - ballPosition.radius  # ball upper left y
 		surface.blit(state.ball.getImage(frame), (ballULX, ballULY))

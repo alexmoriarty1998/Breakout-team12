@@ -15,6 +15,7 @@ from GameConstants import *
 import pygame
 
 
+
 class GameController:
 	state: GameState
 
@@ -22,6 +23,8 @@ class GameController:
 		self.state = state
 
 	def update(self):
+		paddle = self.state.paddle
+		ball = self.state.ball
 		for event in pygame.event.get():
 			if pygame.key.get_pressed()[pygame.K_LEFT]:
 				self.state.paddle.velocity.dx = - GC_PADDLE_SPEED
@@ -30,14 +33,26 @@ class GameController:
 			else:
 				self.state.paddle.velocity.dx = 0
 
-
-
+		# paddle movement
 		self.state.paddle.velocity.apply(self.state.paddle.rect)
 		if self.state.paddle.rect.x < GC_WALL_SIZE:
 			self.state.paddle.rect.x = GC_WALL_SIZE
 		elif (self.state.paddle.rect.x + self.state.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
 			self.state.paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.state.paddle.rect.width
 
+		# ball movement
+		self.state.ball.velocity.apply(self.state.ball.circle)
+		if self.state.ball.circle.x - self.state.ball.circle.radius < GC_WALL_SIZE:
+			ball.velocity.dx *= -1
+		elif ball.circle.x + ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
+			ball.velocity.dx *= -1
+		elif ball.circle.y - ball.circle.radius < 0:
+			self.state.won = 1
+		elif ball.circle.y + ball.circle.radius > GC_WORLD_HEIGHT:
+			self.state.won = -1
 
+		# ball paddle collision
+		if paddle.rect.intersectsCircle(ball.circle):
+			if ball.circle.y < paddle.rect.y - 2:
+				ball.velocity.dy *= -1
 
-		pass

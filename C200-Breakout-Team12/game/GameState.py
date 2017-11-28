@@ -16,7 +16,7 @@ class GameState:
 
 	level: int
 	score: int
-	won: bool = False
+	won: bool = 0
 
 	def __init__(self, bricks: List[Brick], level: int, score: int = 0):
 		self.bricks = bricks
