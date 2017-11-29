@@ -13,18 +13,19 @@
 # this class initializes pygame and graphics, then
 # starts the screen manager with the loading screen
 
+# init pygame before importing/doing anything else
 import pygame
-from GameConstants import GC_WORLD_SIZE
-import Graphics
-import ScreenManager
-
 pygame.init()
 
 # initialize display
 pygame.display.set_caption("Breakout!")
 pygame.display.set_icon(pygame.image.load("assets/icon.png"))
+# done initializing pygame
 
-Graphics.surface = pygame.Surface(GC_WORLD_SIZE)  # this is the surface with world coordinates
+
+import Graphics
+import ScreenManager
+
 Graphics.goWindowed()  # call goFullscreen() instead to start game in fullscreen
 
 # start the game

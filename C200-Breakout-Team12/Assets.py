@@ -1,12 +1,6 @@
 # Asset storage class
 
 # images are prepended with I_, sounds with S_, music with M_
-# these are all loaded from the LoadingScreen
-
-# If asset variables aren't wrapped in the class, <asset> = None
-# will be called every time the module is imported, which is bad.
-# If they aren't set to None and just left as <assetName>: Surface,
-# they can't be imported properly.
 
 import Graphics
 import pygame
@@ -21,6 +15,8 @@ def li(path: str):
 class Assets:
 	# Testing confirms that these are initialized only once, not every time the class is imported
 	# They are static variables to avoid having to pass around an instance of this class everywhere.
+	I_BLUR: Surface = li("blur")
+
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
 
 	I_BALL: Surface = li("game/ball")

@@ -6,6 +6,9 @@
 # ball/paddle/brick width/height values should match up
 # with graphics assets, so avoid changing those
 
+# debug switches
+PRINTFPS: bool = True
+
 from typing import Tuple
 import pygame
 
@@ -34,7 +37,7 @@ GC_GRAVITY_ACCEL = 0.5
 GC_PADDLE_WIDTH: int = 300
 GC_PADDLE_HEIGHT: int = 20
 GC_PADDLE_TOP_HEIGHT: int = int(GC_WORLD_HEIGHT - GC_PADDLE_HEIGHT * 2.25)
-GC_PADDLE_SPEED: int = 7
+GC_PADDLE_SPEED: int = 14
 
 
 GC_BRICK_LAYERS: int = 10

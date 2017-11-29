@@ -3,7 +3,7 @@
 
 import pygame
 from typing import Tuple
-from GameConstants import GC_WORLD_WIDTH, GC_WORLD_HEIGHT
+from GameConstants import GC_WORLD_SIZE, GC_WORLD_WIDTH, GC_WORLD_HEIGHT
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
 MODE_WINDOWED: int = 1
@@ -11,13 +11,29 @@ MODE_FULLSCREEN: int = 2
 
 GAME_ASPECT_RATIO: float = GC_WORLD_WIDTH / GC_WORLD_HEIGHT
 
-surface: pygame.Surface = None  # surface that the game draws on; in world coordinates
+surface: pygame.Surface = pygame.Surface(GC_WORLD_SIZE)  # surface that the game draws on; in world coordinates
 windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
 
 
 def clear():
 	surface.fill((0, 0, 0))
+
+
+def blur(blurImg: pygame.Surface):
+	# Importing Assets in this module causes issues with assets being
+	# loaded before this Graphics module is fully initialized. The solution
+	# is to not init the assets as static variables of the class Assets,
+	# but to have them as variables of the class (static or instance)
+	# and have a load() method which loads the images. However, this results
+	# in either each asset being listed twice (once declared in the class
+	# scope, then loaded in load()), or the IDE autocomplete not working well
+	# with them (which is important, because assets have long and hard to
+	# remember names). So we use unclean code in LoadingScreen.py to avoid
+	# this trap there, and here we have the draw code pass in Assets.I_BLUR
+	# as the image to blur with, instead of having a reference to it in this
+	# module.
+	surface.blit(blurImg, (0, 0))
 
 def resizeWindow(size):
 	pygame.display.set_mode(size, pygame.RESIZABLE)

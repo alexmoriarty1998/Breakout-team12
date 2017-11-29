@@ -19,16 +19,16 @@ TODO: Milestone 1: basic features
 add default set of bricks
 collision onto bricks/paddle, appropriate bouncing
 win/loss notifications
-move ball velocity init code into appropriate location, also look at same for paddle
 implement angle detection for collisions, use for part 8
 
-TODO: Milestone 1: post-completion
+TODO: Milestone 1: post-completion for group
 add brick generation
 clean up & comment code
 add statement for commits from shared work
-look into motion blur
 add gravity to ball
 add bouncing effects to paddle and bricks
+TODO: stuff for me to clean up
+move ball velocity init code into appropriate location, also look at same for paddle
 
 
 

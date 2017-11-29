@@ -20,7 +20,7 @@ class MainMenuScreen(Screen):
 		super().update()
 		pygame.event.clear()  # polling for keypress instead of getting keydown event, so pump event queue
 
-		Graphics.clear()
+		Graphics.blur(Assets.I_BLUR)
 		Graphics.surface.blit(self.background, (0, 0))
 		Graphics.flip()
 

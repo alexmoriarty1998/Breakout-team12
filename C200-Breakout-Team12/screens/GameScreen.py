@@ -1,4 +1,5 @@
 import Graphics
+from Assets import Assets
 from GameConstants import *
 from game.GameController import GameController
 from game.GameRenderer import GameRenderer
@@ -20,15 +21,15 @@ class GameScreen(Screen):
 	def update(self):
 		super().update()
 
-
-		self.frame += 1
-
+		# update game state
 		self.controller.update()
 
-		Graphics.clear()
+		# draw current game state
+		Graphics.blur(Assets.I_BLUR)
 		self.renderer.render(self.state, self.frame)
 		Graphics.flip()
 
+		# transition to next screens on win/loss/pause
 		if pygame.key.get_pressed()[GC_KEY_GAME_PAUSE]:
 			pass  # TODO: pause
 
