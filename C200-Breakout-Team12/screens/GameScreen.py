@@ -26,7 +26,7 @@ class GameScreen(Screen):
 		self.controller.update()
 
 		# draw current game state
-		Graphics.blur(Assets.I_BLUR)
+		Graphics.clear(Assets.I_BLUR)
 		self.renderer.render(self.state, self.frame)
 		if self.state.won == 1:
 			Graphics.surface.blit(Assets.I_WON, (0, 0))

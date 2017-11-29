@@ -5,11 +5,11 @@ Milestone 1 goals:
 - 2. Player paddle at the bottom of the screen.															11/21
 - 3. A ball placed randomly between the bricks and the paddle and given a random initial direction.		11/21
 - 4. Detection of when the ball hits a side wall and appropriate change in direction.					11/28
-5. Detection of when the ball hits the ceiling and indication of a level completed.						11/28 and
-6. Detection of when the ball hits the floor and indication of a level failed.							11/28 and
+- 5. Detection of when the ball hits the ceiling and indication of a level completed.					11/28 and 11/29
+- 6. Detection of when the ball hits the floor and indication of a level failed.						11/28 and 11/29
 - 7. Player ability to control the paddle via keyboard or mouse interface.								11/22 and 11/28
 8. Change in angle of reflection of the ball depending on where it hits the player paddle.				TBD
-9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball.	TBD
+- 9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball.	11/29
 
 TODO: discuss at Wednesday's meeting
 printing checklist from milestone 1 pdf
@@ -17,8 +17,8 @@ printing checklist from milestone 1 pdf
 TODO: Milestone 1: basic features
 - add default set of bricks - done SR 11/28
 - move left/right press detection out of event loop (since events aren't used)
-collision onto bricks, appropriate bouncing
-win/loss notifications
+- collision onto bricks, appropriate bouncing
+- win/loss notifications
 implement angle detection for collisions, use for part 8
 use ^ to fix buggy paddle/ball collision detection and to handle side collisions
 	also use to have advanced brick collisions

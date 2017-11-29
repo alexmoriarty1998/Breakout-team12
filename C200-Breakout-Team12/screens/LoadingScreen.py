@@ -22,7 +22,7 @@ class LoadingScreen(Screen):
 	def update(self):
 		super().update()
 
-		Graphics.clear()
+		Graphics.hardClear()
 		Graphics.surface.blit(self.background, (0, 0))
 		Graphics.flip()
 

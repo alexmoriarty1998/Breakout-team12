@@ -3,7 +3,7 @@
 
 import pygame
 from typing import List, Tuple
-from GameConstants import GC_WORLD_SIZE, GC_WORLD_WIDTH, GC_WORLD_HEIGHT
+from GameConstants import GC_WORLD_SIZE, GC_WORLD_WIDTH, GC_WORLD_HEIGHT, GC_MOTION_BLUR
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
 MODE_WINDOWED: int = 1
@@ -14,10 +14,6 @@ GAME_ASPECT_RATIO: float = GC_WORLD_WIDTH / GC_WORLD_HEIGHT
 surface: pygame.Surface = pygame.Surface(GC_WORLD_SIZE)  # surface that the game draws on; in world coordinates
 windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
-
-
-def clear() -> None:
-	surface.fill((0, 0, 0))
 
 
 def blur(blurImg: pygame.Surface) -> None:
@@ -35,6 +31,16 @@ def blur(blurImg: pygame.Surface) -> None:
 	# module.
 	surface.blit(blurImg, (0, 0))
 
+
+def hardClear():
+	surface.fill((0, 0, 0))
+
+
+def clear(blurImg: pygame.Surface) -> None:
+	if (GC_MOTION_BLUR):
+		blur(blurImg)
+	else:
+		hardClear()
 
 def resizeWindow(size) -> None:
 	pygame.display.set_mode(size, pygame.RESIZABLE)

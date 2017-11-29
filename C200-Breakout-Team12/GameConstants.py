@@ -6,7 +6,8 @@
 # sizes for ball, paddle, bricks, etc. must match up with assets
 
 # debug switches
-GC_PRINT_FPS: bool = False
+GC_PRINT_FPS: bool = True
+GC_MOTION_BLUR: bool = False
 
 from typing import Tuple
 import pygame
