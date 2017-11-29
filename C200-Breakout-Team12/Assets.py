@@ -17,6 +17,9 @@ class Assets:
 	# They are static variables to avoid having to pass around an instance of this class everywhere.
 	I_BLUR: Surface = li("blur")
 
+	I_WON: Surface = li('testing/won')
+	I_LOST: Surface = li('testing/lost')
+
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
 
 	I_BALL: Surface = li("game/ball")

@@ -28,6 +28,10 @@ class GameScreen(Screen):
 		# draw current game state
 		Graphics.blur(Assets.I_BLUR)
 		self.renderer.render(self.state, self.frame)
+		if self.state.won == 1:
+			Graphics.surface.blit(Assets.I_WON, (0, 0))
+		elif self.state.won == -1:
+			Graphics.surface.blit(Assets.I_LOST, (0, 0))
 		Graphics.flip()
 
 		# TODO: remove this debug feature
