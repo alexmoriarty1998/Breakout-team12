@@ -27,6 +27,8 @@ add brick generation
 clean up & comment code
 add statement for commits from shared work
 look into motion blur
+add gravity to ball
+add bouncing effects to paddle and bricks
 
 
 
