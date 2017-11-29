@@ -41,4 +41,8 @@ class PosRect(PosPoint):
 		diffY = point.y - self.y
 		diffX = point.x - self.x
 
-		return math.degrees(math.atan2(diffY, diffX))
+		returnAngle = math.degrees(math.atan2(diffY, diffX))
+		if returnAngle > 0:
+			return returnAngle
+		else:
+			return 360 + returnAngle

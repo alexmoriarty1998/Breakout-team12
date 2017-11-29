@@ -13,6 +13,7 @@
 from game.GameState import GameState
 from GameConstants import *
 import pygame
+from game.gameClasses.PosPoint import PosPoint
 
 
 class GameController:
@@ -41,7 +42,7 @@ class GameController:
 			paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - paddle.rect.width
 
 		# ball movement
-		self.state.lastPosBall = ball.circle
+		self.state.lastPosBall = PosPoint(ball.circle.x, ball.circle.y)
 		ball.velocity.apply(ball.circle)
 		if ball.circle.x - ball.circle.radius < GC_WALL_SIZE:
 			ball.velocity.dx *= -1
@@ -54,15 +55,22 @@ class GameController:
 
 		# ball paddle collision
 		if paddle.rect.intersectsCircle(ball.circle):
-			angle = paddle.rect.findAngle(ball.circle)
-			if angle < 0:
-				angle = (-360 - angle) * -1
-
+			intersectPoint = None
+			if ball.circle.y == GC_PADDLE_TOP_HEIGHT:
+				intersectPoint = ball.circle
+			else:
+				largeY = ball.circle.y - self.state.lastPosBall.y
+				largeX = ball.circle.x - self.state.lastPosBall.x
+				smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBall.y
+				scale = smallY / largeY
+				smallX = scale * largeX
+				intersectX = smallX + self.state.lastPosBall.x
+				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
+			angle = paddle.rect.findAngle(intersectPoint)
 			if angle < GC_PADDLE_ULANGLE or angle > GC_PADDLE_URANGLE:
 				ball.velocity.dx *= -1
 			else:
-				ball.velocity.dy *= -1
-
+				ball.veolcity.dy *= -1
 
 		# brick ball collision
 		brickHit = False
