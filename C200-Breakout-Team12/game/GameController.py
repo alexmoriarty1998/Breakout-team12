@@ -57,6 +57,14 @@ class GameController:
 				ball.velocity.dy *= -1
 
 		# brick ball collision
+		brickHit = False
 		for brick in self.state.bricks:
 			if brick.rect.intersectsCircle(ball.circle):
-				print('Brick Hit')
+				brickHit = True
+				if brick.hp > 0:
+					brick.hp -= 1
+		if brickHit:
+			ball.velocity.dy *= -1
+			ball.velocity.dx *= -1
+		
+		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))
