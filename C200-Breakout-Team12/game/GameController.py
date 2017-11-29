@@ -56,7 +56,7 @@ class GameController:
 			if ball.circle.y < paddle.rect.y - 2:
 				ball.velocity.dy *= -1
 
-        # brick ball collision
-		for brick in state.bricks:
+		# brick ball collision
+		for brick in self.state.bricks:
 			if brick.rect.intersectsCircle(ball.circle):
 				print('Brick Hit')
