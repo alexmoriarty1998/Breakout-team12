@@ -33,22 +33,19 @@ GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
 GC_BALL_RADIUS: int = 13
 GC_BALL_INITIAL_ANGLE_VARIATION: int = 60  # degrees to either side of straight down
 GC_BALL_INITIAL_VELOCITY_RANGE: Tuple[int, int] = (7, 12)  # initial velocity of ball is within these
-GC_GRAVITY_ACCEL = 0.5
+GC_GRAVITY_ACCEL = 0.1
+GC_MAX_BOUNCE_ANGLE = 60  # offset from 270 degrees
 
 GC_PADDLE_WIDTH: int = 225
 GC_PADDLE_HEIGHT: int = 20
 GC_PADDLE_TOP_HEIGHT: int = int(GC_WORLD_HEIGHT - GC_PADDLE_HEIGHT * 2.25)
 GC_PADDLE_SPEED: int = 18
-GC_PADDLE_ULANGLE: float = math.degrees(math.atan2(-10, -112.5))
-GC_PADDLE_ULANGLE = -1 * (-360 - GC_PADDLE_ULANGLE)
-GC_PADDLE_URANGLE: float = math.degrees(math.atan2(-10, 112.5))
-GC_PADDLE_URANGLE = -1 * (-360 - GC_PADDLE_URANGLE)
-GC_PADDLE_BLANGLE: float = math.degrees(math.atan2(10, -112.5))
-GC_PADDLE_BRANGLE: float = math.degrees(math.atan2(10, 112.5))
-print(GC_PADDLE_ULANGLE)
-print(GC_PADDLE_BLANGLE)
-print(GC_PADDLE_URANGLE)
-print(GC_PADDLE_BRANGLE)
+GC_PADDLE_ULANGLE: float = math.degrees(math.atan2(-GC_PADDLE_HEIGHT / 2, -GC_PADDLE_WIDTH / 2))
+GC_PADDLE_ULANGLE = 360 + GC_PADDLE_ULANGLE  # convert negative angle to positive
+GC_PADDLE_URANGLE: float = math.degrees(math.atan2(-GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
+GC_PADDLE_URANGLE = 360 + GC_PADDLE_URANGLE
+GC_PADDLE_BLANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, -GC_PADDLE_WIDTH / 2))
+GC_PADDLE_BRANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
 
 
 GC_BRICK_LAYERS: int = 12
@@ -57,3 +54,7 @@ GC_BRICK_HEIGHT: int = 50
 GC_BRICK_WIDTH: int = (GC_WORLD_WIDTH - 2 * GC_WALL_SIZE) // GC_BRICK_COLUMNS
 GC_BRICK_TOP_HEIGHT: int = 70
 GC_BRICK_BOTTOM_HEIGHT: int = GC_BRICK_TOP_HEIGHT + GC_BRICK_LAYERS * GC_BRICK_HEIGHT
+GC_BRICK_ULANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))
+GC_BRICK_URANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))
+GC_BRICK_BLANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))
+GC_BRICK_BRANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))

@@ -38,10 +38,11 @@ class PosRect(PosPoint):
 		return (deltaX ** 2 + deltaY ** 2) < (circle.radius ** 2)
 
 	def findAngle(self, point: PosPoint):
-		diffY = point.y - self.y
-		diffX = point.x - self.x
+		diffY = point.y - (self.y + self.height // 2)
+		diffX = point.x - (self.x + self.width // 2)
 
 		returnAngle = math.degrees(math.atan2(diffY, diffX))
+		# convert negative angle to positive
 		if returnAngle > 0:
 			return returnAngle
 		else:

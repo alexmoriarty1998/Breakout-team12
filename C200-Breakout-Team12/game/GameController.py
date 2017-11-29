@@ -43,6 +43,7 @@ class GameController:
 
 		# ball movement
 		self.state.lastPosBall = PosPoint(ball.circle.x, ball.circle.y)
+		ball.acceleration.apply(ball.velocity)
 		ball.velocity.apply(ball.circle)
 		if ball.circle.x - ball.circle.radius < GC_WALL_SIZE:
 			ball.velocity.dx *= -1
@@ -68,19 +69,29 @@ class GameController:
 				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
 			angle = paddle.rect.findAngle(intersectPoint)
 			if angle < GC_PADDLE_ULANGLE or angle > GC_PADDLE_URANGLE:
-				ball.velocity.dx *= -1
+				ball.velocity.dx *= -1  # hit side of paddle
 			else:
-				ball.veolcity.dy *= -1
+				velocityMagnitude = (ball.velocity.dx ** 2 + ball.velocity.dy ** 2) ** (0.5)
+				xDiff = intersectPoint.x - (paddle.rect.x + paddle.rect.width // 2)
+				xDiff /= paddle.rect.width // 2
+				reflectAngle = 270 + xDiff * GC_MAX_BOUNCE_ANGLE
+				velocityX = math.cos(math.radians(reflectAngle)) * velocityMagnitude
+				velocityY = math.sin(math.radians(reflectAngle)) * velocityMagnitude
+				ball.velocity.dx = velocityX
+				ball.velocity.dy = velocityY
+
 
 		# brick ball collision
-		brickHit = False
 		for brick in self.state.bricks:
 			if brick.rect.intersectsCircle(ball.circle):
-				brickHit = True
 				if brick.hp > 0:
 					brick.hp -= 1
-		if brickHit:
-			ball.velocity.dy *= -1
-			ball.velocity.dx *= -1
+				if brick.hp != 0:
+					angle = brick.rect.findAngle(ball.circle)
+					if (GC_BRICK_URANGLE <= angle < GC_BRICK_BRANGLE) or (GC_BRICK_BLANGLE <= angle < GC_BRICK_ULANGLE):
+						# hit side of brick
+						ball.velocity.dx *= -1
+					else:  # hit top of brick
+						ball.velocity.dy *= -1
 		
 		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))
