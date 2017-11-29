@@ -15,7 +15,6 @@ from GameConstants import *
 import pygame
 
 
-
 class GameController:
 	state: GameState
 
@@ -55,4 +54,3 @@ class GameController:
 		if paddle.rect.intersectsCircle(ball.circle):
 			if ball.circle.y < paddle.rect.y - 2:
 				ball.velocity.dy *= -1
-

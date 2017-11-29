@@ -19,68 +19,16 @@ Graphics.clear() vs Graphics.blur()
 TODO: Milestone 1: basic features
 - add default set of bricks - done SR 11/28
 move left/right press detection out of event loop (since events aren't used)
-collision onto bricks/paddle, appropriate bouncing
+collision onto bricks, appropriate bouncing
 win/loss notifications
 implement angle detection for collisions, use for part 8
+use ^ to fix buggy paddle/ball collision detection and to handle side collisions
+	also use to have advanced brick collisions
 
-TODO: Milestone 1: post-completion for group
-add brick generation
-fix paddle collision detection (using angle detection to trim side collisions)
+TODO: Milestone 1: post-completion
+add gravity to ball
+add good brick generation
 fix movement input (event-driven instead of polling)
 clean up & comment code
 add statement for commits from shared work
-
-add gravity to ball
-add bouncing effects to paddle and bricks
-TODO: stuff for me to clean up
-move ball velocity init code into appropriate location, also look at same for paddle
-
-
-
-
-
-
-
-Game Design:
-Need the following screens:
-Loading (inits pygame, loads all assets into an asset holder class, displays progress bar)
-Main menu
-Game level
-Pause (can be entered anytime from game level)
-Between-levels (loop with this and game level screen until game is over)
-Game over -> goes to a highscore screen
-Highscore Input (only if user set a highscore)
-Highscore Display (if user didn’t set a highscore, or after entering name)
--> return to main menu or exit
-
-Set up structure for separating game state, logic, and rendering
-
-Consider animation-based system.
-
-Game screens:
-Main menu:
-	Fancy decorations (title, image, etc.)
-	Very simple tutorial, if we choose to put it here
-	Possibly display highscores here too
-	Buttons for audio mute toggle, volume slider, fullscreen/windowed, and exit
-	Button to start, or have it bound to a keypress
-
-Game level:
-	game goes here, press esc to pause
-
-Between levels:
-	Button to continue to next level, or go to main menu or, or quit the game
-
-Pause:
-	Options to continue, exit to main menu, and exit game. Also mute/unmute buttons. Should we show the last state of the game in the background (pictured below)? May or may not be possible, depends on how rendering is designed and performed.
-
-
-Game over:
-	Just a temporary screen that notifies the user the game is over, should move on to one of the highscore screens.
-
-Highscore display:
-	Simple, just show highscores, have buttons to go to main menu or exit.
-
-Highscore input:
-	Need to figure out how to implement this.
-	Also, this screen needs to be reachable from the between-level and pause screen, in case the user decides to quit but has a highscore
+fix bug: paddle not initially centered on screen
