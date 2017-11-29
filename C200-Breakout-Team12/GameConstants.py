@@ -17,7 +17,8 @@ GC_WORLD_WIDTH: int = GC_WORLD_SIZE[0]
 GC_WORLD_HEIGHT: int = GC_WORLD_SIZE[1]
 
 GC_FPS: int = 60
-GC_FRAME_TIME: float = 1 / GC_FPS
+GC_FRAME_TIME_SECONDS: float = 1 / GC_FPS
+GC_FRAME_TIME_MILLISECONDS: float = GC_FRAME_TIME_SECONDS * 1000
 
 # keys, organized by game screen on which they are used
 GC_KEY_MAINMENU_BEGIN = pygame.K_SPACE

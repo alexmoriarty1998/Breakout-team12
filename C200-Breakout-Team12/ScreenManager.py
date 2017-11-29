@@ -11,7 +11,7 @@ import pygame
 import sys
 
 from screens import Screen
-from GameConstants import GC_FRAME_TIME
+from GameConstants import GC_FRAME_TIME_MILLISECONDS
 
 currentScreen: Screen = None
 
@@ -36,5 +36,5 @@ def start():  # start the game - called from C200_Breakout_Team12.py
 
 		# time consumed can be longer than 16.7 ms, for example on the loading screen
 		# so don't delay() for a negative value
-		if timeConsumed < GC_FRAME_TIME:
-			pygame.time.delay(int(GC_FRAME_TIME - timeConsumed))
+		if timeConsumed < GC_FRAME_TIME_MILLISECONDS:
+			pygame.time.delay(int(GC_FRAME_TIME_MILLISECONDS - timeConsumed))
