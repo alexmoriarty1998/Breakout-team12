@@ -15,7 +15,7 @@ class PosRect(PosPoint):
 	# thus, no need for box-box collision detection
 	# hit detection algorithm taken from
 	# https://yal.cc/rectangle-circle-intersection-test/
-	def intersectsCircle(self, circle: PosCircle):
+	def intersectsCircle(self, circle: PosCircle) -> bool:
 		# cull impossible collisions
 		# test in the following order: circle is below, left/right, above box
 		# this is what you want for bricks, but backwards for paddle

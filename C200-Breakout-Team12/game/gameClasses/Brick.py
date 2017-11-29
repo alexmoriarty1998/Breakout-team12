@@ -14,7 +14,7 @@ class Brick(Blittable):
 
 	# get the brick image from its max HP and current HP
 	@staticmethod
-	def getImageFromHP(maxHP: int, currentHP: int):
+	def getImageFromHP(maxHP: int, currentHP: int) -> Surface:
 		if maxHP == -1:
 			return Assets.I_BRICK_BOSS
 		if maxHP == 1:
@@ -30,12 +30,12 @@ class Brick(Blittable):
 				return Assets.I_BRICK_LEVEL3_2
 			return Assets.I_BRICK_LEVEL3_3
 
+	def getImage(self, frame: int) -> Surface:
+		return self.getImageFromHP(self.maxHP, self.hp)
+
 	def __init__(self, pos: PosRect, score: int, maxHP: int):
 		self.rect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
 		self.image = self.getImageFromHP(maxHP, maxHP)
 		self.score = score
 		self.maxHP = maxHP
 		self.hp = maxHP
-
-	def getImage(self, frame: int) -> Surface:
-		return self.getImageFromHP(self.maxHP, self.hp)

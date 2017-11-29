@@ -2,7 +2,7 @@
 # Stores pygame surface, manages windowed/fullscreen and display scaling / abstraction
 
 import pygame
-from typing import Tuple
+from typing import List, Tuple
 from GameConstants import GC_WORLD_SIZE, GC_WORLD_WIDTH, GC_WORLD_HEIGHT
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
@@ -16,11 +16,11 @@ windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
 
 
-def clear():
+def clear() -> None:
 	surface.fill((0, 0, 0))
 
 
-def blur(blurImg: pygame.Surface):
+def blur(blurImg: pygame.Surface) -> None:
 	# Importing Assets in this module causes issues with assets being
 	# loaded before this Graphics module is fully initialized. The solution
 	# is to not init the assets as static variables of the class Assets,
@@ -35,11 +35,12 @@ def blur(blurImg: pygame.Surface):
 	# module.
 	surface.blit(blurImg, (0, 0))
 
-def resizeWindow(size):
+
+def resizeWindow(size) -> None:
 	pygame.display.set_mode(size, pygame.RESIZABLE)
 
 
-def getARScaling():
+def getARScaling() -> List[Tuple]:
 	# The window aspect ratio is not always the same as the game's aspect ratio, so
 	# calculate the size at which to draw the game onto the screen (leaving black bars
 	# at the top/bottom, if necessary). Also calculate the offset (so that there are
@@ -67,7 +68,10 @@ def getARScaling():
 		heightDiff = windowHeight - scaledHeight
 		return [(scaledWidth, scaledHeight), (0, heightDiff // 2)]
 
-def flip():  # scale the game surface to match the window surface, then copy it over and display it on the screen
+
+def flip() -> None:
+	# scale the game surface to match the window surface
+	# then copy it over and display it on the screen
 
 	windowSurface.fill((0, 0, 0))  # leave black bars on borders in case of aspect ratio mismatch
 
@@ -76,13 +80,13 @@ def flip():  # scale the game surface to match the window surface, then copy it 
 	pygame.display.flip()
 
 
-def goFullscreen():
+def goFullscreen() -> None:
 	global windowSurface, currentMode
 	windowSurface = pygame.display.set_mode(pygame.display.list_modes()[0], pygame.FULLSCREEN)
 	currentMode = MODE_FULLSCREEN
 
 
-def goWindowed():
+def goWindowed() -> None:
 	global windowSurface, currentMode
 	windowSurface = pygame.display.set_mode(DEFAULT_WINDOW_RESOLUTION, pygame.RESIZABLE)
 	currentMode = MODE_WINDOWED

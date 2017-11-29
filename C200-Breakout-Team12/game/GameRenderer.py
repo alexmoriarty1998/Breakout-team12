@@ -8,7 +8,7 @@ from GameConstants import GC_WORLD_WIDTH, GC_WALL_SIZE
 
 class GameRenderer:
 	@staticmethod
-	def render(state: GameState, frame: int):
+	def render(state: GameState, frame: int) -> None:
 		surface: pygame.Surface = Graphics.surface
 		# things to draw: bricks, paddle, ball, displayables
 		# ball should be drawn last

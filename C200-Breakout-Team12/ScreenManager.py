@@ -11,7 +11,7 @@ import pygame
 import sys
 
 from screens import Screen
-from GameConstants import GC_FRAME_TIME_MILLISECONDS, PRINTFPS
+from GameConstants import GC_FRAME_TIME_MILLISECONDS, GC_PRINT_FPS
 
 currentScreen: Screen = None
 
@@ -41,7 +41,7 @@ def start():  # start the game - called from C200_Breakout_Team12.py
 		if timeConsumed < GC_FRAME_TIME_MILLISECONDS:
 			pygame.time.delay(int(GC_FRAME_TIME_MILLISECONDS - timeConsumed))
 
-		if PRINTFPS:
+		if GC_PRINT_FPS:
 			global lastBeginTime
 			print("FPS =", 1000 / (beginTime - lastBeginTime))
 			lastBeginTime = beginTime

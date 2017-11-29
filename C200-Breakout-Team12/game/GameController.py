@@ -25,7 +25,7 @@ class GameController:
 	def update(self):
 		paddle = self.state.paddle
 		ball = self.state.ball
-		for event in pygame.event.get():
+		for e in pygame.event.get():
 			if pygame.key.get_pressed()[pygame.K_LEFT]:
 				self.state.paddle.velocity.dx = - GC_PADDLE_SPEED
 			elif pygame.key.get_pressed()[pygame.K_RIGHT]:
@@ -34,15 +34,15 @@ class GameController:
 				self.state.paddle.velocity.dx = 0
 
 		# paddle movement
-		self.state.paddle.velocity.apply(self.state.paddle.rect)
-		if self.state.paddle.rect.x < GC_WALL_SIZE:
-			self.state.paddle.rect.x = GC_WALL_SIZE
-		elif (self.state.paddle.rect.x + self.state.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
-			self.state.paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.state.paddle.rect.width
+		paddle.velocity.apply(paddle.rect)
+		if paddle.rect.x < GC_WALL_SIZE:
+			paddle.rect.x = GC_WALL_SIZE
+		elif (paddle.rect.x + paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
+			paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - paddle.rect.width
 
 		# ball movement
-		self.state.ball.velocity.apply(self.state.ball.circle)
-		if self.state.ball.circle.x - self.state.ball.circle.radius < GC_WALL_SIZE:
+		ball.velocity.apply(ball.circle)
+		if ball.circle.x - ball.circle.radius < GC_WALL_SIZE:
 			ball.velocity.dx *= -1
 		elif ball.circle.x + ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
 			ball.velocity.dx *= -1

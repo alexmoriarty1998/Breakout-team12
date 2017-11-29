@@ -8,7 +8,7 @@ from pygame import Surface
 
 
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
-def li(path: str):
+def li(path: str) -> Surface:
 	return pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
 
 

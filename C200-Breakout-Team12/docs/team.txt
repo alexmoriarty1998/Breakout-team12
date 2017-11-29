@@ -14,17 +14,22 @@ Milestone 1 goals:
 TODO: discuss at Wednesday's meeting
 printing checklist from milestone 1 pdf
 commit policy: commit frequently, pull/push at beginning/end of sessions
+Graphics.clear() vs Graphics.blur()
 
 TODO: Milestone 1: basic features
-add default set of bricks
+- add default set of bricks - done SR 11/28
+move left/right press detection out of event loop (since events aren't used)
 collision onto bricks/paddle, appropriate bouncing
 win/loss notifications
 implement angle detection for collisions, use for part 8
 
 TODO: Milestone 1: post-completion for group
 add brick generation
+fix paddle collision detection (using angle detection to trim side collisions)
+fix movement input (event-driven instead of polling)
 clean up & comment code
 add statement for commits from shared work
+
 add gravity to ball
 add bouncing effects to paddle and bricks
 TODO: stuff for me to clean up

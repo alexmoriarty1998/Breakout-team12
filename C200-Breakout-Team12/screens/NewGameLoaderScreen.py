@@ -14,8 +14,6 @@ from screens.GameScreen import GameScreen
 from screens.Screen import Screen
 from game.gameClasses.Brick import Brick
 
-
-
 # creates a new game and starts it
 # separated from MainMenuScreen to allow game to be easily restarted from other
 # points, e.g. the game over screen, or 'restart game' button on pause screen
@@ -29,8 +27,20 @@ class NewGameLoaderScreen(Screen):
 		#######################################################################
 		###   init bricks   ###################################################
 		#######################################################################
-		bricks = [Brick(PosRect(180, 180, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 80, 1),
-				  Brick(PosRect(280, 280, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 80, 1)]
+		# generate list of bricks for testing
+		bricks = []
+
+		maxHP = 1
+		for i in range(30):
+			brickX = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE - GC_BRICK_WIDTH)
+			brickY = random.randint(GC_BRICK_TOP_HEIGHT,
+									GC_BRICK_BOTTOM_HEIGHT - GC_BRICK_HEIGHT)  # top-down coordinates
+			bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 100, maxHP))
+			maxHP += 1
+			if maxHP == 4:
+				maxHP = -1
+			if maxHP == 0:
+				maxHP = 1
 
 		#######################################################################
 		###   init ball   #####################################################

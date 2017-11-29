@@ -1,4 +1,5 @@
 import Graphics
+import ScreenManager
 from Assets import Assets
 from GameConstants import *
 from game.GameController import GameController
@@ -28,6 +29,11 @@ class GameScreen(Screen):
 		Graphics.blur(Assets.I_BLUR)
 		self.renderer.render(self.state, self.frame)
 		Graphics.flip()
+
+		# TODO: remove this debug feature
+		if pygame.key.get_pressed()[pygame.K_r]:
+			from screens.NewGameLoaderScreen import NewGameLoaderScreen
+			ScreenManager.setScreen(NewGameLoaderScreen())
 
 		# transition to next screens on win/loss/pause
 		if pygame.key.get_pressed()[GC_KEY_GAME_PAUSE]:

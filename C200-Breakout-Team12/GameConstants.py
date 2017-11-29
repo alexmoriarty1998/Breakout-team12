@@ -3,11 +3,10 @@
 # 'from GameConstants import *' will be a useful statement
 # Thus, use the GC_ prefix to avoid namespace conflicts.
 
-# ball/paddle/brick width/height values should match up
-# with graphics assets, so avoid changing those
+# sizes for ball, paddle, bricks, etc. must match up with assets
 
 # debug switches
-PRINTFPS: bool = False
+GC_PRINT_FPS: bool = False
 
 from typing import Tuple
 import pygame
@@ -31,18 +30,17 @@ GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
 
 GC_BALL_RADIUS: int = 13
 GC_BALL_INITIAL_ANGLE_VARIATION: int = 60  # degrees to either side of straight down
-GC_BALL_INITIAL_VELOCITY_RANGE: Tuple[int, int] = (10, 20)  # initial velocity of ball is within these
+GC_BALL_INITIAL_VELOCITY_RANGE: Tuple[int, int] = (7, 12)  # initial velocity of ball is within these
 GC_GRAVITY_ACCEL = 0.5
 
-GC_PADDLE_WIDTH: int = 300
+GC_PADDLE_WIDTH: int = 225
 GC_PADDLE_HEIGHT: int = 20
 GC_PADDLE_TOP_HEIGHT: int = int(GC_WORLD_HEIGHT - GC_PADDLE_HEIGHT * 2.25)
-GC_PADDLE_SPEED: int = 14
+GC_PADDLE_SPEED: int = 18
 
-
-GC_BRICK_LAYERS: int = 10
+GC_BRICK_LAYERS: int = 12
 GC_BRICK_COLUMNS: int = 20
 GC_BRICK_HEIGHT: int = 50
 GC_BRICK_WIDTH: int = (GC_WORLD_WIDTH - 2 * GC_WALL_SIZE) // GC_BRICK_COLUMNS
-GC_BRICK_TOP_HEIGHT: int = 150
+GC_BRICK_TOP_HEIGHT: int = 70
 GC_BRICK_BOTTOM_HEIGHT: int = GC_BRICK_TOP_HEIGHT + GC_BRICK_LAYERS * GC_BRICK_HEIGHT
