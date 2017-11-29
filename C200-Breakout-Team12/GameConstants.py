@@ -7,7 +7,7 @@
 # with graphics assets, so avoid changing those
 
 # debug switches
-PRINTFPS: bool = True
+PRINTFPS: bool = False
 
 from typing import Tuple
 import pygame
