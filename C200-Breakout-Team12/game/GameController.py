@@ -68,7 +68,7 @@ class GameController:
 				intersectX = smallX + self.state.lastPosBall.x
 				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
 			angle = paddle.rect.findAngle(intersectPoint)
-			if angle < GC_PADDLE_ULANGLE or angle > GC_PADDLE_URANGLE:
+			if angle < GC_PADDLE_UL_ANGLE or angle > GC_PADDLE_UR_ANGLE:
 				ball.velocity.dx *= -1  # hit side of paddle
 			else:
 				velocityMagnitude = (ball.velocity.dx ** 2 + ball.velocity.dy ** 2) ** (0.5)
@@ -88,10 +88,12 @@ class GameController:
 					brick.hp -= 1
 				if brick.hp != 0:
 					angle = brick.rect.findAngle(ball.circle)
-					if (GC_BRICK_URANGLE <= angle < GC_BRICK_BRANGLE) or (GC_BRICK_BLANGLE <= angle < GC_BRICK_ULANGLE):
+					if (GC_BRICK_UR_ANGLE <= angle < GC_BRICK_BR_ANGLE) or (
+									GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 						# hit side of brick
 						ball.velocity.dx *= -1
 					else:  # hit top of brick
 						ball.velocity.dy *= -1
-		
+
+		# remove dead bricks
 		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))

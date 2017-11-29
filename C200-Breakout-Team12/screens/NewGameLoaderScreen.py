@@ -23,24 +23,35 @@ class NewGameLoaderScreen(Screen):
 
 		# no need to display a loading screen here, this should only take a split second
 
-		# TODO: load the actual bricks
 		#######################################################################
 		###   init bricks   ###################################################
 		#######################################################################
-		# generate list of bricks for testing
 		bricks = []
 
-		maxHP = 1
-		for i in range(30):
-			brickX = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE - GC_BRICK_WIDTH)
-			brickY = random.randint(GC_BRICK_TOP_HEIGHT,
-									GC_BRICK_BOTTOM_HEIGHT - GC_BRICK_HEIGHT)  # top-down coordinates
-			bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 100, maxHP))
-			maxHP += 1
-			if maxHP == 4:
-				maxHP = -1
-			if maxHP == 0:
-				maxHP = 1
+		if GC_BRICK_GENERATION_METHOD == "random":
+			maxHP = 1
+			for i in range(33):
+				brickX = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE - GC_BRICK_WIDTH)
+				brickY = random.randint(GC_BRICK_TOP_HEIGHT,
+										GC_BRICK_BOTTOM_HEIGHT - GC_BRICK_HEIGHT)  # top-down coordinates
+				bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 100, maxHP))
+				maxHP += 1
+				if maxHP == 4:
+					maxHP = -1
+				if maxHP == 0:
+					maxHP = 1
+
+		if GC_BRICK_GENERATION_METHOD == "fill":
+			# TODO: add different chances for different HP blocks
+			for i in range(GC_BRICK_COLUMNS):
+				for j in range(GC_BRICK_LAYERS):
+					brickX = i * GC_BRICK_WIDTH + GC_WALL_SIZE
+					brickY = j * GC_BRICK_HEIGHT + GC_BRICK_TOP_HEIGHT
+					brickHP = random.randint(1, 4)
+					if brickHP == 4:
+						brickHP = -1
+					bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 100, brickHP))
+
 
 		#######################################################################
 		###   init ball   #####################################################
@@ -49,8 +60,7 @@ class NewGameLoaderScreen(Screen):
 		posY = random.randint(GC_BRICK_BOTTOM_HEIGHT + 50, GC_PADDLE_TOP_HEIGHT - 50)
 		ballCircle = PosCircle(GC_WORLD_WIDTH / 2, posY, GC_BALL_RADIUS)
 		# generate its velocity (magnitude and angle) randomly
-		initialVelocityMagnitude = random.randint(GC_BALL_INITIAL_VELOCITY_RANGE[0],
-												  GC_BALL_INITIAL_VELOCITY_RANGE[1])
+		initialVelocityMagnitude = GC_BALL_INITIAL_VELOCITY
 		initialVelocityAngle = random.randint(90 - GC_BALL_INITIAL_ANGLE_VARIATION,
 											  90 + GC_BALL_INITIAL_ANGLE_VARIATION)
 		dx = math.cos(math.radians(initialVelocityAngle)) * initialVelocityMagnitude

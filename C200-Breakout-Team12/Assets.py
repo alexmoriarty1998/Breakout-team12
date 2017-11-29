@@ -15,10 +15,13 @@ def li(path: str) -> Surface:
 class Assets:
 	# Testing confirms that these are initialized only once, not every time the class is imported
 	# They are static variables to avoid having to pass around an instance of this class everywhere.
-	I_BLUR: Surface = li("blur")
 
+	# temporary/testing assets
 	I_WON: Surface = li('testing/won')
 	I_LOST: Surface = li('testing/lost')
+
+
+	I_BLUR: Surface = li("blur")
 
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
 

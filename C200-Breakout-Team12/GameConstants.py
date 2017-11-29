@@ -7,7 +7,9 @@
 
 # debug switches
 GC_PRINT_FPS: bool = False
-GC_MOTION_BLUR: bool = False
+GC_MOTION_BLUR: bool = True
+# possible values: "empty", "random", "fill"
+GC_BRICK_GENERATION_METHOD = "fill"
 
 from typing import Tuple
 import pygame
@@ -31,30 +33,30 @@ GC_KEY_GAME_PAUSE = pygame.K_ESCAPE
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
 
 GC_BALL_RADIUS: int = 13
-GC_BALL_INITIAL_ANGLE_VARIATION: int = 60  # degrees to either side of straight down
-GC_BALL_INITIAL_VELOCITY_RANGE: Tuple[int, int] = (7, 12)  # initial velocity of ball is within these
-GC_GRAVITY_ACCEL = 0.1
-GC_MAX_BOUNCE_ANGLE = 60  # offset from 270 degrees
+GC_BALL_INITIAL_ANGLE_VARIATION: int = 20  # degrees to either side of straight down
+GC_MAX_BOUNCE_ANGLE: int = 60  # offset from 270 degrees
+# do not change ball velocity and gravity strength - these have been specially selected for good gameplay
+GC_BALL_INITIAL_VELOCITY: int = 14
+GC_GRAVITY_ACCEL: float = 0.1
 
 GC_PADDLE_WIDTH: int = 225
 GC_PADDLE_HEIGHT: int = 20
 GC_PADDLE_TOP_HEIGHT: int = int(GC_WORLD_HEIGHT - GC_PADDLE_HEIGHT * 2.25)
-GC_PADDLE_SPEED: int = 18
-GC_PADDLE_ULANGLE: float = math.degrees(math.atan2(-GC_PADDLE_HEIGHT / 2, -GC_PADDLE_WIDTH / 2))
-GC_PADDLE_ULANGLE = 360 + GC_PADDLE_ULANGLE  # convert negative angle to positive
-GC_PADDLE_URANGLE: float = math.degrees(math.atan2(-GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
-GC_PADDLE_URANGLE = 360 + GC_PADDLE_URANGLE
-GC_PADDLE_BLANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, -GC_PADDLE_WIDTH / 2))
-GC_PADDLE_BRANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
+GC_PADDLE_SPEED: int = 22
+GC_PADDLE_UL_ANGLE: float = math.degrees(math.atan2(-GC_PADDLE_HEIGHT / 2, -GC_PADDLE_WIDTH / 2))
+GC_PADDLE_UL_ANGLE = 360 + GC_PADDLE_UL_ANGLE  # convert negative angle to positive
+GC_PADDLE_UR_ANGLE: float = math.degrees(math.atan2(-GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
+GC_PADDLE_UR_ANGLE = 360 + GC_PADDLE_UR_ANGLE
+GC_PADDLE_BL_ANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, -GC_PADDLE_WIDTH / 2))
+GC_PADDLE_BR_ANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
 
-
-GC_BRICK_LAYERS: int = 12
+GC_BRICK_LAYERS: int = 8
 GC_BRICK_COLUMNS: int = 20
 GC_BRICK_HEIGHT: int = 50
 GC_BRICK_WIDTH: int = (GC_WORLD_WIDTH - 2 * GC_WALL_SIZE) // GC_BRICK_COLUMNS
-GC_BRICK_TOP_HEIGHT: int = 70
+GC_BRICK_TOP_HEIGHT: int = 150
 GC_BRICK_BOTTOM_HEIGHT: int = GC_BRICK_TOP_HEIGHT + GC_BRICK_LAYERS * GC_BRICK_HEIGHT
-GC_BRICK_ULANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))
-GC_BRICK_URANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))
-GC_BRICK_BLANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))
-GC_BRICK_BRANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))
+GC_BRICK_UL_ANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))
+GC_BRICK_UR_ANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))
+GC_BRICK_BL_ANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))
+GC_BRICK_BR_ANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))
