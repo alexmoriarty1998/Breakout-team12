@@ -6,12 +6,14 @@ from game.gameClasses.Ball import Ball
 from game.gameClasses.Brick import Brick
 from game.gameClasses.Displayable import Displayable
 from game.gameClasses.Paddle import Paddle
+from game.gameClasses.PosPoint import PosPoint
 
 
 class GameState:
 	bricks: List[Brick]
 	paddle: Paddle
 	ball: Ball
+	lastPosBall: PosPoint
 	displayables: List[Displayable] = []
 
 	level: int

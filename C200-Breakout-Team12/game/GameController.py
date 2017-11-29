@@ -41,6 +41,7 @@ class GameController:
 			paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - paddle.rect.width
 
 		# ball movement
+		self.state.lastPosBall = ball.circle
 		ball.velocity.apply(ball.circle)
 		if ball.circle.x - ball.circle.radius < GC_WALL_SIZE:
 			ball.velocity.dx *= -1
@@ -53,8 +54,15 @@ class GameController:
 
 		# ball paddle collision
 		if paddle.rect.intersectsCircle(ball.circle):
-			if ball.circle.y < paddle.rect.y - 2:
+			angle = paddle.rect.findAngle(ball.circle)
+			if angle < 0:
+				angle = (-360 - angle) * -1
+
+			if angle < GC_PADDLE_ULANGLE or angle > GC_PADDLE_URANGLE:
+				ball.velocity.dx *= -1
+			else:
 				ball.velocity.dy *= -1
+
 
 		# brick ball collision
 		brickHit = False

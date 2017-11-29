@@ -6,11 +6,12 @@
 # sizes for ball, paddle, bricks, etc. must match up with assets
 
 # debug switches
-GC_PRINT_FPS: bool = True
+GC_PRINT_FPS: bool = False
 GC_MOTION_BLUR: bool = False
 
 from typing import Tuple
 import pygame
+import math
 
 # size of game screen in world coordinates
 # we want this to be high, even if visual style will be low-res/blocky
@@ -38,6 +39,17 @@ GC_PADDLE_WIDTH: int = 225
 GC_PADDLE_HEIGHT: int = 20
 GC_PADDLE_TOP_HEIGHT: int = int(GC_WORLD_HEIGHT - GC_PADDLE_HEIGHT * 2.25)
 GC_PADDLE_SPEED: int = 18
+GC_PADDLE_ULANGLE: float = math.degrees(math.atan2(-10, -112.5))
+GC_PADDLE_ULANGLE = -1 * (-360 - GC_PADDLE_ULANGLE)
+GC_PADDLE_URANGLE: float = math.degrees(math.atan2(-10, 112.5))
+GC_PADDLE_URANGLE = -1 * (-360 - GC_PADDLE_URANGLE)
+GC_PADDLE_BLANGLE: float = math.degrees(math.atan2(10, -112.5))
+GC_PADDLE_BRANGLE: float = math.degrees(math.atan2(10, 112.5))
+print(GC_PADDLE_ULANGLE)
+print(GC_PADDLE_BLANGLE)
+print(GC_PADDLE_URANGLE)
+print(GC_PADDLE_BRANGLE)
+
 
 GC_BRICK_LAYERS: int = 12
 GC_BRICK_COLUMNS: int = 20

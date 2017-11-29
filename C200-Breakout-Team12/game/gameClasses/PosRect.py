@@ -1,5 +1,6 @@
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosPoint import PosPoint
+import math
 
 
 class PosRect(PosPoint):
@@ -35,3 +36,9 @@ class PosRect(PosPoint):
 		deltaY = circle.y - nearestY
 
 		return (deltaX ** 2 + deltaY ** 2) < (circle.radius ** 2)
+
+	def findAngle(self, point: PosPoint):
+		diffY = point.y - self.y
+		diffX = point.x - self.x
+
+		return math.degrees(math.atan2(diffY, diffX))
