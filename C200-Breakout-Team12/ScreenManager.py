@@ -43,5 +43,7 @@ def start():  # start the game - called from C200_Breakout_Team12.py
 
 		if GC_PRINT_FPS:
 			global lastBeginTime
-			print("FPS =", 1000 / (beginTime - lastBeginTime))
+			fps = 1000 / (beginTime - lastBeginTime)
+			delayTime = int(GC_FRAME_TIME_MILLISECONDS - timeConsumed)
+			print("FPS = {0:.1f} frame time = {1} ms; delaying for {2} ms".format(fps, timeConsumed, delayTime))
 			lastBeginTime = beginTime

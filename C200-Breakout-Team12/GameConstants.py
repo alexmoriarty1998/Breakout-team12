@@ -7,9 +7,10 @@
 
 # debug switches
 GC_PRINT_FPS: bool = False
+GC_PROFILE: bool = False
 GC_MOTION_BLUR: bool = True
 # possible values: "empty", "random", "fill"
-GC_BRICK_GENERATION_METHOD = "fill"
+GC_BRICK_GENERATION_METHOD: str = "fill"
 
 from typing import Tuple
 import pygame

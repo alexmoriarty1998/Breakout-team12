@@ -12,22 +12,32 @@
 # This class initializes pygame and graphics, then
 # starts the screen manager with the loading screen.
 
-# init pygame before importing/doing anything else
-import pygame
-pygame.init()
+def start():
+	# init pygame before importing/doing anything else
+	import pygame
+	pygame.init()
 
-# initialize display
-pygame.display.set_caption("Breakout!")
-pygame.display.set_icon(pygame.image.load("assets/icon.png"))
-# done initializing pygame
+	# initialize display
+	pygame.display.set_caption("Breakout!")
+	pygame.display.set_icon(pygame.image.load("assets/icon.png"))
+	# done initializing pygame
 
 
-import Graphics
-import ScreenManager
-from screens.LoadingScreen import LoadingScreen
+	import Graphics
+	import ScreenManager
+	from screens.LoadingScreen import LoadingScreen
 
-Graphics.goWindowed()  # call goFullscreen() instead to start game in fullscreen
+	Graphics.goWindowed()  # call goFullscreen() instead to start game in fullscreen
 
-# start the game
-ScreenManager.currentScreen = LoadingScreen()
-ScreenManager.start()
+	# start the game
+	ScreenManager.currentScreen = LoadingScreen()
+	ScreenManager.start()
+
+
+import cProfile
+from GameConstants import GC_PROFILE
+
+if GC_PROFILE:
+	cProfile.run('start()')
+else:
+	start()
