@@ -18,10 +18,10 @@ class GameState:
 	score: int
 	won: bool = 0
 
-	def __init__(self, bricks: List[Brick], level: int, score: int = 0):
+	def __init__(self, bricks: List[Brick], ball: Ball, level: int, score: int = 0):
 		self.bricks = bricks
+		self.ball = ball
 		self.level = level
 		self.score = score
 
 		self.paddle = Paddle()
-		self.ball = Ball()

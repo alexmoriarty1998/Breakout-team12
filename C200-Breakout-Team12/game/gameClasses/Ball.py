@@ -14,18 +14,10 @@ class Ball(Blittable):
 	velocity: Velocity
 	acceleration: Acceleration
 
-	def __init__(self):
-		initialVelocityMagnitude = random.randint(GC_BALL_INITIAL_VELOCITY_RANGE[0],
-												  GC_BALL_INITIAL_VELOCITY_RANGE[1])
-		initialVelocityAngle = random.randint(90 - GC_BALL_INITIAL_ANGLE_VARIATION,
-											  90 + GC_BALL_INITIAL_ANGLE_VARIATION)
-		dx = math.cos(math.radians(initialVelocityAngle)) * initialVelocityMagnitude
-		dy = math.sin(math.radians(initialVelocityAngle)) * initialVelocityMagnitude
-		self.velocity = Velocity(dx, dy)
+	def __init__(self, circle: PosCircle, velocity: Velocity):
+		self.circle = circle
+		self.velocity = velocity
 
 		self.acceleration = Acceleration(0, GC_GRAVITY_ACCEL)
-
-		posY = random.randint(GC_BRICK_BOTTOM_HEIGHT + 50, GC_PADDLE_TOP_HEIGHT - 50)
-		self.circle = PosCircle(GC_WORLD_WIDTH / 2, posY, GC_BALL_RADIUS)
 
 		self.image = Assets.I_BALL
