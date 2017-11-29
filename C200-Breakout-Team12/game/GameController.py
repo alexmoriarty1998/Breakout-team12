@@ -25,14 +25,15 @@ class GameController:
 		paddle = self.state.paddle
 		ball = self.state.ball
 		for e in pygame.event.get():
-			if pygame.key.get_pressed()[pygame.K_LEFT]:
-				self.state.paddle.velocity.dx = - GC_PADDLE_SPEED
-			elif pygame.key.get_pressed()[pygame.K_RIGHT]:
-				self.state.paddle.velocity.dx = GC_PADDLE_SPEED
-			else:
-				self.state.paddle.velocity.dx = 0
+			pass
 
 		# paddle movement
+		if pygame.key.get_pressed()[pygame.K_LEFT]:
+			self.state.paddle.velocity.dx = - GC_PADDLE_SPEED
+		elif pygame.key.get_pressed()[pygame.K_RIGHT]:
+			self.state.paddle.velocity.dx = GC_PADDLE_SPEED
+		else:
+			self.state.paddle.velocity.dx = 0
 		paddle.velocity.apply(paddle.rect)
 		if paddle.rect.x < GC_WALL_SIZE:
 			paddle.rect.x = GC_WALL_SIZE
