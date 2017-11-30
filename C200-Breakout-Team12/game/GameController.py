@@ -103,8 +103,20 @@ class GameController:
 									GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 						# hit side of brick
 						ball.velocity.dx *= -1
+						if ball.circle.x > brick.rect.x + .5*GC_BRICK_WIDTH:
+							ball.circle.x = brick.rect.x + GC_BRICK_WIDTH + ball.circle.radius
+						else:
+							ball.circle.x = brick.rect.x - ball.circle.radius
 					else:
 						# hit top of brick
 						ball.velocity.dy *= -1
+						if ball.circle.y > brick.rect.y + brick.rect.height:
+							ball.circle.y = brick.rect.y + brick.rect.height + ball.circle.radius
+						else:
+							ball.circle.y = brick.rect.y - brick.circle.radius
+
+
+
+
 		# remove dead bricks
 		state.bricks = list(filter(lambda b: b.hp != 0, state.bricks))
