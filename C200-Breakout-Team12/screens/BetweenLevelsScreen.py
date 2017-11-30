@@ -1,6 +1,9 @@
 import random
 
+import GameConstants
+import Graphics
 import ScreenManager
+from Assets import Assets
 from GameConstants import *
 from game.GameController import GameController
 from game.GameRenderer import GameRenderer
@@ -14,18 +17,10 @@ from screens.GameScreen import GameScreen
 from screens.Screen import Screen
 
 
-# creates a new game and starts it
-# separated from MainMenuScreen to allow game to be easily restarted from other
-# points, e.g. the game over screen, or 'restart game' button on pause screen
-class NewGameLoaderScreen(Screen):
-	def update(self):
-		super().update()
-
-		# no need to display a loading screen here, this should only take a split second
-
-		#######################################################################
-		###   init bricks   ###################################################
-		#######################################################################
+class BetweenLevelsScreen(Screen):
+	def __init__(self, level, score):
+		self.level = level
+		self.score = score
 		bricks = []
 
 		if GC_BRICK_GENERATION_METHOD == "random":
@@ -71,6 +66,17 @@ class NewGameLoaderScreen(Screen):
 		#######################################################################
 		###   start the game   ################################################
 		#######################################################################
-		state = GameState(bricks, ball, 1, 0)
+		state = GameState(bricks, ball, self.level + 1, self.score)
+		self.state = state
 
-		ScreenManager.setScreen(GameScreen(state))
+	def update(self):
+		super().update()
+		Graphics.clear(Assets.I_BLUR)
+		Graphics.surface.blit(Assets.I_BETWEEN_LEVELS_BACKGROUND,(0,0))
+		Graphics.flip()
+		if pygame.key.get_pressed()[GameConstants.GC_KEY_MAINMENU_BEGIN]:
+			ScreenManager.setScreen(GameScreen(self.state))
+
+
+
+
