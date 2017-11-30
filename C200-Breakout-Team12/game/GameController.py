@@ -99,7 +99,7 @@ class GameController:
 				brick.hp -= 1
 				if brick.hp != 0:  # don't bounce the ball when it destroys a brick
 					angle = brick.rect.findAngle(ball.circle)
-					if (GC_BRICK_UR_ANGLE <= angle < GC_BRICK_BR_ANGLE) or (
+					if (angle >= GC_BRICK_UR_ANGLE or angle < GC_BRICK_BR_ANGLE or
 									GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 						# hit side of brick
 						ball.velocity.dx *= -1
