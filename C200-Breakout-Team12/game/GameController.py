@@ -9,7 +9,7 @@
 # GameRenderer to display the current game state.
 # Name derived from the model-view-controller separation that
 # is present here.
-
+import Graphics
 from GameConstants import *
 from game.GameState import GameState
 from game.gameClasses.PosPoint import PosPoint
@@ -23,7 +23,12 @@ class GameController:
 		ball = state.ball
 
 		for e in pygame.event.get():
-			pass
+			if e.type == pygame.MOUSEMOTION:
+				x = e.pos[0]
+				percent = x/Graphics.windowSurface.get_width()
+				x = Graphics.surface.get_width()*percent
+				x -= GC_PADDLE_WIDTH / 2
+				paddle.rect.x = x
 
 		#######################################################################
 		###   input & paddle movement   #######################################
