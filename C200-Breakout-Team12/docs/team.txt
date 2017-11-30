@@ -7,5 +7,6 @@ low FPS
 
 TODO:
 fix movement input (event-driven instead of polling)
+add mouse input
 custom chances for brick spawn based on HP (if fill mode is used)
 clean up & comment code

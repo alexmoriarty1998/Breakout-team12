@@ -11,6 +11,8 @@ GC_PROFILE: bool = False
 GC_MOTION_BLUR: bool = True
 GC_BRICK_GENERATION_METHOD: str = "fill"  # possible values: "empty", "random", "fill"
 
+GC_FULLSCREEN = False
+
 import math
 from typing import Tuple
 
