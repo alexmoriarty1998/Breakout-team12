@@ -22,17 +22,8 @@ class GameController:
 		paddle = state.paddle
 		ball = state.ball
 
-		#######################################################################
-		###   paddle input   ##################################################
-		#######################################################################
 		for e in pygame.event.get():
-			# TODO
 			pass
-
-		#######################################################################
-		###   paddle movement   ###############################################
-		#######################################################################
-		# TODO
 
 		#######################################################################
 		###   input & paddle movement   #######################################
@@ -72,6 +63,8 @@ class GameController:
 			# noinspection PyUnusedLocal
 			intersectPoint = None
 			if ball.circle.y == GC_PADDLE_TOP_HEIGHT:
+				# avoid divide by zero ??
+				# that's why this was added, not sure if it's actually needed
 				intersectPoint = ball.circle
 			else:
 				largeY = ball.circle.y - state.lastPosBall.y
@@ -81,10 +74,14 @@ class GameController:
 				smallX = scale * largeX
 				intersectX = smallX + state.lastPosBall.x
 				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
+
 			angle = paddle.rect.findAngle(intersectPoint)
+
 			if angle < GC_PADDLE_UL_ANGLE or angle > GC_PADDLE_UR_ANGLE:
-				ball.velocity.dx *= -1  # hit side of paddle
+				# hit side of paddle
+				ball.velocity.dx *= -1
 			else:
+				# hit top of paddle
 				velocityMagnitude = (ball.velocity.dx ** 2 + ball.velocity.dy ** 2) ** 0.5
 				xDiff = intersectPoint.x - (paddle.rect.x + paddle.rect.width // 2)
 				xDiff /= paddle.rect.width // 2
@@ -99,15 +96,15 @@ class GameController:
 		#######################################################################
 		for brick in state.bricks:
 			if brick.rect.intersectsCircle(ball.circle):
-				if brick.hp > 0:
-					brick.hp -= 1
-				if brick.hp != 0:
+				brick.hp -= 1
+				if brick.hp != 0:  # don't bounce the ball when it destroys a brick
 					angle = brick.rect.findAngle(ball.circle)
 					if (GC_BRICK_UR_ANGLE <= angle < GC_BRICK_BR_ANGLE) or (
 									GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 						# hit side of brick
 						ball.velocity.dx *= -1
-					else:  # hit top of brick
+					else:
+						# hit top of brick
 						ball.velocity.dy *= -1
 		# remove dead bricks
 		state.bricks = list(filter(lambda b: b.hp != 0, state.bricks))

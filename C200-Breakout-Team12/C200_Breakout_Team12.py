@@ -28,10 +28,7 @@ def start():
 	from screens.LoadingScreen import LoadingScreen
 	from GameConstants import GC_FULLSCREEN
 
-	if GC_FULLSCREEN:
-		Graphics.goFullscreen()
-	else:
-		Graphics.goWindowed()
+	Graphics.goFullscreen() if GC_FULLSCREEN else Graphics.goWindowed()
 
 	# start the game
 	ScreenManager.currentScreen = LoadingScreen()

@@ -39,10 +39,7 @@ def hardClear():
 
 
 def clear(blurImg: pygame.Surface) -> None:
-	if GC_MOTION_BLUR:
-		blur(blurImg)
-	else:
-		hardClear()
+	blur(blurImg) if GC_MOTION_BLUR else hardClear()
 
 
 def resizeWindow(size) -> None:
@@ -102,7 +99,4 @@ def goWindowed() -> None:
 
 
 def swapWindowMode():
-	if currentMode == MODE_FULLSCREEN:
-		goWindowed()
-	else:
-		goFullscreen()
+	goWindowed() if currentMode == MODE_FULLSCREEN else goFullscreen()

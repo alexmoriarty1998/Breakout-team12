@@ -43,9 +43,8 @@ class PosRect(PosPoint):
 		diffY = point.y - (self.y + self.height // 2)
 		diffX = point.x - (self.x + self.width // 2)
 
-		returnAngle = math.degrees(math.atan2(diffY, diffX))
+		angle = math.degrees(math.atan2(diffY, diffX))
+
 		# convert negative angle to positive
-		if returnAngle > 0:
-			return returnAngle
-		else:
-			return 360 + returnAngle
+		# noinspection PyRedundantParentheses
+		return (angle if angle > 0 else 360 + angle)

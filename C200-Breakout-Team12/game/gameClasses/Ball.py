@@ -16,5 +16,4 @@ class Ball(Blittable):
 		self.velocity = velocity
 
 		self.acceleration = Acceleration(0, GC_GRAVITY_ACCEL)
-
 		self.image = Assets.I_BALL
