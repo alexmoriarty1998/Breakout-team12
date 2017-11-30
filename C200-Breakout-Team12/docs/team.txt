@@ -2,10 +2,10 @@ Teamwork coordination and project goals:
 
 TODO: Thursday client meeting
 is current brick generation ("fill") acceptable?
-bug with ball instakilling bricks from side
 low FPS
 
 TODO:
+make collisions displace ball in addition to flipping velocity
 fix movement input (event-driven instead of polling)
 add mouse input
 custom chances for brick spawn based on HP (if fill mode is used)
