@@ -1,4 +1,3 @@
-import math
 import random
 
 import ScreenManager
@@ -7,12 +6,13 @@ from game.GameController import GameController
 from game.GameRenderer import GameRenderer
 from game.GameState import GameState
 from game.gameClasses.Ball import Ball
+from game.gameClasses.Brick import Brick
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosRect import PosRect
 from game.gameClasses.Velocity import Velocity
 from screens.GameScreen import GameScreen
 from screens.Screen import Screen
-from game.gameClasses.Brick import Brick
+
 
 # creates a new game and starts it
 # separated from MainMenuScreen to allow game to be easily restarted from other
@@ -52,7 +52,6 @@ class NewGameLoaderScreen(Screen):
 						brickHP = -1
 					bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 100, brickHP))
 
-
 		#######################################################################
 		###   init ball   #####################################################
 		#######################################################################
@@ -73,7 +72,7 @@ class NewGameLoaderScreen(Screen):
 		###   start the game   ################################################
 		#######################################################################
 		state = GameState(bricks, ball, 1, 0)
-		controller = GameController(state)
+		controller = GameController()
 		renderer = GameRenderer()
 
 		ScreenManager.setScreen(GameScreen(state, controller, renderer))

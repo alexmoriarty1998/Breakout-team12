@@ -1,5 +1,5 @@
 from game.gameClasses.PosPoint import PosPoint
-import math
+
 
 class Velocity:
 	dx: float

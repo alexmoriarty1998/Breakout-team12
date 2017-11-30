@@ -14,16 +14,19 @@ class GameState:
 	paddle: Paddle
 	ball: Ball
 	lastPosBall: PosPoint
-	displayables: List[Displayable] = []
+	displayables: List[Displayable]
 
 	level: int
 	score: int
-	won: bool = 0
+	won: bool
 
 	def __init__(self, bricks: List[Brick], ball: Ball, level: int, score: int = 0):
 		self.bricks = bricks
 		self.ball = ball
 		self.level = level
 		self.score = score
+
+		self.displayables = []
+		self.won = 0
 
 		self.paddle = Paddle()

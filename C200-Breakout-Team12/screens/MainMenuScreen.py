@@ -2,11 +2,12 @@
 
 import pygame
 
-import ScreenManager, Graphics
-from screens.NewGameLoaderScreen import NewGameLoaderScreen
-from screens.Screen import Screen
+import Graphics
+import ScreenManager
 from Assets import Assets
 from GameConstants import GC_KEY_MAINMENU_BEGIN
+from screens.NewGameLoaderScreen import NewGameLoaderScreen
+from screens.Screen import Screen
 
 
 class MainMenuScreen(Screen):

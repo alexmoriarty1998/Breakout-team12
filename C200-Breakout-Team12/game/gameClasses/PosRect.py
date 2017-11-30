@@ -1,6 +1,7 @@
+import math
+
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosPoint import PosPoint
-import math
 
 
 class PosRect(PosPoint):
@@ -37,6 +38,7 @@ class PosRect(PosPoint):
 
 		return (deltaX ** 2 + deltaY ** 2) < (circle.radius ** 2)
 
+	# find the angle of a given point relative to the center of this rectangle
 	def findAngle(self, point: PosPoint):
 		diffY = point.y - (self.y + self.height // 2)
 		diffX = point.x - (self.x + self.width // 2)

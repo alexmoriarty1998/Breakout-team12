@@ -35,6 +35,7 @@ def start():
 
 
 import cProfile
+
 from GameConstants import GC_PROFILE
 
 if GC_PROFILE:

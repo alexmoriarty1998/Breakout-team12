@@ -1,8 +1,10 @@
 # Graphics class
 # Stores pygame surface, manages windowed/fullscreen and display scaling / abstraction
 
-import pygame
 from typing import List, Tuple
+
+import pygame
+
 from GameConstants import GC_WORLD_SIZE, GC_WORLD_WIDTH, GC_WORLD_HEIGHT, GC_MOTION_BLUR
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
@@ -37,10 +39,11 @@ def hardClear():
 
 
 def clear(blurImg: pygame.Surface) -> None:
-	if (GC_MOTION_BLUR):
+	if GC_MOTION_BLUR:
 		blur(blurImg)
 	else:
 		hardClear()
+
 
 def resizeWindow(size) -> None:
 	pygame.display.set_mode(size, pygame.RESIZABLE)

@@ -1,16 +1,5 @@
 Teamwork coordination and project goals:
 
-Milestone 1 goals:
-- 1. Display of brick layer at the top of the screen where each brick is an individual object.			11/28
-- 2. Player paddle at the bottom of the screen.															11/21
-- 3. A ball placed randomly between the bricks and the paddle and given a random initial direction.		11/21
-- 4. Detection of when the ball hits a side wall and appropriate change in direction.					11/28
-- 5. Detection of when the ball hits the ceiling and indication of a level completed.					11/28 and 11/29
-- 6. Detection of when the ball hits the floor and indication of a level failed.						11/28 and 11/29
-- 7. Player ability to control the paddle via keyboard or mouse interface.								11/22 and 11/28
-- 8. Change in angle of reflection of the ball depending on where it hits the player paddle.			11/29
-- 9. Destruction of a brick (removal from the set of bricks and from the display) when hit by the ball.	11/29
-
 TODO: Thursday client meeting
 is current brick generation ("fill") acceptable?
 bug with ball instakilling bricks from side
@@ -18,4 +7,5 @@ low FPS
 
 TODO:
 fix movement input (event-driven instead of polling)
+custom chances for brick spawn based on HP (if fill mode is used)
 clean up & comment code

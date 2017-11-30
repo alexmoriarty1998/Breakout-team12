@@ -1,6 +1,3 @@
-import math
-import random
-
 from Assets import Assets
 from GameConstants import *
 from game.gameClasses.Acceleration import Acceleration

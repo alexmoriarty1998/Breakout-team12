@@ -9,12 +9,12 @@
 GC_PRINT_FPS: bool = False
 GC_PROFILE: bool = False
 GC_MOTION_BLUR: bool = True
-# possible values: "empty", "random", "fill"
-GC_BRICK_GENERATION_METHOD: str = "fill"
+GC_BRICK_GENERATION_METHOD: str = "fill"  # possible values: "empty", "random", "fill"
 
-from typing import Tuple
-import pygame
 import math
+from typing import Tuple
+
+import pygame
 
 # size of game screen in world coordinates
 # we want this to be high, even if visual style will be low-res/blocky

@@ -5,13 +5,14 @@
 # there don't need to be multiple instances of this, so leave it as
 # a module instead of making a ScreenManager class
 
-# same concept applies to many other modules in this project
+# same concept applies to some other modules in this project
 
-import pygame
 import sys
 
-from screens import Screen
+import pygame
+
 from GameConstants import GC_FRAME_TIME_MILLISECONDS, GC_PRINT_FPS
+from screens import Screen
 
 currentScreen: Screen = None
 
@@ -21,12 +22,14 @@ def setScreen(newScreen: Screen):
 	currentScreen = newScreen
 
 
+# noinspection PyShadowingBuiltins
 def exit():
 	pygame.quit()
 	sys.exit()
 
 
 lastBeginTime = 0
+
 
 def start():  # start the game - called from C200_Breakout_Team12.py
 	while True:

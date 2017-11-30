@@ -25,6 +25,7 @@ class Screen:
 			ScreenManager.exit()
 
 		# update window size on resize
+		# noinspection PyArgumentList
 		for e in pygame.event.get(pygame.VIDEORESIZE):
 			Graphics.resizeWindow(e.size)
 

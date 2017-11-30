@@ -1,8 +1,9 @@
+from pygame import Surface
+
 from Assets import Assets
 from GameConstants import *
 from game.gameClasses.Blittable import Blittable
 from game.gameClasses.PosRect import PosRect
-from pygame import Surface
 
 
 class Brick(Blittable):
