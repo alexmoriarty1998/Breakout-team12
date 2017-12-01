@@ -1,6 +1,69 @@
-Teamwork coordination and project goals:
+###############################################################################
+
+Milestone 2:
+1) Level progression - at least 5 w/ increasing difficulty & breaks in-between
+2) Scoring
+3) Highscores
+	Top 10 stored in a file which is loaded at start
+	Display position, 3-letter caps name, and score
+	Button for viewing highscores, on main menu only
+4) Instructions screen
+5) Show stats in game: score, numLives, timer
+6) Multiple lives, ball resets on new life
+	Ball doesn't move until user manually starts it; add same for when the level begins
+8) End game cleanly (on 0 lives or win, go to highscore display or entry)
+
+Can instructions be embedded into main menu, as previously planned? (already asked Larry)
+
+Should levels use random fill or manual generation?
+Scoring function?
+
+###############################################################################
+###############################################################################
+###############################################################################
 
 TODO:
-fix movement input (event-driven instead of polling)
-custom chances for brick spawn based on HP (if fill mode is used)
-clean up & comment code
+Abstract level generation code
+Fix keyboard input (event-driven instead of polling)
+One of these:
+	custom chances for brick spawn based on HP (if fill mode is used)
+	hand-generated levels
+Add scoring function - here's one idea
+	based on time taken: ideas
+		decreasing linear at first into inverse-exponential for long times
+		have a 'par' for each level, time score is (par / time taken)
+	reduce by score of bricks destroyed out of maximum number of bricks
+		e.g. 100% bricks destroyed (by score of bricks) -> 0% level score
+		have a minimum level required to reduce score
+			e.g. 30% bricks destroyed -> 100% level score
+	add multiplier for level
+	add multiplier for lives remaining
+Between levels screen displays time taken, score, level number
+	if lives transfer between levels, also show numLives
+
+###############################################################################
+###############################################################################
+###############################################################################
+
+Milestone 3:
+Add 3 features & documentation
+	Juice: http://grapefrukt.com/f/games/juicy-breakout/
+		not speed based:
+			bricks smash apart into fragments on destroyed
+			brick dust on cracking
+			explosions on lost life
+			confetti on win(? might be hard)
+			animations for other stuff
+		speed-based:
+			dust/smoke/explosion animation on hit wall or boss brick
+			electric animation on hit paddle: http://www.video-games.io/pong/
+			SCREENSHAKE
+			ball stretch/squash (have 3 different levels, based on ball speed)
+	Game playing in main menu background
+		MainMenuScreen contains a game screen
+		Suppress mouse/keyboard input to prevent background
+			game from being controllable
+		Add own input to move paddle
+		if self.gamescreen instanceof BetweenLevelsScreen:
+			regenerate gamescreen
+	???
