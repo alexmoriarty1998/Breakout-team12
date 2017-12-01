@@ -118,7 +118,7 @@ class GameController:
 						if ball.circle.y > brick.rect.y + brick.rect.height:
 							ball.circle.y = brick.rect.y + brick.rect.height + ball.circle.radius
 						else:
-							ball.circle.y = brick.rect.y - brick.circle.radius
+							ball.circle.y = brick.rect.y - ball.circle.radius
 
 
 
