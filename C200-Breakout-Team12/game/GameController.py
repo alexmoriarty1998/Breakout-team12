@@ -38,6 +38,7 @@ class GameController:
 		self.collideBallBrick()
 		self.collidePaddleBall()
 		# shortcuts for brevity
+		self.calculateScore()
 
 	def movePaddle(self):
 		for e in pygame.event.get():
@@ -164,8 +165,8 @@ class GameController:
 		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))
 		print(self.state.totalBricksDestroyedScore, '/', self.state.totalBrickScore)
 
-		def calculateScore(self):
-			score = GC_PAR_TIME / self.state.time
-			percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore
-			score *= (1 - percentBricksDestroyed) + 100
-			self.state.score = int(score)
+	def calculateScore(self):
+		score = GC_PAR_TIME / self.state.time
+		percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore
+		score *= (1 - percentBricksDestroyed) + 100
+		self.state.score = int(score)
