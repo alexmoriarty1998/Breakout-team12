@@ -36,4 +36,4 @@ class GameRenderer:
 
 		### STATS  ############################################################
 		scoreSurface = Graphics.font.render(str(state.score), True, GC_TEXT_COLOR)
-		Graphics.surface.blit(scoreSurface, (20, 20))
+		Graphics.surface.blit(scoreSurface, (10, 10))
