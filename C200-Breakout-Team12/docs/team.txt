@@ -2,42 +2,26 @@
 
 Milestone 2:
 1) Level progression - at least 5 w/ increasing difficulty & breaks in-between
-2) Scoring
 3) Highscores
 	Top 10 stored in a file which is loaded at start
 	Display position, 3-letter caps name, and score
 	Button for viewing highscores, on main menu only
 4) Instructions screen
-5) Show stats in game: score, numLives, timer
-6) Multiple lives, ball resets on new life
-	Ball doesn't move until user manually starts it; add same for when the level begins
+5) Show stats in game: score, numLives, timer, level
 8) End game cleanly (on 0 lives or win, go to highscore display or entry)
 
 Can instructions be embedded into main menu, as previously planned? (already asked Larry)
 
 Should levels use random fill or manual generation?
-Scoring function?
 
 ###############################################################################
 ###############################################################################
 ###############################################################################
 
 TODO:
-Abstract level generation code
-Fix keyboard input (event-driven instead of polling)
 One of these:
 	custom chances for brick spawn based on HP (if fill mode is used)
 	hand-generated levels
-Add scoring function - here's one idea
-	based on time taken: ideas
-		decreasing linear at first into inverse-exponential for long times
-		have a 'par' for each level, time score is (par / time taken)
-	reduce by score of bricks destroyed out of maximum number of bricks
-		e.g. 100% bricks destroyed (by score of bricks) -> 0% level score
-		have a minimum level required to reduce score
-			e.g. 30% bricks destroyed -> 100% level score
-	add multiplier for level
-	add multiplier for lives remaining
 Between levels screen displays time taken, score, level number
 	if lives transfer between levels, also show numLives
 
