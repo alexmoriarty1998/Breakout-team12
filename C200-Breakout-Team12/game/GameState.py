@@ -20,6 +20,8 @@ class GameState:
 	score: int
 	won: bool
 
+	time: float
+
 	def __init__(self, bricks: List[Brick], ball: Ball, level: int, score: int = 0, numLives = 3):
 		self.bricks = bricks
 		self.ball = ball
@@ -32,3 +34,4 @@ class GameState:
 		self.paddle = Paddle()
 		self.numLives = numLives
 		self.paused = True
+		self.time = 0

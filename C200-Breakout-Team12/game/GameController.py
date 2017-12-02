@@ -29,6 +29,8 @@ class GameController:
 				self.state.paused = False
 			else:
 				return
+		self.state.time += GC_FRAME_TIME_SECONDS
+		print(self.state.time)
 
 		self.moveBall()
 		self.movePaddle()
