@@ -19,24 +19,24 @@ from game.gameClasses.PosPoint import PosPoint
 class GameController:
 
 	def __init__(self, state):
+		self.moveDir = 0
 		self.state = state
 
 	def update(self):
 		if self.state.paused:
-			self.moveBallMouse()
+			self.moveBall()
 			if pygame.key.get_pressed()[pygame.K_SPACE]:
 				self.state.paused = False
 			else:
 				return
 
-		self.moveBallMouse()
-		self.movePaddle()
 		self.moveBall()
+		self.movePaddle()
 		self.paddleCollision()
 		self.brickCollision()
 		# shortcuts for brevity
 
-	def moveBallMouse(self):
+	def moveBall(self):
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEMOTION:
 				x = e.pos[0]
@@ -44,7 +44,19 @@ class GameController:
 				x = Graphics.surface.get_width()*percent
 				x -= GC_PADDLE_WIDTH / 2
 				self.state.paddle.rect.x = x
-
+			if e.type == pygame.KEYDOWN:
+				if event.key == pygame.K_LEFT:
+					self.moveDir = -1
+				if event.key == pygame.K_RIGHT:
+					self.moveDir = 1
+			if e.type == pygame.KEYUP:
+				if event.key == pygame.K_LEFT:
+					if self.moveDir == -1:
+						self.moveDir = 0
+				if event.key == pygame.K_RIGHT:
+					if self.moveDir == 1:
+						self.moveDir = 0
+		paddle.velocity.dx = moveDir * GC_PADDLE_SPEED
 
 
 		#######################################################################
@@ -52,13 +64,7 @@ class GameController:
 		#######################################################################
 		# TODO: fix this; complete above two todos
 	def movePaddle(self):
-		if pygame.key.get_pressed()[pygame.K_LEFT]:
-			self.state.paddle.velocity.dx = - GC_PADDLE_SPEED
-		elif pygame.key.get_pressed()[pygame.K_RIGHT]:
-			self.state.paddle.velocity.dx = GC_PADDLE_SPEED
-		else:
-			self.state.paddle.velocity.dx = 0
-		self.state.paddle.velocity.apply(self.state.paddle.rect)
+
 		if self.state.paddle.rect.x < GC_WALL_SIZE:
 			self.state.paddle.rect.x = GC_WALL_SIZE
 		elif (self.state.paddle.rect.x + self.state.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
