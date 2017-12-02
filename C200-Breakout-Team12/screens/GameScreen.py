@@ -33,7 +33,8 @@ class GameScreen(Screen):
 			percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore
 			score *= (1 - percentBricksDestroyed) + 100
 			score = int(score)
-			print(score)
+			ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
+
 
 		elif self.state.won == -1:
 			Graphics.surface.blit(Assets.I_LOST, (0, 0))
@@ -47,7 +48,3 @@ class GameScreen(Screen):
 		# transition to next screens on win/loss/pause
 		if pygame.key.get_pressed()[GC_KEY_GAME_PAUSE]:
 			pass  # TODO: pause
-
-		if self.state.won == 1:
-			ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
-		pass

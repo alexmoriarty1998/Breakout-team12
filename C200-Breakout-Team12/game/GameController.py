@@ -163,3 +163,9 @@ class GameController:
 		# remove dead bricks
 		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))
 		print(self.state.totalBricksDestroyedScore, '/', self.state.totalBrickScore)
+
+		def calculateScore(self):
+			score = GC_PAR_TIME / self.state.time
+			percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore
+			score *= (1 - percentBricksDestroyed) + 100
+			self.state.score = int(score)

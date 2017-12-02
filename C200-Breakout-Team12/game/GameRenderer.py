@@ -3,7 +3,7 @@ import pygame
 
 import Graphics
 from Assets import Assets
-from GameConstants import GC_WORLD_WIDTH, GC_WALL_SIZE
+from GameConstants import GC_WORLD_WIDTH, GC_WALL_SIZE, GC_TEXT_COLOR
 from game.GameState import GameState
 
 
@@ -33,3 +33,7 @@ class GameRenderer:
 		###   BALL   ##########################################################
 		ballPos = state.ball.circle
 		surface.blit(state.ball.getImage(frame), (ballPos.x - ballPos.radius, ballPos.y - ballPos.radius))
+
+		### STATS  ############################################################
+		scoreSurface = Graphics.font.render(str(state.score), True, GC_TEXT_COLOR)
+		Graphics.surface.blit(scoreSurface, (20, 20))
