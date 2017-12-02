@@ -56,5 +56,5 @@ def makeBall():
 	ball = Ball(ballCircle, ballVelocity)
 	return ball
 
-def makeState(level, score):
-	return GameState(makeBricks(), makeBall(), level, score)
+def makeState(level, score, numLives):
+	return GameState(makeBricks(), makeBall(), level, score, numLives)

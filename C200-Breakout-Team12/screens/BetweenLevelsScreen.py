@@ -16,8 +16,11 @@ from screens.Screen import Screen
 
 
 class BetweenLevelsScreen(Screen):
-	def __init__(self, level, score):
-		self.state = makeState(level + 1, score)
+	def __init__(self, level, score, numLives):
+		lifeToAdd = 0
+		if level % 2 != 0:
+			lifeToAdd = 1
+		self.state = makeState(level + 1, score, numLives + lifeToAdd)
 
 	def update(self):
 		super().update()

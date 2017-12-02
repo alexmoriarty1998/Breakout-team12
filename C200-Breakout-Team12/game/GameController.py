@@ -12,12 +12,18 @@
 import Graphics
 from GameConstants import *
 from game.GameState import GameState
+from game.LevelTools import makeBall
 from game.gameClasses.PosPoint import PosPoint
 
 
 class GameController:
 	@staticmethod
 	def update(state: GameState):
+		if state.paused:
+			if pygame.key.get_pressed()[pygame.K_SPACE]:
+				state.paused = False
+			else:
+				return
 		# shortcuts for brevity
 		paddle = state.paddle
 		ball = state.ball
@@ -59,7 +65,13 @@ class GameController:
 		elif ball.circle.y - ball.circle.radius < 0:
 			state.won = 1
 		elif ball.circle.y + ball.circle.radius > GC_WORLD_HEIGHT:
-			state.won = -1
+			if state.numLives > 1:
+				state.numLives -= 1
+				state.ball = makeBall()
+				state.paused = True
+			else:
+				state.won = -1
+
 
 		#######################################################################
 		###   paddle collision   ##############################################

@@ -21,4 +21,4 @@ from screens.Screen import Screen
 class NewGameLoaderScreen(Screen):
 	def update(self):
 		super().update()
-		ScreenManager.setScreen(GameScreen(makeState(1, 0)))
+		ScreenManager.setScreen(GameScreen(makeState(1, 0, GC_DEFAULT_LIVES)))
