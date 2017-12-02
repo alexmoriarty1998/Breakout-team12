@@ -5,7 +5,7 @@ from typing import List, Tuple
 
 import pygame
 
-from GameConstants import GC_WORLD_SIZE, GC_WORLD_WIDTH, GC_WORLD_HEIGHT, GC_MOTION_BLUR
+from GameConstants import *
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
 MODE_WINDOWED: int = 1
@@ -13,7 +13,7 @@ MODE_FULLSCREEN: int = 2
 
 GAME_ASPECT_RATIO: float = GC_WORLD_WIDTH / GC_WORLD_HEIGHT
 
-font = pygame.font.Font(pygame.font.get_default_font, 20)
+font = pygame.font.Font(pygame.font.get_default_font(), GC_FONT_SIZE)
 
 surface: pygame.Surface = pygame.Surface(GC_WORLD_SIZE)  # surface that the game draws on; in world coordinates
 windowSurface: pygame.Surface = None  # surface that appears on the screen
