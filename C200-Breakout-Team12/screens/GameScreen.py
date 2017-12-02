@@ -42,5 +42,5 @@ class GameScreen(Screen):
 			pass  # TODO: pause
 
 		if self.state.won == 1:
-			ScreenManager.setScreen(BetweenLevelsScreen())
+			ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score))
 		pass

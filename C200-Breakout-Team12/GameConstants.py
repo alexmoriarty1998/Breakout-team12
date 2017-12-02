@@ -9,7 +9,7 @@
 GC_PRINT_FPS: bool = False
 GC_PROFILE: bool = False
 GC_MOTION_BLUR: bool = False
-GC_BRICK_GENERATION_METHOD: str = "fill"  # possible values: "empty", "random", "fill"
+GC_BRICK_GENERATION_METHOD: str = "empty"  # possible values: "empty", "random", "fill"
 
 GC_FULLSCREEN = False
 

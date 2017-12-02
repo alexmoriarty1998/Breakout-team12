@@ -6,6 +6,7 @@ import ScreenManager
 from Assets import Assets
 from GameConstants import *
 from game.GameState import GameState
+from game.LevelTools import makeState
 from game.gameClasses.Ball import Ball
 from game.gameClasses.Brick import Brick
 from game.gameClasses.PosCircle import PosCircle
@@ -15,7 +16,7 @@ from screens.Screen import Screen
 
 
 class BetweenLevelsScreen(Screen):
-	def __init__(self):
+	def __init__(self, level, score):
 		self.state = makeState(level + 1, score)
 
 	def update(self):
