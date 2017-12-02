@@ -34,9 +34,16 @@ class Brick(Blittable):
 	def getImage(self, frame: int) -> Surface:
 		return self.getImageFromHP(self.maxHP, self.hp)
 
-	def __init__(self, pos: PosRect, score: int, maxHP: int):
+	def __init__(self, pos: PosRect, maxHP: int):
 		self.rect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
 		self.image = self.getImageFromHP(maxHP, maxHP)
-		self.score = score
 		self.maxHP = maxHP
+		if self.maxHP == 1:
+			self.score = GC_BRICK_SCORES[0]
+		elif self.maxHP == 2:
+			self.score = GC_BRICK_SCORES[1]
+		elif self.maxHP == 3:
+			self.score = GC_BRICK_SCORES[2]
+		else:
+			self.score = GC_BRICK_SCORES[3]
 		self.hp = maxHP

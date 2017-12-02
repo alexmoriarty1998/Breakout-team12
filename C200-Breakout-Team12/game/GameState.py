@@ -2,6 +2,7 @@
 
 from typing import List
 
+from GameConstants import GC_PAR_TIME
 from game.gameClasses.Ball import Ball
 from game.gameClasses.Brick import Brick
 from game.gameClasses.Displayable import Displayable
@@ -21,6 +22,7 @@ class GameState:
 	won: bool
 
 	time: float
+	parTime: float
 
 	def __init__(self, bricks: List[Brick], ball: Ball, level: int, score: int = 0, numLives = 3):
 		self.bricks = bricks
@@ -35,3 +37,9 @@ class GameState:
 		self.numLives = numLives
 		self.paused = True
 		self.time = 0
+		self.parTime = GC_PAR_TIME
+		sum = 0
+		for b in bricks:
+			sum += b.score
+		self.totalBrickScore = sum
+		self.totalBricksDestroyedScore = 0

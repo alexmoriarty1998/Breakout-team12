@@ -30,7 +30,6 @@ class GameController:
 			else:
 				return
 		self.state.time += GC_FRAME_TIME_SECONDS
-		print(self.state.time)
 
 		self.moveBall()
 		self.movePaddle()
@@ -158,6 +157,9 @@ class GameController:
 
 
 
-
+		for b in self.state.bricks:
+			if b.hp == 0:
+				self.state.totalBricksDestroyedScore += b.score
 		# remove dead bricks
 		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))
+		print(self.state.totalBricksDestroyedScore, '/', self.state.totalBrickScore)

@@ -29,6 +29,12 @@ class GameScreen(Screen):
 		GameRenderer.render(self.state, self.frame)
 		if self.state.won == 1:
 			Graphics.surface.blit(Assets.I_WON, (0, 0))
+			score = GC_PAR_TIME / self.state.time
+			percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore
+			score *= (1 - percentBricksDestroyed) + 100
+			score = int(score)
+			print(score)
+
 		elif self.state.won == -1:
 			Graphics.surface.blit(Assets.I_LOST, (0, 0))
 		Graphics.flip()

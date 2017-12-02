@@ -9,7 +9,7 @@
 GC_PRINT_FPS: bool = False
 GC_PROFILE: bool = False
 GC_MOTION_BLUR: bool = False
-GC_BRICK_GENERATION_METHOD: str = "fill"  # possible values: "empty", "random", "fill"
+GC_BRICK_GENERATION_METHOD: str = "empty"  # possible values: "empty", "random", "fill"
 
 GC_FULLSCREEN = False
 
@@ -56,6 +56,7 @@ GC_PADDLE_BR_ANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, GC_PAD
 
 GC_BRICK_LAYERS: int = 8
 GC_BRICK_COLUMNS: int = 20
+GC_TOTAL_BRICKS = GC_BRICK_LAYERS * GC_BRICK_COLUMNS
 GC_BRICK_HEIGHT: int = 50
 GC_BRICK_WIDTH: int = (GC_WORLD_WIDTH - 2 * GC_WALL_SIZE) // GC_BRICK_COLUMNS
 GC_BRICK_TOP_HEIGHT: int = 150
@@ -68,3 +69,6 @@ GC_BRICK_BL_ANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, -GC_BRIC
 GC_BRICK_BR_ANGLE: float = math.degrees(math.atan2(GC_BRICK_HEIGHT / 2, GC_BRICK_WIDTH / 2))
 
 GC_DEFAULT_LIVES = 3
+GC_PAR_TIME = 60
+
+GC_BRICK_SCORES = [100, 200, 300, 0]
