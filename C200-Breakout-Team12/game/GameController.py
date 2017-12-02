@@ -24,7 +24,8 @@ class GameController:
 
 	def update(self):
 		if self.state.paused:
-			self.moveBall()
+			self.movePaddle()
+			self.collidePaddleWall()
 			if pygame.key.get_pressed()[pygame.K_SPACE]:
 				self.state.paused = False
 			else:
@@ -38,7 +39,7 @@ class GameController:
 		self.collidePaddleBall()
 		# shortcuts for brevity
 
-	def moveBall(self):
+	def movePaddle(self):
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEMOTION:
 				x = e.pos[0]
@@ -67,13 +68,12 @@ class GameController:
 		###   input & self.state.paddle movement   #######################################
 		#######################################################################
 		# TODO: fix this; complete above two todos
-	def movePaddle(self):
-
+	def collidePaddleWall(self):
 		if self.state.paddle.rect.x < GC_WALL_SIZE:
 			self.state.paddle.rect.x = GC_WALL_SIZE
 		elif (self.state.paddle.rect.x + self.state.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
 			self.state.paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.state.paddle.rect.width
-	def collidePaddleBall(self):
+	def moveBall(self):
 		#######################################################################
 		###   self.state.ball movement   #################################################
 		#######################################################################
@@ -94,7 +94,7 @@ class GameController:
 			else:
 				self.state.won = -1
 
-	def collidePaddleWall(self):
+	def collidePaddleBall(self):
 		#######################################################################
 		###   self.state.paddle collision   ##############################################
 		#######################################################################
