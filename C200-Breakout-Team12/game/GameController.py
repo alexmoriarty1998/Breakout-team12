@@ -32,8 +32,9 @@ class GameController:
 
 		self.moveBall()
 		self.movePaddle()
-		self.paddleCollision()
-		self.brickCollision()
+		self.collidePaddleWall()
+		self.collideBallBrick()
+		self.collidePaddleBall()
 		# shortcuts for brevity
 
 	def moveBall(self):
@@ -45,18 +46,20 @@ class GameController:
 				x -= GC_PADDLE_WIDTH / 2
 				self.state.paddle.rect.x = x
 			if e.type == pygame.KEYDOWN:
-				if event.key == pygame.K_LEFT:
+				if e.key == pygame.K_LEFT:
 					self.moveDir = -1
-				if event.key == pygame.K_RIGHT:
+
+				if e.key == pygame.K_RIGHT:
 					self.moveDir = 1
 			if e.type == pygame.KEYUP:
-				if event.key == pygame.K_LEFT:
+				if e.key == pygame.K_LEFT:
 					if self.moveDir == -1:
 						self.moveDir = 0
-				if event.key == pygame.K_RIGHT:
+				if e.key == pygame.K_RIGHT:
 					if self.moveDir == 1:
 						self.moveDir = 0
-		paddle.velocity.dx = moveDir * GC_PADDLE_SPEED
+		self.state.paddle.velocity.dx = self.moveDir * GC_PADDLE_SPEED
+		self.state.paddle.velocity.apply(self.state.paddle.rect)
 
 
 		#######################################################################
@@ -69,7 +72,7 @@ class GameController:
 			self.state.paddle.rect.x = GC_WALL_SIZE
 		elif (self.state.paddle.rect.x + self.state.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
 			self.state.paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.state.paddle.rect.width
-	def moveBall(self):
+	def collidePaddleBall(self):
 		#######################################################################
 		###   self.state.ball movement   #################################################
 		#######################################################################
@@ -90,7 +93,7 @@ class GameController:
 			else:
 				self.state.won = -1
 
-	def paddleCollision(self):
+	def collidePaddleWall(self):
 		#######################################################################
 		###   self.state.paddle collision   ##############################################
 		#######################################################################
@@ -126,7 +129,7 @@ class GameController:
 				self.state.ball.velocity.dx = velocityX
 				self.state.ball.velocity.dy = velocityY
 
-	def brickCollision(self):
+	def collideBallBrick(self):
 		#######################################################################
 		###   brick collision   ###############################################
 		#######################################################################
