@@ -1,12 +1,12 @@
 # this module 'runs' a level of the game
-# The NewGameLoader screen inits a new game state, and makes a
-# Game screen for level 0. Each level, the StateManager is given
+# The NewGameLoader screen inits a new game self.state, and makes a
+# Game screen for level 0. Each level, the self.stateManager is given
 # a between-game-levels screen, and then a new Game screen for
 # the next level.
 # The GameScreen loads the level and calls this class's update()
-# on each GameScreen update. This module updates the game state
+# on each GameScreen update. This module updates the game self.state
 # (it contains all game logic). Then, the GameScreen uses the
-# GameRenderer to display the current game state.
+# GameRenderer to display the current game self.state.
 # Name derived from the model-view-controller separation that
 # is present here.
 import Graphics
@@ -17,16 +17,19 @@ from game.gameClasses.PosPoint import PosPoint
 
 
 class GameController:
-	@staticmethod
-	def update(state: GameState):
-		if state.paused:
+
+	def __init__(self, state):
+		self.state = state
+
+	def update(self):
+		if self.state.paused:
 			if pygame.key.get_pressed()[pygame.K_SPACE]:
-				state.paused = False
+				self.state.paused = False
 			else:
 				return
 		# shortcuts for brevity
-		paddle = state.paddle
-		ball = state.ball
+		paddle = self.state.paddle
+		ball = self.state.ball
 
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEMOTION:
@@ -41,11 +44,11 @@ class GameController:
 		#######################################################################
 		# TODO: fix this; complete above two todos
 		if pygame.key.get_pressed()[pygame.K_LEFT]:
-			state.paddle.velocity.dx = - GC_PADDLE_SPEED
+			self.state.paddle.velocity.dx = - GC_PADDLE_SPEED
 		elif pygame.key.get_pressed()[pygame.K_RIGHT]:
-			state.paddle.velocity.dx = GC_PADDLE_SPEED
+			self.state.paddle.velocity.dx = GC_PADDLE_SPEED
 		else:
-			state.paddle.velocity.dx = 0
+			self.state.paddle.velocity.dx = 0
 		paddle.velocity.apply(paddle.rect)
 		if paddle.rect.x < GC_WALL_SIZE:
 			paddle.rect.x = GC_WALL_SIZE
@@ -55,7 +58,7 @@ class GameController:
 		#######################################################################
 		###   ball movement   #################################################
 		#######################################################################
-		state.lastPosBall = PosPoint(ball.circle.x, ball.circle.y)
+		self.state.lastPosBall = PosPoint(ball.circle.x, ball.circle.y)
 		ball.acceleration.apply(ball.velocity)
 		ball.velocity.apply(ball.circle)
 		if ball.circle.x - ball.circle.radius < GC_WALL_SIZE:
@@ -63,14 +66,14 @@ class GameController:
 		elif ball.circle.x + ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
 			ball.velocity.dx *= -1
 		elif ball.circle.y - ball.circle.radius < 0:
-			state.won = 1
+			self.state.won = 1
 		elif ball.circle.y + ball.circle.radius > GC_WORLD_HEIGHT:
-			if state.numLives > 1:
-				state.numLives -= 1
-				state.ball = makeBall()
-				state.paused = True
+			if self.state.numLives > 1:
+				self.state.numLives -= 1
+				self.state.ball = makeBall()
+				self.state.paused = True
 			else:
-				state.won = -1
+				self.state.won = -1
 
 
 		#######################################################################
@@ -84,12 +87,12 @@ class GameController:
 				# that's why this was added, not sure if it's actually needed
 				intersectPoint = ball.circle
 			else:
-				largeY = ball.circle.y - state.lastPosBall.y
-				largeX = ball.circle.x - state.lastPosBall.x
-				smallY = GC_PADDLE_TOP_HEIGHT - state.lastPosBall.y
+				largeY = ball.circle.y - self.state.lastPosBall.y
+				largeX = ball.circle.x - self.state.lastPosBall.x
+				smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBall.y
 				scale = smallY / largeY
 				smallX = scale * largeX
-				intersectX = smallX + state.lastPosBall.x
+				intersectX = smallX + self.state.lastPosBall.x
 				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
 
 			angle = paddle.rect.findAngle(intersectPoint)
@@ -111,7 +114,7 @@ class GameController:
 		#######################################################################
 		###   brick collision   ###############################################
 		#######################################################################
-		for brick in state.bricks:
+		for brick in self.state.bricks:
 			if brick.rect.intersectsCircle(ball.circle):
 				brick.hp -= 1
 				if brick.hp != 0:  # don't bounce the ball when it destroys a brick
@@ -136,4 +139,4 @@ class GameController:
 
 
 		# remove dead bricks
-		state.bricks = list(filter(lambda b: b.hp != 0, state.bricks))
+		self.state.bricks = list(filter(lambda b: b.hp != 0, self.state.bricks))

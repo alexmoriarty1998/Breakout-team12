@@ -15,6 +15,7 @@ class GameScreen(Screen):
 
 	def __init__(self, state: GameState):
 		self.state = state
+		self.controller = GameController(self.state)
 
 
 	def update(self):
