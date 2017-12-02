@@ -22,7 +22,7 @@ class GameScreen(Screen):
 		super().update()
 
 		# update game state
-		GameController.update(self.state)
+		self.controller.update()
 
 		# draw current game state
 		Graphics.clear(Assets.I_BLUR)
