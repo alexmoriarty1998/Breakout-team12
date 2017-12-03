@@ -5,7 +5,7 @@ import pygame
 import Graphics
 import ScreenManager
 from Assets import Assets
-from GameConstants import GC_KEY_MAINMENU_BEGIN
+from GameConstants import GC_KEY_BEGIN
 from screens.NewGameLoaderScreen import NewGameLoaderScreen
 from screens.Screen import Screen
 
@@ -25,7 +25,7 @@ class MainMenuScreen(Screen):
 		Graphics.surface.blit(self.background, (0, 0))
 		Graphics.flip()
 
-		if pygame.key.get_pressed()[GC_KEY_MAINMENU_BEGIN]:  # may need to change this key, or add a clickable button
+		if pygame.key.get_pressed()[GC_KEY_BEGIN]:  # may need to change this key, or add a clickable button
 			self.begin = True
 
 		if self.begin:

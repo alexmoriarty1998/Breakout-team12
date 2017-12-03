@@ -1,9 +1,7 @@
 # Graphics class
 # Stores pygame surface, manages windowed/fullscreen and display scaling / abstraction
 
-from typing import List, Tuple
-
-import pygame
+from typing import List
 
 from GameConstants import *
 
@@ -13,11 +11,12 @@ MODE_FULLSCREEN: int = 2
 
 GAME_ASPECT_RATIO: float = GC_WORLD_WIDTH / GC_WORLD_HEIGHT
 
-font = pygame.font.Font('assets/font.ttf', GC_FONT_SIZE)
-
 surface: pygame.Surface = pygame.Surface(GC_WORLD_SIZE)  # surface that the game draws on; in world coordinates
 windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
+
+font = pygame.font.Font('assets/fonts/dejavu_sans_condensed.ttf', GC_FONT_SIZE)
+
 
 
 def blur(blurImg: pygame.Surface) -> None:

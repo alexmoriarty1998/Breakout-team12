@@ -6,24 +6,32 @@ Milestone 2:
 	Top 10 stored in a file which is loaded at start
 	Display position, 3-letter caps name, and score
 	Button for viewing highscores, on main menu only
+	Go to highscores on loss, or when all levels are beat
 4) Instructions screen
 5) Show stats in game: score, numLives, timer, level
-8) End game cleanly (on 0 lives or win, go to highscore display or entry)
-
-Can instructions be embedded into main menu, as previously planned? (already asked Larry)
-
-Should levels use random fill or manual generation?
 
 ###############################################################################
 ###############################################################################
 ###############################################################################
+
+TODO In-Class:
+Can instructions be embedded into main menu, as previously planned?
+	example image ~/background.png
+Max ball height changing
 
 TODO:
-One of these:
-	custom chances for brick spawn based on HP (if fill mode is used)
-	hand-generated levels
-Between levels screen displays time taken, score, level number
-	if lives transfer between levels, also show numLives
+Move font from Graphics to Assets
+Push ball out of wall on collision
+Fix gravity
+
+Show stats in game
+Show stats on between levels screen
+
+Highscores
+
+Hand-generated levels
+
+Debug the Quit button
 
 ###############################################################################
 ###############################################################################
@@ -43,11 +51,36 @@ Add 3 features & documentation
 			electric animation on hit paddle: http://www.video-games.io/pong/
 			SCREENSHAKE
 			ball stretch/squash (have 3 different levels, based on ball speed)
-	Game playing in main menu background
-		MainMenuScreen contains a game screen
-		Suppress mouse/keyboard input to prevent background
-			game from being controllable
-		Add own input to move paddle
-		if self.gamescreen instanceof BetweenLevelsScreen:
-			regenerate gamescreen
-	???
+
+	Game playing in main menu background, and pause screen (two small features)
+		Main Menu:
+			MainMenuScreen contains a game screen
+			Suppress mouse/keyboard input from entering GameScreen
+			Add own input to move paddle
+			if not isInstance(self.GameScreen, GameScreen):
+				regenerate GameScreen
+		Pause:
+			give pause screen an instance of game screen
+			pause will call GameRenderer to show game in background
+			on unpause, set the screen to the stored game screen
+
+	Powerups
+		Yellow brick: adds additional ball to the game
+			Large paddle
+			Small paddle
+			Fast ball
+			Slow ball
+			Paddle guns (pew pew)
+
+	Sound??
+
+###############################################################################
+TODO:
+
+###############################################################################
+###############################################################################
+###############################################################################
+TODO Before final submission:
+Complete any remaining TODOs
+Cleanup and comment code
+Executive Summary

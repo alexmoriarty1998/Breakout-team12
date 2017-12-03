@@ -38,6 +38,9 @@ class Brick(Blittable):
 		self.rect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
 		self.image = self.getImageFromHP(maxHP, maxHP)
 		self.maxHP = maxHP
+		self.hp = maxHP
+
+		# set brick score based on values in GameConstants
 		if self.maxHP == 1:
 			self.score = GC_BRICK_SCORES[0]
 		elif self.maxHP == 2:
@@ -46,4 +49,3 @@ class Brick(Blittable):
 			self.score = GC_BRICK_SCORES[2]
 		else:
 			self.score = GC_BRICK_SCORES[3]
-		self.hp = maxHP

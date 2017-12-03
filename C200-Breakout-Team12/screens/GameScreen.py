@@ -17,34 +17,37 @@ class GameScreen(Screen):
 		self.state = state
 		self.controller = GameController(self.state)
 
-
 	def update(self):
 		super().update()
 
-		# update game state
+		###   UPDATE GAME STATE   #############################################
 		self.controller.update()
 
-		# draw current game state
+		###   DRAW GAME STATE   ###############################################
 		Graphics.clear(Assets.I_BLUR)
 		GameRenderer.render(self.state, self.frame)
-		if self.state.won == 1:
-			Graphics.surface.blit(Assets.I_WON, (0, 0))
-			score = GC_PAR_TIME / self.state.time
-			percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore
-			score *= (1 - percentBricksDestroyed) + 100
-			score = int(score)
-			ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
-
-
-		elif self.state.won == -1:
-			Graphics.surface.blit(Assets.I_LOST, (0, 0))
 		Graphics.flip()
+
+		###   GO TO WIN/LOSS SCREENS   ########################################
+		if self.state.won == 1:
+			ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
+		elif self.state.won == -1:
+			# TODO: transition to highscore display/entry as appropriate
+			pass
+
+		###   GO TO PAUSE SCREEN   ############################################
+		if pygame.key.get_pressed()[GC_KEY_PAUSE]:
+			# TODO: transition to pause screen
+			pass
 
 		# TODO: remove this debug feature
 		if pygame.key.get_pressed()[pygame.K_r]:
 			from screens.NewGameLoaderScreen import NewGameLoaderScreen
 			ScreenManager.setScreen(NewGameLoaderScreen())
 
-		# transition to next screens on win/loss/pause
-		if pygame.key.get_pressed()[GC_KEY_GAME_PAUSE]:
-			pass  # TODO: pause
+		# debug print
+		if GC_PRINT_BALL_SPEED:
+			print("{0:.2f}".format((self.state.ball.velocity.dx ** 2 + self.state.ball.velocity.dy ** 2) ** 0.5))
+		# debug print
+		if GC_PRINT_GAME_TIME:
+			print("{0:.2f}".format(self.state.time))

@@ -22,7 +22,6 @@ def start():
 	pygame.display.set_icon(pygame.image.load("assets/icon.png"))
 	# done initializing pygame
 
-
 	import Graphics
 	import ScreenManager
 	from screens.LoadingScreen import LoadingScreen
@@ -35,11 +34,11 @@ def start():
 	ScreenManager.start()
 
 
-import cProfile
-
 from GameConstants import GC_PROFILE
 
 if GC_PROFILE:
+	import cProfile
+
 	cProfile.run('start()')
 else:
 	start()
