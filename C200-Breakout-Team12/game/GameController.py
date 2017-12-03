@@ -101,7 +101,7 @@ class GameController:
 		elif self.ball.circle.y + self.ball.circle.radius > GC_WORLD_HEIGHT:
 			if self.state.numLives > 1:
 				self.state.numLives -= 1
-				self.ball = makeBall()
+				self.state.ball = makeBall()  # make sure to set the state's ball, not the local copy of ball
 				self.state.paused = True
 			else:
 				self.state.won = -1
