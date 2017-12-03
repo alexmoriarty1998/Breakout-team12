@@ -7,11 +7,6 @@ from game.gameClasses.PosRect import PosRect
 
 
 class Brick(Blittable):
-	rect: PosRect
-
-	score: int
-	maxHP: int
-	hp: int
 
 	# get the brick image from its max HP and current HP
 	@staticmethod
@@ -35,17 +30,13 @@ class Brick(Blittable):
 		return self.getImageFromHP(self.maxHP, self.hp)
 
 	def __init__(self, pos: PosRect, maxHP: int):
-		self.rect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
-		self.image = self.getImageFromHP(maxHP, maxHP)
-		self.maxHP = maxHP
-		self.hp = maxHP
+		self.rect: PosRect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
+		self.image: Surface = self.getImageFromHP(maxHP, maxHP)
+		self.maxHP: int = maxHP
+		self.hp: int = maxHP
 
 		# set brick score based on values in GameConstants
-		if self.maxHP == 1:
-			self.score = GC_BRICK_SCORES[0]
-		elif self.maxHP == 2:
-			self.score = GC_BRICK_SCORES[1]
-		elif self.maxHP == 3:
-			self.score = GC_BRICK_SCORES[2]
+		if maxHP == -1:
+			self.score: int = GC_BRICK_SCORES[3]
 		else:
-			self.score = GC_BRICK_SCORES[3]
+			self.score: int = GC_BRICK_SCORES[maxHP - 1]

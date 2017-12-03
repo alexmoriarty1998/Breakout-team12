@@ -7,15 +7,10 @@ from game.gameClasses.Velocity import Velocity
 
 
 class Displayable(Blittable):
-	pos: PosPoint
-	velocity: Velocity
-	acceleration: Acceleration
-	lifespan: int
-
 	def __init__(self, pos: PosPoint, velocity: Velocity, acceleration: Acceleration, image: Surface,
 				 lifespan: int = -1):
-		self.pos = pos
-		self.velocity = velocity
-		self.acceleration = acceleration
-		self.image = image
-		self.lifespan = lifespan
+		self.pos: PosPoint = pos
+		self.velocity: Velocity = velocity
+		self.acceleration: Acceleration = acceleration
+		self.image: Surface = image
+		self.lifespan: int = lifespan  # -1 means forever

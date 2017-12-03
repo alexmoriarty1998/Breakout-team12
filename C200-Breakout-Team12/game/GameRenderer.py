@@ -3,7 +3,7 @@ import pygame
 
 import Graphics
 from Assets import Assets
-from GameConstants import GC_WORLD_WIDTH, GC_WALL_SIZE, GC_TEXT_COLOR
+from GameConstants import GC_TEXT_COLOR, GC_WALL_SIZE, GC_WORLD_WIDTH
 from game.GameState import GameState
 
 

@@ -178,6 +178,7 @@ class GameController:
 			if brick.hp == 0:
 				self.state.totalBricksDestroyedScore += brick.score
 
+		# noinspection PyShadowingNames
 		# remove dead bricks
 		self.state.bricks = list(filter(lambda brick: brick.hp != 0, self.state.bricks))
 

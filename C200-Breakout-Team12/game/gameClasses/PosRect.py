@@ -5,13 +5,10 @@ from game.gameClasses.PosPoint import PosPoint
 
 
 class PosRect(PosPoint):
-	width: int
-	height: int
-
 	def __init__(self, x: float, y: float, width: int, height: int):
 		super().__init__(x, y)
-		self.width = width
-		self.height = height
+		self.width: int = width
+		self.height: int = height
 
 	# the only collisions here are brick-ball and paddle-ball
 	# thus, no need for box-box collision detection
@@ -39,7 +36,7 @@ class PosRect(PosPoint):
 		return (deltaX ** 2 + deltaY ** 2) < (circle.radius ** 2)
 
 	# find the angle of a given point relative to the center of this rectangle
-	def findAngle(self, point: PosPoint):
+	def findAngle(self, point: PosPoint) -> float:
 		diffY = point.y - (self.y + self.height // 2)
 		diffX = point.x - (self.x + self.width // 2)
 

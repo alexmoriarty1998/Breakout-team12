@@ -20,8 +20,10 @@ GC_MOTION_BLUR: bool = False              # TODO: enable this for final product
 GC_FULLSCREEN: bool  = False              # TODO: enable this for final product
 
 ###############################################################################
-import math, pygame                                                           #
-from typing import Tuple                                                      #
+import math  #
+from typing import Tuple  #
+
+import pygame
 ###############################################################################
 
 ###############################################################################

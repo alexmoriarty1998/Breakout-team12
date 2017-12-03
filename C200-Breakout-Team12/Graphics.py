@@ -18,7 +18,6 @@ currentMode: int = None
 font = pygame.font.Font('assets/fonts/dejavu_sans_condensed.ttf', GC_FONT_SIZE)
 
 
-
 def blur(blurImg: pygame.Surface) -> None:
 	# Importing Assets in this module causes issues with assets being
 	# loaded before this Graphics module is fully initialized. The solution

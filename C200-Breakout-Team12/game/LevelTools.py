@@ -1,16 +1,16 @@
 import math
 import random
+from typing import List
 
-from GameConstants import GC_WALL_SIZE, GC_WORLD_WIDTH, GC_BRICK_WIDTH, GC_BRICK_TOP_HEIGHT, GC_BRICK_BOTTOM_HEIGHT, \
-	GC_BRICK_HEIGHT, GC_BRICK_GEN_MODE, GC_BRICK_COLUMNS, GC_BRICK_LAYERS, GC_BALL_INITIAL_VELOCITY, \
-	GC_PADDLE_TOP_HEIGHT, GC_BALL_RADIUS, GC_BALL_INITIAL_ANGLE_VARIATION
+from GameConstants import GC_BALL_INITIAL_ANGLE_VARIATION, GC_BALL_INITIAL_VELOCITY, GC_BALL_RADIUS, \
+	GC_BRICK_BOTTOM_HEIGHT, GC_BRICK_COLUMNS, GC_BRICK_GEN_MODE, GC_BRICK_HEIGHT, GC_BRICK_LAYERS, GC_BRICK_TOP_HEIGHT, \
+	GC_BRICK_WIDTH, GC_PADDLE_TOP_HEIGHT, GC_WALL_SIZE, GC_WORLD_WIDTH
 from game.GameState import GameState
 from game.gameClasses.Ball import Ball
 from game.gameClasses.Brick import Brick
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosRect import PosRect
 from game.gameClasses.Velocity import Velocity
-from typing import List
 
 
 def makeBricks() -> List[Brick]:
