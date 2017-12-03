@@ -15,8 +15,6 @@ surface: pygame.Surface = pygame.Surface(GC_WORLD_SIZE)  # surface that the game
 windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
 
-font = pygame.font.Font('assets/fonts/dejavu_sans_condensed.ttf', GC_FONT_SIZE)
-
 
 def blur(blurImg: pygame.Surface) -> None:
 	# Importing Assets in this module causes issues with assets being
