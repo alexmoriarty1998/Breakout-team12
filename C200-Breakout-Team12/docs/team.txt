@@ -20,7 +20,6 @@ Can instructions be embedded into main menu, as previously planned?
 Gravity is broken
 
 TODO:
-Move font from Graphics to Assets
 Push ball out of wall on collision
 
 Show stats in game
