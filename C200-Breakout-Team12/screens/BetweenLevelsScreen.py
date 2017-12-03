@@ -16,6 +16,8 @@ class BetweenLevelsScreen(Screen):
 
 	def update(self):
 		super().update()
+		pygame.event.clear()
+
 		Graphics.clear(Assets.I_BLUR)
 		Graphics.surface.blit(Assets.I_BETWEEN_LEVELS_BACKGROUND, (0, 0))
 		Graphics.flip()
