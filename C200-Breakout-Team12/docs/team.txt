@@ -15,8 +15,6 @@ Milestone 2:
 ###############################################################################
 
 TODO In-Class:
-Can instructions be embedded into main menu, as previously planned?
-	example image ~/background.png
 Gravity is broken
 
 TODO:
