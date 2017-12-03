@@ -29,7 +29,7 @@ def makeBricks() -> List[Brick]:
 			if maxHP == 0:
 				maxHP = 1
 
-	if GC_BRICK_GEN_MODE == "fill":
+	if GC_BRICK_GEN_MODE == "filled":
 		# TODO: add different chances for different HP blocks
 		for i in range(GC_BRICK_COLUMNS):
 			for j in range(GC_BRICK_LAYERS):

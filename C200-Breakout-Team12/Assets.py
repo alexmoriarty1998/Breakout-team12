@@ -15,9 +15,6 @@ def li(path: str) -> Surface:
 
 class Assets:
 	# temporary/testing assets
-	I_WON: Surface = li('testing/won')
-	I_LOST: Surface = li('testing/lost')
-
 	I_BLUR: Surface = li("blur")
 
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
@@ -34,3 +31,18 @@ class Assets:
 	I_BRICK_LEVEL3_1: Surface = li("game/brick31")  # 3 HP brick at 1 HP
 	I_BRICK_BOSS: Surface = li("game/brickBOSS")  # undestroyable brick
 	I_BETWEEN_LEVELS_BACKGROUND: Surface = li("betweenLevels/background")
+
+	I_TXT_SCORE: Surface = li("imgFont/score2")  # use any of score1 score2
+	I_TXT_LEVEL: Surface = li("imgFont/level3")  # use any of level1 level2 level3
+	I_TXT_TIME: Surface = li("imgFont/time2")  # use any of time1 time2
+	I_TXT_LIFE: Surface = li("imgFont/life")
+	I_TXT_0: Surface = li("imgFont/0")
+	I_TXT_1: Surface = li("imgFont/1")
+	I_TXT_2: Surface = li("imgFont/2")
+	I_TXT_3: Surface = li("imgFont/3")
+	I_TXT_4: Surface = li("imgFont/4")
+	I_TXT_5: Surface = li("imgFont/5")
+	I_TXT_6: Surface = li("imgFont/6")
+	I_TXT_7: Surface = li("imgFont/7")
+	I_TXT_8: Surface = li("imgFont/8")
+	I_TXT_9: Surface = li("imgFont/9")
