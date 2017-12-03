@@ -11,17 +11,28 @@
 # is present here.
 import Graphics
 from GameConstants import *
+from game.GameState import GameState
 from game.LevelTools import makeBall
+from game.gameClasses.Acceleration import Acceleration
+from game.gameClasses.Ball import Ball
+from game.gameClasses.Paddle import Paddle
 from game.gameClasses.PosPoint import PosPoint
 
 
 class GameController:
 
 	def __init__(self, state):
-		self.moveDir = 0
-		self.state = state
+		self.moveDir: int = 0
+		self.state: GameState = state
+		self.ball: Ball = state.ball  # shortcut to avoid having to type self.state.ball
+		self.paddle: Paddle = state.paddle  # shortcut to avoid having to type self.state.paddle
 
 	def update(self):
+
+		# update these in case they changed
+		self.ball: Ball = self.state.ball  # shortcut to avoid having to type self.state.ball
+		self.paddle: Paddle = self.state.paddle  # shortcut to avoid having to type self.state.paddle
+
 		if self.state.paused:
 			# let the paddle move even if the game hasn't started
 			self.movePaddle()
@@ -36,7 +47,6 @@ class GameController:
 			return
 
 		self.state.time += GC_FRAME_TIME_SECONDS
-
 		self.updateBall()
 		self.movePaddle()
 		self.collidePaddleWall()
@@ -51,7 +61,7 @@ class GameController:
 				percent = x / Graphics.windowSurface.get_width()
 				x = Graphics.surface.get_width() * percent
 				x -= GC_PADDLE_WIDTH / 2
-				self.state.paddle.rect.x = x
+				self.paddle.rect.x = x
 			if e.type == pygame.KEYDOWN:
 				if e.key == pygame.K_LEFT:
 					self.moveDir = -1
@@ -65,98 +75,103 @@ class GameController:
 				if e.key == pygame.K_RIGHT:
 					if self.moveDir == 1:
 						self.moveDir = 0
-		self.state.paddle.velocity.dx = self.moveDir * GC_PADDLE_SPEED
-		self.state.paddle.velocity.apply(self.state.paddle.rect)
+		self.paddle.velocity.dx = self.moveDir * GC_PADDLE_SPEED
+		self.paddle.velocity.apply(self.paddle.rect)
 
 	def updateBall(self):
 		# store last position
-		self.state.lastPosBall = PosPoint(self.state.ball.circle.x, self.state.ball.circle.y)
+		self.state.lastPosBall = PosPoint(self.ball.circle.x, self.ball.circle.y)
+
 		# move; update velocity before position
-		self.state.ball.acceleration.apply(self.state.ball.velocity)
-		self.state.ball.velocity.apply(self.state.ball.circle)
+		halfAccel: Acceleration = Acceleration(self.ball.acceleration.ddx / 2, self.ball.acceleration.ddy / 2)
+		halfAccel.apply(self.ball.velocity)
+		self.ball.velocity.apply(self.ball.circle)
+		halfAccel.apply(self.ball.velocity)
+
 		# collide with walls and top/bottom of world
-		if self.state.ball.circle.x - self.state.ball.circle.radius < GC_WALL_SIZE:
-			self.state.ball.velocity.dx *= -1
-		elif self.state.ball.circle.x + self.state.ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
-			self.state.ball.velocity.dx *= -1
+		if self.ball.circle.x - self.ball.circle.radius < GC_WALL_SIZE:
+			self.ball.velocity.dx *= -1
+		elif self.ball.circle.x + self.ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
+			self.ball.velocity.dx *= -1
+
 		# set 'won'
-		elif self.state.ball.circle.y - self.state.ball.circle.radius < 0:
+		if self.ball.circle.y - self.ball.circle.radius < 0:
 			self.state.won = 1
 		# decrement lives or set 'lost'
-		elif self.state.ball.circle.y + self.state.ball.circle.radius > GC_WORLD_HEIGHT:
+		elif self.ball.circle.y + self.ball.circle.radius > GC_WORLD_HEIGHT:
 			if self.state.numLives > 1:
 				self.state.numLives -= 1
-				self.state.ball = makeBall()
+				self.ball = makeBall()
 				self.state.paused = True
 			else:
 				self.state.won = -1
 
 	def collidePaddleWall(self):
-		if self.state.paddle.rect.x < GC_WALL_SIZE:
-			self.state.paddle.rect.x = GC_WALL_SIZE
-		elif (self.state.paddle.rect.x + self.state.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
-			self.state.paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.state.paddle.rect.width
+		if self.paddle.rect.x < GC_WALL_SIZE:
+			self.paddle.rect.x = GC_WALL_SIZE
+		elif (self.paddle.rect.x + self.paddle.rect.width) > GC_WORLD_WIDTH - GC_WALL_SIZE:
+			self.paddle.rect.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.paddle.rect.width
 
 	def collidePaddleBall(self):
 		# The ball's velocity (per frame) is a large percentage of the paddle height.
 		# So find where it actually would have hit the paddle, not where it is
 		# relative to the paddle on this frame.
 
-		if self.state.paddle.rect.intersectsCircle(self.state.ball.circle):
+		if self.paddle.rect.intersectsCircle(self.ball.circle):
 			# noinspection PyUnusedLocal
 			intersectPoint = None
-			if self.state.ball.circle.y == GC_PADDLE_TOP_HEIGHT:
+			if self.ball.circle.y == GC_PADDLE_TOP_HEIGHT:
 				# avoid divide by zero ??
 				# that's why this was added, not sure if it's actually needed
 				# TODO: is this if statement needed? does it do anything?
-				intersectPoint = self.state.ball.circle
+				intersectPoint = self.ball.circle
 			else:
-				largeY = self.state.ball.circle.y - self.state.lastPosBall.y
-				largeX = self.state.ball.circle.x - self.state.lastPosBall.x
+				largeY = self.ball.circle.y - self.state.lastPosBall.y
+				largeX = self.ball.circle.x - self.state.lastPosBall.x
 				smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBall.y
 				scale = smallY / largeY
 				smallX = scale * largeX
 				intersectX = smallX + self.state.lastPosBall.x
 				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
 
-			angle = self.state.paddle.rect.findAngle(intersectPoint)
+			angle = self.paddle.rect.findAngle(intersectPoint)
 
 			if angle < GC_PADDLE_UL_ANGLE or angle > GC_PADDLE_UR_ANGLE:
 				# hit side of paddle
-				self.state.ball.velocity.dx *= -1
+				self.ball.velocity.dx *= -1
 			else:
 				# hit top of paddle
-				velocityMagnitude = (self.state.ball.velocity.dx ** 2 + self.state.ball.velocity.dy ** 2) ** 0.5
-				xDiff = intersectPoint.x - (self.state.paddle.rect.x + self.state.paddle.rect.width // 2)
-				xDiff /= self.state.paddle.rect.width // 2
+				velocityMagnitude = (self.ball.velocity.dx ** 2 + self.ball.velocity.dy ** 2) ** 0.5
+				xDiff = intersectPoint.x - (self.paddle.rect.x + self.paddle.rect.width // 2)
+				xDiff /= self.paddle.rect.width // 2
 				reflectAngle = 270 + xDiff * GC_MAX_BOUNCE_ANGLE
 				velocityX = math.cos(math.radians(reflectAngle)) * velocityMagnitude
 				velocityY = math.sin(math.radians(reflectAngle)) * velocityMagnitude
-				self.state.ball.velocity.dx = velocityX
-				self.state.ball.velocity.dy = velocityY
+				self.ball.velocity.dx = velocityX
+				self.ball.velocity.dy = velocityY
 
 	def collideBrickBall(self):
 		# collision and HP removal
 		for brick in self.state.bricks:
-			if brick.rect.intersectsCircle(self.state.ball.circle):
+			if brick.rect.intersectsCircle(self.ball.circle):
 				brick.hp -= 1
-				if brick.hp != 0:  # don't bounce the self.state.ball when it destroys a brick
-					angle = brick.rect.findAngle(self.state.ball.circle)
+				if brick.hp != 0:  # don't bounce the self.ball when it destroys a brick
+					angle = brick.rect.findAngle(self.ball.circle)
 					if (angle >= GC_BRICK_UR_ANGLE or angle < GC_BRICK_BR_ANGLE or
 							GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 						# hit side of brick
-						self.state.ball.velocity.dx *= -1
-						if self.state.ball.circle.x > brick.rect.x + .5 * GC_BRICK_WIDTH:
-							self.state.ball.circle.x = brick.rect.x + GC_BRICK_WIDTH + self.state.ball.circle.radius
+						self.ball.velocity.dx *= -1
+						if self.ball.circle.x > brick.rect.x + .5 * GC_BRICK_WIDTH:
+							self.ball.circle.x = brick.rect.x + GC_BRICK_WIDTH + self.ball.circle.radius
 						else:
-							self.state.ball.circle.x = brick.rect.x - self.state.ball.circle.radius
+							self.ball.circle.x = brick.rect.x - self.ball.circle.radius
 					else:
 						# hit top of brick
-						self.state.ball.velocity.dy *= -1
-						if self.state.ball.circle.y > brick.rect.y + brick.rect.height:
-							self.state.ball.circle.y = brick.rect.y + brick.rect.height + self.state.ball.circle.radius
+						self.ball.velocity.dy *= -1
+						if self.ball.circle.y > brick.rect.y + brick.rect.height:
+							self.ball.circle.y = brick.rect.y + brick.rect.height + self.ball.circle.radius
 						else:
-							self.state.ball.circle.y = brick.rect.y - self.state.ball.circle.radius
+							self.ball.circle.y = brick.rect.y - self.ball.circle.radius
 
 		# add score for dead bricks
 		for brick in self.state.bricks:

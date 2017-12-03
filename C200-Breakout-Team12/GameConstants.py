@@ -10,14 +10,14 @@
 ###############################################################################
 GC_PRINT_FPS: bool        = False
 GC_PROFILE: bool          = False	# profile game via cProfile module
-GC_PRINT_BALL_SPEED: bool = False
+GC_PRINT_BALL_SPEED: bool = True
 # TODO: remove this once it's shown in the GUI
-GC_PRINT_GAME_TIME: bool  = True
+GC_PRINT_GAME_TIME: bool  = False
 
 GC_BRICK_GEN_MODE: str    = "empty"  # "empty", "random", "fill"
 
-GC_MOTION_BLUR: bool = False               # TODO: enable this for final product
-GC_FULLSCREEN: bool  = False               # TODO: enable this for final product
+GC_MOTION_BLUR: bool = False              # TODO: enable this for final product
+GC_FULLSCREEN: bool  = False              # TODO: enable this for final product
 
 ###############################################################################
 import math, pygame                                                           #
