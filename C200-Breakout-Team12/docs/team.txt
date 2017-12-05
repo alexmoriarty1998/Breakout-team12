@@ -7,7 +7,6 @@ Milestone 2:
 	Display position, 3-letter caps name, and score
 	Button for viewing highscores, on main menu only
 	Go to highscores on loss, or when all levels are beat
-4) Instructions screen
 
 ###############################################################################
 ###############################################################################

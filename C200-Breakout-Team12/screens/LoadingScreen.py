@@ -48,5 +48,8 @@ class LoadingScreen(Screen):
 		from Assets import Assets
 		from screens.MainMenuScreen import MainMenuScreen
 		Highscores.load()
+		Highscores.printScores()
+		Highscores.add(25, "BBB")
+		Highscores.printScores()
 
 		ScreenManager.setScreen(MainMenuScreen())
