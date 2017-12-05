@@ -19,7 +19,7 @@ class MainMenuScreen(Screen):
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEBUTTONDOWN:
 				gamePosition = Graphics.unproject(e.pos)
-				if gamePosition[0] <= GC_WORLD_WIDTH // 2 and e.pos[1] >= GC_WORLD_HEIGHT // 2:
+				if gamePosition[0] <= GC_WORLD_WIDTH // 2 and gamePosition[1] >= GC_WORLD_HEIGHT // 2:
 					# pressed lower left quarter of screen
 					# import here to avoid import loop
 					from screens.InstructionsScreen import InstructionsScreen

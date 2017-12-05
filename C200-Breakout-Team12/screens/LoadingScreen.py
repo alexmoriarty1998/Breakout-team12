@@ -3,7 +3,7 @@
 # having a progress bar would be nice, but would require asynchronous loading of assets
 #  or some nifty tricks to allow for that while fitting neatly into the StateManager framework
 import pygame
-
+from game.Highscores import Highscores
 import Graphics
 import ScreenManager
 from screens.Screen import Screen
@@ -47,5 +47,6 @@ class LoadingScreen(Screen):
 		# noinspection PyUnresolvedReferences
 		from Assets import Assets
 		from screens.MainMenuScreen import MainMenuScreen
+		Highscores.load()
 
 		ScreenManager.setScreen(MainMenuScreen())

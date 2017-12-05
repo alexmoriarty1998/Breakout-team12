@@ -21,7 +21,7 @@ class Assets:
 	###   SCREEN BACKGROUNDS   ################################################
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
 	I_BETWEEN_LEVELS_BACKGROUND: Surface = li("betweenLevels/background")
-	I_INSTRUCTIONS_BACKGROUND: Surface = li("loading/background")
+	I_INSTRUCTIONS_BACKGROUND: Surface = li("instructions/background")
 
 	###   GAME SCREEN   #######################################################
 	I_BALL: Surface = li("game/ball")
