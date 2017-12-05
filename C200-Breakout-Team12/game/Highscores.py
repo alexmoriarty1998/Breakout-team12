@@ -1,6 +1,8 @@
-class Highscores():
+# this class is static, to avoid having to pass around an instance of it everywhere
+class Highscores:
 	scores = []
 	names = []
+
 	@staticmethod
 	def load():
 		f = open("highscores.txt", "r")
@@ -8,6 +10,7 @@ class Highscores():
 			Highscores.scores.append(int(f.readline().rstrip()))
 		for i in range(10):
 			Highscores.names.append(f.readline().rstrip())
+		f.close()
 
 	@staticmethod
 	def isHighScore(score: int):
@@ -16,7 +19,7 @@ class Highscores():
 
 	@staticmethod
 	def add(score: int, name: str):
-		###   SCORE   #
+		###   SCORE   #########################################################
 		if score < Highscores.scores[9]:
 			# not a highscore
 			return
@@ -35,7 +38,7 @@ class Highscores():
 
 		Highscores.scores = newList
 
-		### NAME
+		###   NAME   ##########################################################
 		beginningPortion = Highscores.names[0:firstIndexGreaterThan]
 		endPortion = Highscores.names[firstIndexGreaterThan:-1]
 
@@ -45,5 +48,17 @@ class Highscores():
 
 	@staticmethod
 	def printScores():
+		# for testing
 		print(Highscores.scores)
 		print(Highscores.names)
+
+	@staticmethod
+	def flush():
+		# commits changes to highscore list into the highscores file
+		f = open("highscores.txt", "w").close()  # clears the existing highscores file
+		f = open("highscores.txt", "w")
+		for i in Highscores.scores:
+			f.write(str(i) + '\n')
+		for i in Highscores.names:
+			f.write(i + '\n')
+		f.close()
