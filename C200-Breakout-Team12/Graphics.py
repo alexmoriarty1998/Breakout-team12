@@ -102,8 +102,8 @@ def swapWindowMode():
 def unproject(pos):
 	x = pos[0]
 	y = pos[1]
-	xLoc = x / windowSurface.getWidth()
+	xLoc = x / windowSurface.get_width()
 	x = xLoc * GC_WORLD_WIDTH
-	yLoc = y / windowSurface.getHeight()
+	yLoc = y / windowSurface.get_height()
 	y = yLoc * GC_WORLD_HEIGHT
 	return (x, y)

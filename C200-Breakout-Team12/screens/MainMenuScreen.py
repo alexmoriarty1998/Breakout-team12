@@ -18,7 +18,7 @@ class MainMenuScreen(Screen):
 		# pygame.event.clear()  # polling for keypress instead of getting keydown event, so pump event queue
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEBUTTONDOWN:
-				gamePosition = Graphics.unproject(e.pos):
+				gamePosition = Graphics.unproject(e.pos)
 				if gamePosition[0] <= GC_WORLD_WIDTH // 2 and e.pos[1] >= GC_WORLD_HEIGHT // 2:
 					# pressed lower left quarter of screen
 					# import here to avoid import loop
