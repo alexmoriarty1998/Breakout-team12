@@ -8,7 +8,6 @@ Milestone 2:
 	Button for viewing highscores, on main menu only
 	Go to highscores on loss, or when all levels are beat
 4) Instructions screen
-5) Show stats in game: score, numLives, timer, level
 
 ###############################################################################
 ###############################################################################
@@ -20,7 +19,6 @@ Gravity is broken
 TODO:
 Push ball out of wall on collision
 
-Show stats in game
 Show stats on between levels screen
 
 Highscores

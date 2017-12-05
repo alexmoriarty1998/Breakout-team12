@@ -5,7 +5,7 @@ import pygame
 import Graphics
 import ScreenManager
 from Assets import Assets
-from GameConstants import GC_KEY_BEGIN
+from GameConstants import *
 from screens.NewGameLoaderScreen import NewGameLoaderScreen
 from screens.Screen import Screen
 
@@ -15,7 +15,14 @@ class MainMenuScreen(Screen):
 
 	def update(self):
 		super().update()
-		pygame.event.clear()  # polling for keypress instead of getting keydown event, so pump event queue
+		# pygame.event.clear()  # polling for keypress instead of getting keydown event, so pump event queue
+		for e in pygame.event.get():
+			if e.type == pygame.MOUSEBUTTONDOWN:
+				if e.pos[0] <= GC_WORLD_WIDTH // 2 and e.pos[1] >= GC_WORLD_HEIGHT // 2:
+					# pressed lower left quarter of screen
+					# import here to avoid import loop
+					from screens.InstructionsScreen import InstructionsScreen
+					ScreenManager.setScreen(InstructionsScreen())
 
 		Graphics.clear(Assets.I_BLUR)
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))
