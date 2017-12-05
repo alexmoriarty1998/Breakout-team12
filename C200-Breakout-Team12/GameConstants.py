@@ -10,13 +10,13 @@
 ###############################################################################
 GC_PRINT_FPS: bool        = False
 GC_PROFILE: bool          = False		# profile game via cProfile module
-GC_PRINT_BALL_SPEED: bool = True
+GC_PRINT_BALL_SPEED: bool = False
 # TODO: remove this once it's shown in the GUI
 GC_PRINT_GAME_TIME: bool  = False
 
 GC_BRICK_GEN_MODE: str    = "filled"	# "empty", "random", "filled", "manual"
 
-GC_MOTION_BLUR: bool      = True		  # TODO: enable this for final product
+GC_MOTION_BLUR: bool      = False		  # TODO: enable this for final product
 GC_FULLSCREEN: bool       = False		  # TODO: enable this for final product
 
 ###############################################################################
