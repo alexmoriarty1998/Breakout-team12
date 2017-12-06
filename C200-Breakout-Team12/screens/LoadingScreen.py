@@ -45,7 +45,9 @@ class LoadingScreen(Screen):
 		# the future.
 
 		# noinspection PyUnresolvedReferences
-		from Assets import Assets
+		from Assets import Assets  # importing will load assets
+		# noinspection PyUnresolvedReferences
+		from Assets import AssetLoaderHelper  # loads more assets into the Assets class
 		from screens.MainMenuScreen import MainMenuScreen
 		Highscores.load()
 

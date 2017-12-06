@@ -6,8 +6,6 @@ import Graphics
 import pygame
 from pygame import Surface
 
-from GameConstants import GC_FONT_SIZE
-
 
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
 def li(path: str) -> Surface:
@@ -40,18 +38,18 @@ class Assets:
 	I_TXT_SCORE: Surface = li("imgFont/score2")  # use any of score1 score2
 	I_TXT_LEVEL: Surface = li("imgFont/level3")  # use any of level1 level2 level3
 	I_TXT_TIME: Surface = li("imgFont/time2")  # use any of time1 time2
-	I_TXT_LIFE: Surface = li("imgFont/life")
-	I_TXT_0: Surface = li("imgFont/0")
-	I_TXT_1: Surface = li("imgFont/1")
-	I_TXT_2: Surface = li("imgFont/2")
-	I_TXT_3: Surface = li("imgFont/3")
-	I_TXT_4: Surface = li("imgFont/4")
-	I_TXT_5: Surface = li("imgFont/5")
-	I_TXT_6: Surface = li("imgFont/6")
-	I_TXT_7: Surface = li("imgFont/7")
-	I_TXT_8: Surface = li("imgFont/8")
-	I_TXT_9: Surface = li("imgFont/9")
+	I_TXT_LIFE: Surface = li("imgFont/life")  # not really text, but still belong with imgFonts
 
-	###   FONTS   #############################################################
-	# TODO: do we need this?
-	F_DJ_CONDENSED = pygame.font.Font('assets/fonts/dejavu_sans_condensed.ttf', GC_FONT_SIZE)
+
+class AssetLoaderHelper:
+	# Initializes values in Assets using setattr.
+	# setattr cant be used in assets because it would
+	# have to be used before the class is fully initialized.
+	# This needs to be put in a class so its not run every
+	# time this module is imported.
+
+	for i in "0123456789":
+		setattr(Assets, "I_TXT_" + i, li("imgFont/" + i))
+	# variable names should be caps, image files are lowercase (e.g. a.png -> I_TXT_A)
+	for i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+		setattr(Assets, "I_TXT_" + i, li("imgFont/" + i.lower()))

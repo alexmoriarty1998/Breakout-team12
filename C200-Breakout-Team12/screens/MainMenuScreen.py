@@ -26,8 +26,8 @@ class MainMenuScreen(Screen):
 					ScreenManager.setScreen(InstructionsScreen())
 				if gamePosition[0] >= GC_WORLD_WIDTH // 2 and gamePosition[1] >= GC_WORLD_HEIGHT // 2:
 					# mouse clicked in bottom right corner of main screen
-					from screens.HighscoresDisplayScreen import HighscoresDisplayScreen
-					ScreenManager.setScreen(HighscoresDisplayScreen)
+					from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
+					ScreenManager.setScreen(HighscoreDisplayScreen())
 
 		Graphics.clear(Assets.I_BLUR)
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))

@@ -14,9 +14,9 @@ GC_PRINT_BALL_SPEED: bool = False
 # TODO: remove this once it's shown in the GUI
 GC_PRINT_GAME_TIME: bool  = False
 
-GC_BRICK_GEN_MODE: str    = "random"	# "empty", "random", "filled", "manual"
+GC_BRICK_GEN_MODE: str    = "filled"	# "empty", "random", "filled", "manual"
 
-GC_MOTION_BLUR: bool      = False		  # TODO: enable this for final product
+GC_MOTION_BLUR: bool      = True		  # TODO: enable this for final product
 GC_FULLSCREEN: bool       = False		  # TODO: enable this for final product
 
 ###############################################################################
@@ -46,8 +46,7 @@ GC_KEY_PAUSE = pygame.K_ESCAPE
 ###############################################################################
 ###   RENDERING   #############################################################
 ###############################################################################
-GC_TEXT_COLOR = (0, 0, 0)
-GC_FONT_SIZE = 35
+GC_IMGFONT_SIZE = 75
 
 ###############################################################################
 ###   GAME CONSTANTS   ########################################################
@@ -58,6 +57,8 @@ GC_PAR_TIME = 60
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
+GC_HIGHSCORES_LEFT_X = 300 # display values for highscore display screen
+GC_HIGHSCORE_SPACING = 75
 
 ###   BALL   ##################################################################
 GC_BALL_RADIUS: int = 13
