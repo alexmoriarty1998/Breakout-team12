@@ -14,7 +14,7 @@ GC_PRINT_BALL_SPEED: bool = False
 # TODO: remove this once it's shown in the GUI
 GC_PRINT_GAME_TIME: bool  = False
 
-GC_BRICK_GEN_MODE: str    = "filled"	# "empty", "random", "filled", "manual"
+GC_BRICK_GEN_MODE: str    = "manual"	# "empty", "random", "filled", "manual"
 
 GC_MOTION_BLUR: bool      = True		  # TODO: enable this for final product
 GC_FULLSCREEN: bool       = False		  # TODO: enable this for final product
@@ -81,14 +81,14 @@ GC_PADDLE_BL_ANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, -GC_PA
 GC_PADDLE_BR_ANGLE: float = math.degrees(math.atan2(GC_PADDLE_HEIGHT / 2, GC_PADDLE_WIDTH / 2))
 
 ###   BRICKS   ################################################################
-GC_BRICK_LAYERS: int = 8
+GC_BRICK_LAYERS: int = 10
 GC_BRICK_COLUMNS: int = 20
 GC_TOTAL_BRICKS = GC_BRICK_LAYERS * GC_BRICK_COLUMNS
 
 GC_BRICK_HEIGHT: int = 50
 GC_BRICK_WIDTH: int = (GC_WORLD_WIDTH - 2 * GC_WALL_SIZE) // GC_BRICK_COLUMNS
 
-GC_BRICK_TOP_HEIGHT: int = 150 # top and bottom height of brick grid
+GC_BRICK_TOP_HEIGHT: int = 120 # top and bottom height of brick grid
 GC_BRICK_BOTTOM_HEIGHT: int = GC_BRICK_TOP_HEIGHT + GC_BRICK_LAYERS * GC_BRICK_HEIGHT
 
 GC_BRICK_UL_ANGLE: float = math.degrees(math.atan2(-GC_BRICK_HEIGHT / 2, -GC_BRICK_WIDTH / 2))

@@ -13,7 +13,7 @@ from game.gameClasses.PosRect import PosRect
 from game.gameClasses.Velocity import Velocity
 
 
-def makeBricks() -> List[Brick]:
+def makeBricks(level: int) -> List[Brick]:
 	bricks = []
 
 	if GC_BRICK_GEN_MODE == "random":
@@ -30,7 +30,6 @@ def makeBricks() -> List[Brick]:
 				maxHP = 1
 
 	if GC_BRICK_GEN_MODE == "filled":
-		# TODO: add different chances for different HP blocks
 		for i in range(GC_BRICK_COLUMNS):
 			for j in range(GC_BRICK_LAYERS):
 				brickX = i * GC_BRICK_WIDTH + GC_WALL_SIZE
@@ -39,6 +38,19 @@ def makeBricks() -> List[Brick]:
 				if brickHP == 4:
 					brickHP = -1
 				bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP))
+
+	if GC_BRICK_GEN_MODE == "manual":
+		f = open("assets/levels/level" + str(level) + ".txt")
+		for i in range(GC_BRICK_LAYERS):
+			line = f.readline()
+			for j in range(GC_BRICK_COLUMNS):
+				brickX = j * GC_BRICK_WIDTH + GC_WALL_SIZE
+				brickY = i * GC_BRICK_HEIGHT + GC_BRICK_TOP_HEIGHT
+				brickHP = int(line[j:j + 1])
+				if brickHP != 0:  # if shouldn't be empty, add a brick
+					if brickHP == 4: brickHP = -1  # convert invincible brick from 4 (in file) to -1 (in code)
+					bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP))
+
 	return bricks
 
 
@@ -57,5 +69,5 @@ def makeBall() -> Ball:
 	return ball
 
 
-def makeState(level, score, numLives) -> GameState:
-	return GameState(makeBricks(), makeBall(), level, score, numLives)
+def makeState(level: int, score: int, numLives: int) -> GameState:
+	return GameState(makeBricks(level), makeBall(), level, score, numLives)

@@ -1,5 +1,26 @@
 ## This is a list of commits that were performed while the team was working as a group
 
+12/05
+-
+`05a3d1b` by Sub: `added highscores display screen & placeholder assets`
+
+`992778d` by Kevin: `new stuff`
+
+`177726c` by Sub: `added highscore storage`
+
+`28b6bb5` by Sub: `working on highscores`
+
+`1fbfc4f` by Alex: `high scores screen`
+
+`5f0721f` by Kevin: `new stuff`
+
+`f8e82d2` by Kevin: `new stuff`
+
+`857e13a` by Kevin: `new stuff`
+
+`9f1b484` by Sub: `working on instructions screen`
+
+
 12/02
 -
 `e1b7d75` by Sub: `added font; updated goals`
