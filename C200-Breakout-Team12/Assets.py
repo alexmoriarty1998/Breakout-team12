@@ -20,6 +20,7 @@ class Assets:
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
 	I_BETWEEN_LEVELS_BACKGROUND: Surface = li("betweenLevels/background")
 	I_INSTRUCTIONS_BACKGROUND: Surface = li("instructions/background")
+	I_HIGHSCORE_ENTRY_BACKGROUND: Surface = li("highscoreEntry/background")
 
 	###   GAME SCREEN   #######################################################
 	I_BALL: Surface = li("game/ball")
@@ -39,6 +40,7 @@ class Assets:
 	I_TXT_LEVEL: Surface = li("imgFont/level3")  # use any of level1 level2 level3
 	I_TXT_TIME: Surface = li("imgFont/time2")  # use any of time1 time2
 	I_TXT_LIFE: Surface = li("imgFont/life")  # not really text, but still belong with imgFonts
+
 
 
 class AssetLoaderHelper:

@@ -53,4 +53,4 @@ class LoadingScreen(Screen):
 		from screens.MainMenuScreen import MainMenuScreen
 		Highscores.load()
 		from screens.HighscoreEntryScreen import HighscoreEntryScreen
-		ScreenManager.setScreen(HighscoreEntryScreen())
+		ScreenManager.setScreen(HighscoreEntryScreen(50))
