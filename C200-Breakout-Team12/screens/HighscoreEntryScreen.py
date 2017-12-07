@@ -15,13 +15,13 @@ class HighscoreEntryScreen(Screen):
 		for e in pygame.event.get():
 			if e.type == pygame.KEYDOWN:
 				self.inputStr += pygame.key.name(e.key)
-		Graphics.surface.hardClear()
+		Graphics.hardClear()
 		Graphics.surface.fill((255,255,255))
 		x = 0
 		for s in self.inputStr:
-			Graphics.surface.blit(getattr(Assets, "I_TXT_" + s), (x, 0))
+			Graphics.surface.blit(getattr(Assets, "I_TXT_" + s.upper()), (x, 0))
 			x += GC_IMGFONT_SIZE
-
+		Graphics.flip()
 
 
 

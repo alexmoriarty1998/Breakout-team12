@@ -53,3 +53,4 @@ class AssetLoaderHelper:
 	# variable names should be caps, image files are lowercase (e.g. a.png -> I_TXT_A)
 	for i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
 		setattr(Assets, "I_TXT_" + i, li("imgFont/" + i.lower()))
+
