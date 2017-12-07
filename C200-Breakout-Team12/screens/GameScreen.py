@@ -33,14 +33,14 @@ class GameScreen(Screen):
 		if self.state.won == 1:
 			if self.state.level == 5:
 				if Highscore.isHighScore(self.state.score):
-					ScreenManager.setScreen(HighscoreEntryScreen())
+					ScreenManager.setScreen(HighscoreEntryScreen(self.state.score))
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 			else:
 				ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
 
 		elif self.state.won == -1:
 			if Highscore.isHighScore(self.state.score):
-				ScreenManager.setScreen(HighscoreEntryScreen())
+				ScreenManager.setScreen(HighscoreEntryScreen(self.state.score))
 			else:
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 

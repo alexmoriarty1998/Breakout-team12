@@ -60,6 +60,8 @@ GC_DEFAULT_LEVELS = 5
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
 GC_HIGHSCORES_LEFT_X = 300 # display values for highscore display screen
 GC_HIGHSCORE_SPACING = 75
+GC_HIGHSCORE_ENTRY_BEGIN_X = int(GC_WORLD_WIDTH // 2 - 1.5 * GC_IMGFONT_SIZE)
+GC_HIGHSCORE_ENTRY_HEIGHT = 600
 
 ###   BALL   ##################################################################
 GC_BALL_RADIUS: int = 13

@@ -50,7 +50,7 @@ class HighscoreDisplayScreen(Screen):
 
 			# draw name
 			for j in Highscores.names[i]:
-				image: pygame.Surface = getattr(Assets, "I_TXT_" + j)
+				image: pygame.Surface = getattr(Assets, "I_TXT_" + j.upper())
 				Graphics.surface.blit(image, (x, height))
 				x += GC_IMGFONT_SIZE
 

@@ -20,6 +20,7 @@ class Assets:
 	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
 	I_BETWEEN_LEVELS_BACKGROUND: Surface = li("betweenLevels/background")
 	I_INSTRUCTIONS_BACKGROUND: Surface = li("instructions/background")
+	I_HIGHSCORE_ENTRY_BACKGROUND: Surface = li("highscoreEntry/background")
 
 	###   GAME SCREEN   #######################################################
 	I_BALL: Surface = li("game/ball")
@@ -41,6 +42,7 @@ class Assets:
 	I_TXT_LIFE: Surface = li("imgFont/life")  # not really text, but still belong with imgFonts
 
 
+
 class AssetLoaderHelper:
 	# Initializes values in Assets using setattr.
 	# setattr cant be used in assets because it would
@@ -53,3 +55,4 @@ class AssetLoaderHelper:
 	# variable names should be caps, image files are lowercase (e.g. a.png -> I_TXT_A)
 	for i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
 		setattr(Assets, "I_TXT_" + i, li("imgFont/" + i.lower()))
+

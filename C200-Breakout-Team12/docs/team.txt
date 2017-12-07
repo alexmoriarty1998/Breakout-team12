@@ -2,8 +2,7 @@
 
 Milestone 2:
 1) Level progression - at least 5 w/ increasing difficulty & breaks in-between
-3) Highscores
-	Go to highscores on loss, or when all levels are beat
+
 
 ###############################################################################
 ###############################################################################
@@ -13,13 +12,7 @@ TODO:
 Gravity is broken
 
 TODO:
-Push ball out of wall on collision
-
-Show stats on between levels screen
-Show highscores at end of game (GameOverScreen?)
-Handle all lives lost (-> GameOverScreen?)
-
-Highscores input screen
+Say press escape to exit on highscores and help screens
 
 Type up more levels
 
@@ -65,6 +58,7 @@ Add 3 features & documentation
 
 	Sound??
 	Paddle charge mechanic?
+	Show stats on between levels screen
 
 ###############################################################################
 TODO:
