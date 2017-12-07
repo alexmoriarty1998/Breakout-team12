@@ -90,8 +90,10 @@ class GameController:
 
 		# collide with walls and top/bottom of world
 		if self.ball.circle.x - self.ball.circle.radius < GC_WALL_SIZE:
+			self.ball.circle.x = GC_WALL_SIZE + self.ball.circle.radius
 			self.ball.velocity.dx *= -1
 		elif self.ball.circle.x + self.ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
+			self.ball.circle.x = GC_WORLD_WIDTH - self.ball.circle.radius - GC_WALL_SIZE
 			self.ball.velocity.dx *= -1
 
 		# set 'won'
@@ -105,6 +107,7 @@ class GameController:
 				self.state.paused = True
 			else:
 				self.state.won = -1
+
 
 	def collidePaddleWall(self):
 		if self.paddle.rect.x < GC_WALL_SIZE:

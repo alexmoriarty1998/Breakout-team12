@@ -16,7 +16,7 @@ GC_PRINT_GAME_TIME: bool  = False
 
 GC_BRICK_GEN_MODE: str    = "manual"	# "empty", "random", "filled", "manual"
 
-GC_MOTION_BLUR: bool      = True		  # TODO: enable this for final product
+GC_MOTION_BLUR: bool      = False		  # TODO: enable this for final product
 GC_FULLSCREEN: bool       = False		  # TODO: enable this for final product
 
 ###############################################################################
