@@ -3,12 +3,11 @@
 # having a progress bar would be nice, but would require asynchronous loading of assets
 #  or some nifty tricks to allow for that while fitting neatly into the StateManager framework
 import pygame
-from game.Highscores import Highscores
+
 import Graphics
 import ScreenManager
+from game.Highscores import Highscores
 from screens.Screen import Screen
-
-
 
 
 # Abbreviation for pygame.image.load() that also assets/ and .png onto the path and
@@ -52,5 +51,4 @@ class LoadingScreen(Screen):
 		from Assets import AssetLoaderHelper  # loads more assets into the Assets class
 		from screens.MainMenuScreen import MainMenuScreen
 		Highscores.load()
-		from screens.HighscoreEntryScreen import HighscoreEntryScreen
-		ScreenManager.setScreen(HighscoreEntryScreen(50))
+		ScreenManager.setScreen(MainMenuScreen())

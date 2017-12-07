@@ -20,9 +20,9 @@ class PosRect(PosPoint):
 		# this is what you want for bricks, but backwards for paddle
 		# but there are many more bricks than paddles
 		if (circle.y > self.y + self.height + circle.radius  # below
-				or circle.x < self.x - circle.radius  # left
-				or circle.x > self.x + self.width + circle.radius  # right
-				or circle.y < self.y - circle.radius):  # above
+			or circle.x < self.x - circle.radius  # left
+			or circle.x > self.x + self.width + circle.radius  # right
+			or circle.y < self.y - circle.radius):  # above
 			return False
 
 		# find point on rectangle closest to circle

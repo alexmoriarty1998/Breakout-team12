@@ -20,7 +20,6 @@ from game.gameClasses.PosPoint import PosPoint
 
 
 class GameController:
-
 	def __init__(self, state):
 		self.moveDir: int = 0
 		self.state: GameState = state
@@ -110,7 +109,6 @@ class GameController:
 			else:
 				self.state.won = -1
 
-
 	def collidePaddleWall(self):
 		if self.paddle.rect.x < GC_WALL_SIZE:
 			self.paddle.rect.x = GC_WALL_SIZE
@@ -163,7 +161,7 @@ class GameController:
 				if brick.hp != 0:  # don't bounce the self.ball when it destroys a brick
 					angle = brick.rect.findAngle(self.ball.circle)
 					if (angle >= GC_BRICK_UR_ANGLE or angle < GC_BRICK_BR_ANGLE or
-							GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
+									GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 						# hit side of brick
 						self.ball.velocity.dx *= -1
 						if self.ball.circle.x > brick.rect.x + .5 * GC_BRICK_WIDTH:

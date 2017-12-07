@@ -1,19 +1,19 @@
 import Graphics
 import ScreenManager
+from Assets import Assets
+from GameConstants import *
 from game.Highscores import Highscores
 from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
 from screens.Screen import Screen
-import pygame
-from GameConstants import *
-from Assets import Assets
+
 
 class HighscoreEntryScreen(Screen):
-	usableInput = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+	usableInput = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+				   "u", "v", "w", "x", "y", "z"]
+
 	def __init__(self, score):
 		self.inputStr = ''
 		self.score = score
-
-
 
 	def update(self):
 		super().update()
@@ -27,10 +27,8 @@ class HighscoreEntryScreen(Screen):
 				if e.key == pygame.K_RETURN and len(self.inputStr) == 3:
 					self.submit()
 
-
-
 		Graphics.hardClear()
-		Graphics.surface.blit(Assets.I_HIGHSCORE_ENTRY_BACKGROUND, (0,0))
+		Graphics.surface.blit(Assets.I_HIGHSCORE_ENTRY_BACKGROUND, (0, 0))
 		x = GC_HIGHSCORE_ENTRY_BEGIN_X
 		for s in self.inputStr:
 			Graphics.surface.blit(getattr(Assets, "I_TXT_" + s.upper()), (x, GC_HIGHSCORE_ENTRY_HEIGHT))
@@ -41,7 +39,3 @@ class HighscoreEntryScreen(Screen):
 		Highscores.add(self.score, self.inputStr)
 		Highscores.flush()
 		ScreenManager.setScreen(HighscoreDisplayScreen())
-
-
-
-

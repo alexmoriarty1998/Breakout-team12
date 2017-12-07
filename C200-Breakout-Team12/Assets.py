@@ -2,9 +2,10 @@
 
 # images are prepended with I_, sounds with S_, music with M_
 
-import Graphics
 import pygame
 from pygame import Surface
+
+import Graphics
 
 
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
@@ -42,7 +43,6 @@ class Assets:
 	I_TXT_LIFE: Surface = li("imgFont/life")  # not really text, but still belong with imgFonts
 
 
-
 class AssetLoaderHelper:
 	# Initializes values in Assets using setattr.
 	# setattr cant be used in assets because it would
@@ -55,4 +55,3 @@ class AssetLoaderHelper:
 	# variable names should be caps, image files are lowercase (e.g. a.png -> I_TXT_A)
 	for i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
 		setattr(Assets, "I_TXT_" + i, li("imgFont/" + i.lower()))
-

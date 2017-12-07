@@ -1,7 +1,5 @@
 # Main menu screen
 
-import pygame
-
 import Graphics
 import ScreenManager
 from Assets import Assets

@@ -7,7 +7,6 @@ from game.gameClasses.PosRect import PosRect
 
 
 class Brick(Blittable):
-
 	# get the brick image from its max HP and current HP
 	@staticmethod
 	def getImageFromHP(maxHP: int, currentHP: int) -> Surface:

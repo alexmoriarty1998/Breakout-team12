@@ -99,6 +99,7 @@ def goWindowed() -> None:
 def swapWindowMode():
 	goWindowed() if currentMode == MODE_FULLSCREEN else goFullscreen()
 
+
 def unproject(pos):
 	x = pos[0]
 	y = pos[1]
@@ -106,4 +107,4 @@ def unproject(pos):
 	x = xLoc * GC_WORLD_WIDTH
 	yLoc = y / windowSurface.get_height()
 	y = yLoc * GC_WORLD_HEIGHT
-	return (x, y)
+	return x, y

@@ -7,7 +7,9 @@ from game.GameRenderer import GameRenderer
 from game.GameState import GameState
 from screens.BetweenLevelsScreen import BetweenLevelsScreen
 from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
+from screens.HighscoreEntryScreen import HighscoreEntryScreen
 from screens.Screen import Screen
+from game.Highscores import Highscores
 
 
 class GameScreen(Screen):
@@ -32,14 +34,14 @@ class GameScreen(Screen):
 		###   GO TO WIN/LOSS SCREENS   ########################################
 		if self.state.won == 1:
 			if self.state.level == 5:
-				if Highscore.isHighScore(self.state.score):
+				if Highscores.isHighScore(self.state.score):
 					ScreenManager.setScreen(HighscoreEntryScreen(self.state.score))
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 			else:
 				ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
 
 		elif self.state.won == -1:
-			if Highscore.isHighScore(self.state.score):
+			if Highscores.isHighScore(self.state.score):
 				ScreenManager.setScreen(HighscoreEntryScreen(self.state.score))
 			else:
 				ScreenManager.setScreen(HighscoreDisplayScreen())
