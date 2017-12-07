@@ -92,9 +92,11 @@ class GameController:
 		if self.ball.circle.x - self.ball.circle.radius < GC_WALL_SIZE:
 			self.ball.circle.x = GC_WALL_SIZE + self.ball.circle.radius
 			self.ball.velocity.dx *= -1
+			self.ball.circle.x = GC_WALL_SIZE + self.ball.circle.radius
 		elif self.ball.circle.x + self.ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
 			self.ball.circle.x = GC_WORLD_WIDTH - self.ball.circle.radius - GC_WALL_SIZE
 			self.ball.velocity.dx *= -1
+			self.ball.circle.x = GC_WORLD_WIDTH - GC_WALL_SIZE - self.ball.circle.radius
 
 		# set 'won'
 		if self.ball.circle.y - self.ball.circle.radius < 0:

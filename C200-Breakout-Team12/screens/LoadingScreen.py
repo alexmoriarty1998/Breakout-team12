@@ -7,6 +7,7 @@ from game.Highscores import Highscores
 import Graphics
 import ScreenManager
 from screens.Screen import Screen
+from screens.HighscoreEntryScreen import HighscoreEntryScreen
 
 
 # Abbreviation for pygame.image.load() that also assets/ and .png onto the path and
@@ -51,4 +52,4 @@ class LoadingScreen(Screen):
 		from screens.MainMenuScreen import MainMenuScreen
 		Highscores.load()
 
-		ScreenManager.setScreen(MainMenuScreen())
+		ScreenManager.setScreen(HighscoreEntryScreen())
