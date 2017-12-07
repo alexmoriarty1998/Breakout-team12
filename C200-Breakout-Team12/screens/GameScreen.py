@@ -6,6 +6,7 @@ from game.GameController import GameController
 from game.GameRenderer import GameRenderer
 from game.GameState import GameState
 from screens.BetweenLevelsScreen import BetweenLevelsScreen
+from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
 from screens.Screen import Screen
 
 
@@ -30,10 +31,18 @@ class GameScreen(Screen):
 
 		###   GO TO WIN/LOSS SCREENS   ########################################
 		if self.state.won == 1:
-			ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
+			if self.state.level == 5:
+				if Highscore.isHighScore(self.state.score):
+					ScreenManager.setScreen(HighscoreEntryScreen())
+				ScreenManager.setScreen(HighscoreDisplayScreen())
+			else:
+				ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
+
 		elif self.state.won == -1:
-			# TODO: transition to highscore display/entry as appropriate
-			pass
+			if Highscore.isHighScore(self.state.score):
+				ScreenManager.setScreen(HighscoreEntryScreen())
+			else:
+				ScreenManager.setScreen(HighscoreDisplayScreen())
 
 		###   GO TO PAUSE SCREEN   ############################################
 		if pygame.key.get_pressed()[GC_KEY_PAUSE]:

@@ -54,6 +54,7 @@ GC_IMGFONT_SIZE = 75
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES = 3
 GC_PAR_TIME = 60
+GC_DEFAULT_LEVELS = 5
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
