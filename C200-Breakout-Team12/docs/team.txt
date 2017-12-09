@@ -1,14 +1,3 @@
-TODO:
-Gravity is broken
-
-TODO:
-Say press escape to exit on highscores and help screens
-
-
-###############################################################################
-###############################################################################
-###############################################################################
-
 Milestone 3:
 Add 3 features & documentation
 	Juice: http://grapefrukt.com/f/games/juicy-breakout/
@@ -43,18 +32,21 @@ Add 3 features & documentation
 			Fast ball
 			Slow ball
 			Paddle guns (pew pew)
-
-	Sound??
-	Paddle charge mechanic?
-	Show stats on between levels screen
+		Paddle charge mechanic?
 
 ###############################################################################
 TODO:
+Say press escape to exit on highscore and help screens
+Show stats on between levels screen
+Increase par time?
 
-###############################################################################
-###############################################################################
 ###############################################################################
 TODO Before final submission:
 Complete any remaining TODOs
 Cleanup and comment code
+
+
 Executive Summary
+Scoring is nonlinear
+Gravity is broken
+Quit button sometimes doesn't work
