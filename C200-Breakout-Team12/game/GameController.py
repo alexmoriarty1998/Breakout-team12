@@ -87,10 +87,11 @@ class GameController:
 		self.paddle.velocity.apply(self.paddle.rect)
 
 	def updateBall(self):
-		for ball in self.state.balls:
+		for i in range(len(self.state.balls)):
 			# store last position
-			self.state.lastPosBall = PosPoint(ball.circle.x, ball.circle.y)
-
+			self.state.lastPosBalls = []
+			self.state.lastPosBalls.append(PosPoint(self.state.balls[i].circle.x, self.state.balls[i].circle.y))
+		for ball in self.state.balls:
 			# move; update velocity before position
 			halfAccel: Acceleration = Acceleration(ball.acceleration.ddx / 2, ball.acceleration.ddy / 2)
 			halfAccel.apply(ball.velocity)
@@ -113,8 +114,12 @@ class GameController:
 			# decrement lives or set 'lost'
 			elif ball.circle.y + ball.circle.radius > GC_WORLD_HEIGHT:
 				if self.state.numLives > 1:
-					self.state.numLives -= 1
-					self.state.ball = makeBall()  # make sure to set the state's ball, not the local copy of ball
+					if len(self.state.balls) == 1:
+						self.state.balls = [makeBall()]
+						self.state.numLives -= 1
+					# b: if ball.circle.y < world height - radius
+					self.state.balls = list(
+						filter(lambda b: b.circle.y < GC_WORLD_HEIGHT - b.circle.radius, self.state.balls))
 					self.state.paused = True
 				else:
 					self.state.won = -1
@@ -129,8 +134,8 @@ class GameController:
 		# The ball's velocity (per frame) is a large percentage of the paddle height.
 		# So find where it actually would have hit the paddle, not where it is
 		# relative to the paddle on this frame.
-		for ball in self.state.balls:
-
+		for i in range(len(self.state.balls)):
+			ball = self.state.balls[i]
 			if self.paddle.rect.intersectsCircle(ball.circle):
 				# noinspection PyUnusedLocal
 				intersectPoint = None
@@ -140,12 +145,12 @@ class GameController:
 					# TODO: is this if statement needed? does it do anything?
 					intersectPoint = ball.circle
 				else:
-					largeY = ball.circle.y - self.state.lastPosBall.y
-					largeX = ball.circle.x - self.state.lastPosBall.x
-					smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBall.y
+					largeY = ball.circle.y - self.state.lastPosBalls[i].y
+					largeX = ball.circle.x - self.state.lastPosBalls[i].x
+					smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBalls[i].y
 					scale = smallY / largeY
 					smallX = scale * largeX
-					intersectX = smallX + self.state.lastPosBall.x
+					intersectX = smallX + self.state.lastPosBalls[i].x
 					intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
 
 				angle = self.paddle.rect.findAngle(intersectPoint)

@@ -14,7 +14,7 @@ class GameState:
 	bricks: List[Brick]
 	paddle: Paddle
 	balls: List[Ball]
-	lastPosBall: PosPoint
+	lastPosBalls: List[PosPoint]
 	displayables: List[Displayable]
 
 	level: int
@@ -29,6 +29,7 @@ class GameState:
 		self.bricks = bricks
 		self.balls = []
 		self.balls.append(ball)
+		self.lastPosBalls = []
 		self.level = level
 		self.oldScore = oldScore
 		self.score = 0
