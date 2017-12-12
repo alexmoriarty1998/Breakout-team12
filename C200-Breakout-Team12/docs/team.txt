@@ -30,10 +30,9 @@ Select a visual theme, redesign assets
 Add more levels
 Update instructions screen
 
-1) Main menu has game in background
-2) Show stats on between levels screen
-3) Powerup brick
-4) Animations and stuff
+1) Show stats on between levels screen
+2) Powerup brick
+3) Animations and stuff
 
 ###############################################################################
 TODO Before final submission:

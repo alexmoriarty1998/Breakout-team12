@@ -68,9 +68,9 @@ class MainMenuScreen(Screen):
 		# every frame, so limit how fast the offset can change.
 		# self.gameState.paddle.rect.x = self.gameState.ball.circle.x - self.gameState.paddle.rect.width // 2
 		if self.paddleTarget > self.gameState.paddle.rect.x:
-			self.gameState.paddle.rect.x = min(self.gameState.paddle.rect.x + GC_PADDLE_SPEED // 2, self.paddleTarget)
+			self.gameState.paddle.rect.x = min(self.gameState.paddle.rect.x + GC_PADDLE_SPEED // 1.4, self.paddleTarget)
 		elif self.paddleTarget < self.gameState.paddle.rect.x:
-			self.gameState.paddle.rect.x = max(self.gameState.paddle.rect.x - GC_PADDLE_SPEED // 2, self.paddleTarget)
+			self.gameState.paddle.rect.x = max(self.gameState.paddle.rect.x - GC_PADDLE_SPEED // 1.4, self.paddleTarget)
 		if ((self.gameState.ball.circle.x > self.gameState.paddle.rect.x + self.gameState.paddle.rect.width
 			 and self.paddleTarget < self.gameState.ball.circle.x)
 				or (self.gameState.ball.circle.x < self.gameState.paddle.rect.x
