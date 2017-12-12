@@ -56,13 +56,6 @@ class MainMenuScreen(Screen):
 		self.drawButtons(pygame.mouse.get_pos())
 		Graphics.flip()
 
-		# TODO: remove this code, and remove key definition from GameConstants
-		if pygame.key.get_pressed()[GC_KEY_BEGIN]:  # may need to change this key, or add a clickable button
-			self.begin = True
-
-		if self.begin:
-			ScreenManager.setScreen(NewGameLoaderScreen())
-
 	def buttonClicked(self, buttonName):
 		if buttonName == "exit":
 			ScreenManager.exit()

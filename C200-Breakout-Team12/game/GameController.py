@@ -37,6 +37,10 @@ class GameController:
 			self.movePaddle()
 			self.collidePaddleWall()
 			# start the game when started
+			# cant use pygame.mouse.get_pressed() because the user has to click to begin the game
+			#   and so the mouse button will still be held down when the game loads, and it will
+			#   immediately begin
+			#  would be too complex to put the event loop here
 			if pygame.key.get_pressed()[GC_KEY_BEGIN]:
 				self.state.paused = False
 			# Don't do anything to the game state if the game hasn't begun

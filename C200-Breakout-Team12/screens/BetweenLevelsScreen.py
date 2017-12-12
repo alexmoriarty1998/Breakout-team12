@@ -21,6 +21,3 @@ class BetweenLevelsScreen(Screen):
 		Graphics.clear()
 		Graphics.surface.blit(Assets.I_BETWEEN_LEVELS_BACKGROUND, (0, 0))
 		Graphics.flip()
-		if pygame.key.get_pressed()[GameConstants.GC_KEY_BEGIN]:
-			from screens.GameScreen import GameScreen
-			ScreenManager.setScreen(GameScreen(self.state))

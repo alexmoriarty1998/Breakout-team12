@@ -13,7 +13,7 @@ Add 3 features & documentation
 			SCREENSHAKE
 			ball stretch/squash (have 3 different levels, based on ball speed)
 
-	Game playing in main menu background, and pause screen (two small features)
+	Game playing in main menu background, and pause screen, and prettify UI (three smaller features)
 		Main Menu:
 			MainMenuScreen contains a game screen
 			Suppress mouse/keyboard input from entering GameScreen
@@ -40,6 +40,7 @@ ball loses speed
 
 TODO:
 Add buttons:
+	Will need to redesign screen background images for this
 	Main Menu:
 		highscores, instructions
 	Instructions:
@@ -59,5 +60,4 @@ Cleanup and comment code
 
 Executive Summary
 Scoring is nonlinear
-Gravity is broken
-Quit button sometimes doesn't work
+Didn't use pygame.font
