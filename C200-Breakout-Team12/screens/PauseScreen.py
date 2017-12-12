@@ -33,7 +33,7 @@ class PauseScreen(Screen):
 			if e.type == pygame.MOUSEBUTTONDOWN:
 				self.clickButtons(e.pos)
 			if e.type == pygame.KEYDOWN:
-				if e.key == pygame.K_ESCAPE:
+				if e.key == pygame.K_ESCAPE and not IS_MAC:
 					self.buttonClicked("resume")  # pressing escape is same as pressing resume button...
 
 		Graphics.clear()

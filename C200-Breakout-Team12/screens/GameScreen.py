@@ -52,9 +52,15 @@ class GameScreen(Screen):
 		###   GO TO PAUSE SCREEN   ############################################
 		# need to use event loop so it doesn't get repaused if user presses
 		# escape to exit from the pause menu
-		for e in pygame.event.get():
-			if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+
+		# this is to avoid a bug with mac systems
+		if IS_MAC:
+			if pygame.key.get_pressed()[pygame.K_ESCAPE]:
 				ScreenManager.setScreen(PauseScreen(self))
+		else:
+			for e in pygame.event.get():
+				if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+					ScreenManager.setScreen(PauseScreen(self))
 
 		# debug print
 		if GC_PRINT_BALL_SPEED:
