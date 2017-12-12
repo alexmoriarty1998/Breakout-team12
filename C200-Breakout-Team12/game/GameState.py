@@ -13,7 +13,7 @@ from game.gameClasses.PosPoint import PosPoint
 class GameState:
 	bricks: List[Brick]
 	paddle: Paddle
-	ball: Ball
+	balls: List[Ball]
 	lastPosBall: PosPoint
 	displayables: List[Displayable]
 
@@ -27,7 +27,8 @@ class GameState:
 
 	def __init__(self, bricks: List[Brick], ball: Ball, level: int, oldScore: int = 0, numLives: int = 3):
 		self.bricks = bricks
-		self.ball = ball
+		self.balls = []
+		self.balls.append(ball)
 		self.level = level
 		self.oldScore = oldScore
 		self.score = 0

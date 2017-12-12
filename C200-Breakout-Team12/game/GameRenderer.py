@@ -75,8 +75,9 @@ class GameRenderer:
 			surface.blit(b.getImage(frame), (b.rect.x, b.rect.y))
 
 		###   BALL   ##########################################################
-		ballPos = state.ball.circle
-		surface.blit(state.ball.getImage(frame), (ballPos.x - ballPos.radius, ballPos.y - ballPos.radius))
+		for ball in state.balls:
+			ballPos = ball.circle
+			surface.blit(ball.getImage(frame), (ballPos.x - ballPos.radius, ballPos.y - ballPos.radius))
 
 		###   DISPLAYABLES   ##################################################
 		for d in state.displayables:
