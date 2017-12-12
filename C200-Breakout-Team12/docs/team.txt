@@ -18,20 +18,11 @@ Add 3 features & documentation
 			MainMenuScreen contains a game screen
 			Suppress mouse/keyboard input from entering GameScreen
 			Add own input to move paddle
-			if not isInstance(self.GameScreen, GameScreen):
-				regenerate GameScreen
-		Pause:
-			give pause screen an instance of game screen
-			pause will call GameRenderer to show game in background
-			on unpause, set the screen to the stored game screen
+			if self.gameScreen.won: # will return true for won = 1 and won = -1
+				regenerate gameScreen
 
 	Powerups
 		Yellow brick: adds additional ball to the game
-			Large paddle
-			Small paddle
-			Fast ball
-			Slow ball
-			Paddle guns (pew pew)
 		Paddle charge mechanic?
 
 ###############################################################################
@@ -39,8 +30,8 @@ BUGS:
 ball loses speed
 
 TODO:
+Select a visual theme, redesign assets
 Add buttons:
-	Will need to redesign screen background images for this
 	Main Menu:
 		highscores, instructions
 	Instructions:
@@ -49,8 +40,15 @@ Add buttons:
 		submit, don't save highscore
 	Between Levels:
 		continue
-Show stats on between levels screen
+
 Add more levels
+Update instructions screen
+
+0) Add buttons listed above
+1) Main menu has game in background
+2) Show stats on between levels screen
+3) Powerup brick
+4) Animations and stuff
 
 ###############################################################################
 TODO Before final submission:
@@ -58,6 +56,6 @@ Complete any remaining TODOs
 Cleanup and comment code
 
 
-Executive Summary
+Executive Summary:
 Scoring is nonlinear
 Didn't use pygame.font

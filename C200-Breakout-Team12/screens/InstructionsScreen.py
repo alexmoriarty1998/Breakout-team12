@@ -10,6 +10,7 @@ from screens.Screen import Screen
 class InstructionsScreen(Screen):
 
 	def __init__(self):
+		super().__init__()
 		self.buttons.append(
 			Button("back",
 				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
@@ -23,7 +24,7 @@ class InstructionsScreen(Screen):
 
 		Graphics.clear()
 		Graphics.surface.blit(Assets.I_INSTRUCTIONS_BACKGROUND, (0, 0))
-		self.drawButtons(pygame.mouse.get_pos())
+		self.drawButtons()
 		Graphics.flip()
 
 	def buttonClicked(self, buttonName):

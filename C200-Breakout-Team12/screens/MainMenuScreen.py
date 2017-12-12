@@ -14,6 +14,7 @@ class MainMenuScreen(Screen):
 	begin: bool = False
 
 	def __init__(self):
+		super().__init__()
 		self.buttons.append(
 			Button("exit",
 				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
@@ -53,7 +54,7 @@ class MainMenuScreen(Screen):
 
 		Graphics.clear()
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))
-		self.drawButtons(pygame.mouse.get_pos())
+		self.drawButtons()
 		Graphics.flip()
 
 	def buttonClicked(self, buttonName):

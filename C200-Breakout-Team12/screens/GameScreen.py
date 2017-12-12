@@ -8,6 +8,7 @@ from game.GameState import GameState
 from screens.BetweenLevelsScreen import BetweenLevelsScreen
 from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
 from screens.HighscoreEntryScreen import HighscoreEntryScreen
+from screens.PauseScreen import PauseScreen
 from screens.Screen import Screen
 from game.Highscores import Highscores
 
@@ -17,6 +18,7 @@ class GameScreen(Screen):
 	frame: int = 0  # current game tick, used for animations
 
 	def __init__(self, state: GameState):
+		super().__init__()
 		self.state = state
 		self.controller = GameController(self.state)
 
@@ -49,8 +51,7 @@ class GameScreen(Screen):
 
 		###   GO TO PAUSE SCREEN   ############################################
 		if pygame.key.get_pressed()[GC_KEY_PAUSE]:
-			# TODO: transition to pause screen
-			pass
+			ScreenManager.setScreen(PauseScreen(self))
 
 		# TODO: remove this debug feature
 		if pygame.key.get_pressed()[pygame.K_r]:

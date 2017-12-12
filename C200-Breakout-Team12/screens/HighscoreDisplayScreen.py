@@ -11,6 +11,7 @@ from screens.Screen import Screen
 class HighscoreDisplayScreen(Screen):
 
 	def __init__(self):
+		super().__init__()
 		self.buttons.append(
 			Button("back",
 				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
@@ -69,7 +70,7 @@ class HighscoreDisplayScreen(Screen):
 
 			height += GC_IMGFONT_SIZE
 
-		self.drawButtons(pygame.mouse.get_pos())
+		self.drawButtons()
 
 		Graphics.flip()
 

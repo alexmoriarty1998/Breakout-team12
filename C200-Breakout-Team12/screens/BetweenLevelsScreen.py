@@ -9,6 +9,7 @@ from screens.Screen import Screen
 
 class BetweenLevelsScreen(Screen):
 	def __init__(self, level, oldScore, score, numLives):
+		super().__init__()
 		lifeToAdd = 0
 		if level % 2 != 0:
 			lifeToAdd = 1

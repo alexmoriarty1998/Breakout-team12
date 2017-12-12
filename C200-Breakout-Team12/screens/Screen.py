@@ -9,7 +9,9 @@ from typing import List, Tuple
 
 class Screen:
 	frame: int = 0
-	buttons: List[Button] = []
+
+	def __init__(self):
+		self.buttons: List[Button] = []
 
 	def update(self):
 		# screen is not cleared here to allow for motion blur effects
@@ -40,8 +42,8 @@ class Screen:
 			if b.hovered(pos[0], pos[1]):
 				self.buttonClicked(b.name)
 
-	def drawButtons(self, mousePos: Tuple[int]):
-		pos = Graphics.unproject(mousePos)
+	def drawButtons(self):
+		pos = Graphics.unproject(pygame.mouse.get_pos())
 		for b in self.buttons:
 			image = b.image
 			if b.hovered(pos[0], pos[1]):

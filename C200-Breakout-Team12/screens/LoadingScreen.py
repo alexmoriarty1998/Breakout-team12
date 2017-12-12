@@ -18,6 +18,7 @@ class LoadingScreen(Screen):
 	background: pygame.Surface = None
 
 	def __init__(self):
+		super().__init__()
 		self.background = pygame.image.load("assets/loading/background.png")
 
 	def update(self):

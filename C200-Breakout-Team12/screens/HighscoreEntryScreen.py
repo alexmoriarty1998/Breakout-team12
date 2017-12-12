@@ -12,6 +12,7 @@ class HighscoreEntryScreen(Screen):
 				   "u", "v", "w", "x", "y", "z"]
 
 	def __init__(self, score):
+		super().__init__()
 		self.inputStr = ''
 		self.score = score
 

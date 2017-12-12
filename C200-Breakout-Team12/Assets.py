@@ -22,6 +22,7 @@ class Assets:
 	I_BETWEEN_LEVELS_BACKGROUND = li("betweenLevels/background")
 	I_INSTRUCTIONS_BACKGROUND = li("instructions/background")
 	I_HIGHSCORE_ENTRY_BACKGROUND = li("highscoreEntry/background")
+	I_PAUSE_BACKGROUND = li("pause/background")
 
 	###   GAME SCREEN   #######################################################
 	I_BALL = li("game/ball")
@@ -58,6 +59,12 @@ class Assets:
 	# main menu screen
 	I_BTN_MAINMENU_BEGIN = li("mainMenu/btn_begin")
 	I_BTN_MAINMENU_BEGIN_H = li("mainMenu/btn_begin_h")
+
+	# pause screen
+	I_BTN_PAUSE_RESUME = li("pause/btn_resume")
+	I_BTN_PAUSE_RESUME_H = li("pause/btn_resume_h")
+	I_BTN_PAUSE_QUIT = li("pause/btn_quit")
+	I_BTN_PAUSE_QUIT_H = li("pause/btn_quit_h")
 
 
 class AssetLoaderHelper:
