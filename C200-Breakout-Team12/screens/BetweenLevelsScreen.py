@@ -8,17 +8,17 @@ from screens.Screen import Screen
 
 
 class BetweenLevelsScreen(Screen):
-	def __init__(self, level, score, numLives):
+	def __init__(self, level, oldScore, score, numLives):
 		lifeToAdd = 0
 		if level % 2 != 0:
 			lifeToAdd = 1
-		self.state = makeState(level + 1, score, numLives + lifeToAdd)
+		self.state = makeState(level + 1, oldScore + score, numLives + lifeToAdd)
 
 	def update(self):
 		super().update()
 		pygame.event.clear()
 
-		Graphics.clear(Assets.I_BLUR)
+		Graphics.clear()
 		Graphics.surface.blit(Assets.I_BETWEEN_LEVELS_BACKGROUND, (0, 0))
 		Graphics.flip()
 		if pygame.key.get_pressed()[GameConstants.GC_KEY_BEGIN]:

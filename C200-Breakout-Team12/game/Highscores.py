@@ -1,4 +1,7 @@
 # this class is static, to avoid having to pass around an instance of it everywhere
+
+from shutil import copyfile
+
 class Highscores:
 	scores = []
 	names = []
@@ -62,3 +65,7 @@ class Highscores:
 		for i in Highscores.names:
 			f.write(i + '\n')
 		f.close()
+
+	@staticmethod
+	def reset():
+		copyfile("highscores_default.txt", "highscores.txt")

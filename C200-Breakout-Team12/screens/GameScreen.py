@@ -27,7 +27,7 @@ class GameScreen(Screen):
 		self.controller.update()
 
 		###   DRAW GAME STATE   ###############################################
-		Graphics.clear(Assets.I_BLUR)
+		Graphics.clear()
 		GameRenderer.render(self.state, self.frame)
 		Graphics.flip()
 
@@ -35,14 +35,15 @@ class GameScreen(Screen):
 		if self.state.won == 1:
 			if self.state.level == 5:
 				if Highscores.isHighScore(self.state.score):
-					ScreenManager.setScreen(HighscoreEntryScreen(self.state.score))
+					ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore + self.state.score))
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 			else:
-				ScreenManager.setScreen(BetweenLevelsScreen(self.state.level, self.state.score, self.state.numLives))
+				ScreenManager.setScreen(
+					BetweenLevelsScreen(self.state.level, self.state.oldScore, self.state.score, self.state.numLives))
 
 		elif self.state.won == -1:
 			if Highscores.isHighScore(self.state.score):
-				ScreenManager.setScreen(HighscoreEntryScreen(self.state.score))
+				ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore))
 			else:
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 

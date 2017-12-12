@@ -69,5 +69,5 @@ def makeBall() -> Ball:
 	return ball
 
 
-def makeState(level: int, score: int, numLives: int) -> GameState:
-	return GameState(makeBricks(level), makeBall(), level, score, numLives)
+def makeState(level: int, oldScore: int, numLives: int) -> GameState:
+	return GameState(makeBricks(level), makeBall(), level, oldScore, numLives)

@@ -15,7 +15,7 @@ class HighscoreDisplayScreen(Screen):
 			from screens.MainMenuScreen import MainMenuScreen
 			ScreenManager.setScreen(MainMenuScreen())
 
-		Graphics.clear(Assets.I_BLUR)
+		Graphics.clear()
 		Graphics.surface.fill((255, 255, 255))  # font is black, so need white background
 
 		# calculate height to start drawing at

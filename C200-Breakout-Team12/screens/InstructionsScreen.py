@@ -9,7 +9,7 @@ from screens.Screen import Screen
 class InstructionsScreen(Screen):
 	def update(self):
 		super().update()
-		Graphics.clear(Assets.I_BLUR)
+		Graphics.clear()
 		Graphics.surface.blit(Assets.I_INSTRUCTIONS_BACKGROUND, (0, 0))
 		Graphics.flip()
 

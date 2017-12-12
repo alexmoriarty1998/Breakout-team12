@@ -16,14 +16,19 @@ GC_PRINT_GAME_TIME: bool = False
 
 GC_BRICK_GEN_MODE: str = "manual"  # "empty", "random", "filled", "manual"
 
+GC_RESET_HIGHSCORES = False # enable this, start the game, then disable it
+
 GC_MOTION_BLUR: bool = False  # TODO: enable this for final product
 GC_FULLSCREEN: bool = False  # TODO: enable this for final product
 
 ###############################################################################
-import math  #
-from typing import Tuple  #
-
+import math
 import pygame
+from typing import Tuple
+from game.Highscores import Highscores
+
+if GC_RESET_HIGHSCORES:
+	Highscores.reset()
 
 ###############################################################################
 

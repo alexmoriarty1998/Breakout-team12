@@ -27,7 +27,7 @@ class MainMenuScreen(Screen):
 					from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
 					ScreenManager.setScreen(HighscoreDisplayScreen())
 
-		Graphics.clear(Assets.I_BLUR)
+		Graphics.clear()
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))
 		Graphics.flip()
 

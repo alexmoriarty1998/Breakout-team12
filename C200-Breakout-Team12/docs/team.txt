@@ -35,10 +35,14 @@ Add 3 features & documentation
 		Paddle charge mechanic?
 
 ###############################################################################
+BUGS:
+ball loses speed
+
 TODO:
 Say press escape to exit on highscore and help screens
 Show stats on between levels screen
 Increase par time?
+Add more levels
 
 ###############################################################################
 TODO Before final submission:

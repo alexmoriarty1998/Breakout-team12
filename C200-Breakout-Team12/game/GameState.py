@@ -18,17 +18,19 @@ class GameState:
 	displayables: List[Displayable]
 
 	level: int
+	oldScore: int
 	score: int
 	won: bool
 
 	time: float
 	parTime: float
 
-	def __init__(self, bricks: List[Brick], ball: Ball, level: int, score: int = 0, numLives=3):
+	def __init__(self, bricks: List[Brick], ball: Ball, level: int, oldScore: int = 0, numLives: int = 3):
 		self.bricks = bricks
 		self.ball = ball
 		self.level = level
-		self.score = score
+		self.oldScore = oldScore
+		self.score = 0
 
 		self.displayables = []
 		self.won = 0

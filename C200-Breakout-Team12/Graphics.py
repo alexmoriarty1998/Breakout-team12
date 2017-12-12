@@ -1,6 +1,7 @@
 # Graphics class
 # Stores pygame surface, manages windowed/fullscreen and display scaling / abstraction
 
+import sys
 from typing import List
 
 from GameConstants import *
@@ -16,7 +17,7 @@ windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
 
 
-def blur(blurImg: pygame.Surface) -> None:
+def blur() -> None:
 	# Importing Assets in this module causes issues with assets being
 	# loaded before this Graphics module is fully initialized. The solution
 	# is to not init the assets as static variables of the class Assets,
@@ -29,15 +30,16 @@ def blur(blurImg: pygame.Surface) -> None:
 	# this trap there, and here we have the draw code pass in Assets.I_BLUR
 	# as the image to blur with, instead of having a reference to it in this
 	# module.
-	surface.blit(blurImg, (0, 0))
+	img: pygame.Surface = getattr(sys.modules['Assets'], "I_BLUR")
+	surface.blit(img, (0, 0))
 
 
 def hardClear():
 	surface.fill((0, 0, 0))
 
 
-def clear(blurImg: pygame.Surface) -> None:
-	blur(blurImg) if GC_MOTION_BLUR else hardClear()
+def clear() -> None:
+	blur() if GC_MOTION_BLUR else hardClear()
 
 
 def resizeWindow(size) -> None:
