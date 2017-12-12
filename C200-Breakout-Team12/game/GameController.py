@@ -9,7 +9,10 @@
 # GameRenderer to display the current game self.state.
 # Name derived from the model-view-controller separation that
 # is present here.
+import sys
+
 import Graphics
+import ScreenManager
 from GameConstants import *
 from game.GameState import GameState
 from game.LevelTools import makeBall
@@ -57,6 +60,10 @@ class GameController:
 	def movePaddle(self):
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEMOTION:
+				# ignore mouse input if in the embedded main menu game
+				# but can't import MainMenuScreen
+				if ScreenManager.currentScreen.__class__.__name__ != 'GameScreen':
+					break
 				x = e.pos[0]
 				percent = x / Graphics.windowSurface.get_width()
 				x = Graphics.surface.get_width() * percent

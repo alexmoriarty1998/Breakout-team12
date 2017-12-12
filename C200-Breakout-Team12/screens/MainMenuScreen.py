@@ -1,9 +1,14 @@
 # Main menu screen
+import random
 
 import Graphics
 import ScreenManager
 from Assets import Assets
 from GameConstants import *
+from game.GameController import GameController
+from game.GameRenderer import GameRenderer
+from game.GameState import GameState
+from game.LevelTools import makeState
 from game.gameClasses.PosRect import PosRect
 from screens.Button import Button
 from screens.NewGameLoaderScreen import NewGameLoaderScreen
@@ -14,6 +19,12 @@ class MainMenuScreen(Screen):
 
 	def __init__(self):
 		super().__init__()
+
+		# embedded game
+		self.gameState: GameState = makeState(99, 0, 1)
+		self.gameState.paused = False
+		self.gameController: GameController = GameController(self.gameState)
+		self.paddleTarget: int = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE)
 
 		beginCoords = 0.5, 0.57
 		helpCoords = 0.3, 0.8
@@ -51,7 +62,32 @@ class MainMenuScreen(Screen):
 			if e.type == pygame.MOUSEBUTTONDOWN:
 				self.clickButtons(e.pos)
 
+		# tick the embedded game
+		# Paddle needs to not be in the dead center, so the ball does interesting stuff.
+		# But generating a random offset each tick results in the paddle jerking around
+		# every frame, so limit how fast the offset can change.
+		# self.gameState.paddle.rect.x = self.gameState.ball.circle.x - self.gameState.paddle.rect.width // 2
+		if self.paddleTarget > self.gameState.paddle.rect.x:
+			self.gameState.paddle.rect.x = min(self.gameState.paddle.rect.x + GC_PADDLE_SPEED // 2, self.paddleTarget)
+		elif self.paddleTarget < self.gameState.paddle.rect.x:
+			self.gameState.paddle.rect.x = max(self.gameState.paddle.rect.x - GC_PADDLE_SPEED // 2, self.paddleTarget)
+		if ((self.gameState.ball.circle.x > self.gameState.paddle.rect.x + self.gameState.paddle.rect.width
+			 and self.paddleTarget < self.gameState.ball.circle.x)
+				or (self.gameState.ball.circle.x < self.gameState.paddle.rect.x
+					and self.paddleTarget > self.gameState.ball.circle.x)):
+			self.paddleTarget = 0 if self.gameState.ball.circle.x < self.gameState.paddle.rect.x else GC_WORLD_WIDTH
+		# reset game if it's over
+		if self.gameState.won:  # also covers lost
+			self.gameState = makeState(99, 0, 1)
+			self.gameState.paused = False
+			self.gameController = GameController(self.gameState)
+		pygame.event.clear()
+		self.gameController.update()
+
 		Graphics.clear()
+		# draw the embedded game
+		GameRenderer.render(self.gameState, self.frame)
+
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))
 		self.drawButtons()
 		Graphics.flip()

@@ -23,7 +23,9 @@ def blur() -> None:
 	# However, we know that clear()/blur() will never be called before
 	# assets are loaded, so use getattr and sys.modules to load the
 	# blur image without actually importing it here.
-	img: pygame.Surface = getattr(sys.modules['Assets'], "I_BLUR")
+
+	assetsClass = getattr(sys.modules['Assets'], 'Assets')  # get Assets class from module Assets
+	img: pygame.Surface = getattr(assetsClass, "I_BLUR")  # get I_BLUR from class Assets
 	surface.blit(img, (0, 0))
 
 

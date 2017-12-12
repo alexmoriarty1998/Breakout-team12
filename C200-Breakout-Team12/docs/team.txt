@@ -14,12 +14,6 @@ Add 3 features & documentation
 			ball stretch/squash (have 3 different levels, based on ball speed)
 
 	Game playing in main menu background, and pause screen, and prettify UI (three smaller features)
-		Main Menu:
-			MainMenuScreen contains a game screen
-			Suppress mouse/keyboard input from entering GameScreen
-			Add own input to move paddle
-			if self.gameScreen.won: # will return true for won = 1 and won = -1
-				regenerate gameScreen
 
 	Powerups
 		Yellow brick: adds additional ball to the game
@@ -50,3 +44,4 @@ Executive Summary:
 Scoring is nonlinear
 Didn't use pygame.font
 Ball initial position was fixed to one point instead of random
+GameController needs to discard mouse motion events if in main menu screen (can't clear in MainMenuScreen code)
