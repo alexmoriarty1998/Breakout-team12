@@ -15,32 +15,49 @@ def li(path: str) -> Surface:
 
 class Assets:
 	###   GENERAL   ###########################################################
-	I_BLUR: Surface = li("blur")
+	I_BLUR = li("blur")
 
 	###   SCREEN BACKGROUNDS   ################################################
-	I_MAINMENU_BACKGROUND: Surface = li("mainMenu/background")
-	I_BETWEEN_LEVELS_BACKGROUND: Surface = li("betweenLevels/background")
-	I_INSTRUCTIONS_BACKGROUND: Surface = li("instructions/background")
-	I_HIGHSCORE_ENTRY_BACKGROUND: Surface = li("highscoreEntry/background")
+	I_MAINMENU_BACKGROUND = li("mainMenu/background")
+	I_BETWEEN_LEVELS_BACKGROUND = li("betweenLevels/background")
+	I_INSTRUCTIONS_BACKGROUND = li("instructions/background")
+	I_HIGHSCORE_ENTRY_BACKGROUND = li("highscoreEntry/background")
 
 	###   GAME SCREEN   #######################################################
-	I_BALL: Surface = li("game/ball")
-	I_PADDLE: Surface = li("game/paddle")
-	I_WALL: Surface = li("game/wall")
+	I_BALL = li("game/ball")
+	I_PADDLE = li("game/paddle")
+	I_WALL = li("game/wall")
 
-	I_BRICK_LEVEL1: Surface = li("game/brick11")  # 1 HP brick
-	I_BRICK_LEVEL2_2: Surface = li("game/brick22")  # 2 HP brick at 2 HP
-	I_BRICK_LEVEL2_1: Surface = li("game/brick21")  # 2 HP brick at 1 HP
-	I_BRICK_LEVEL3_3: Surface = li("game/brick33")  # 3 HP brick at 3 HP
-	I_BRICK_LEVEL3_2: Surface = li("game/brick32")  # 3 HP brick at 2 HP
-	I_BRICK_LEVEL3_1: Surface = li("game/brick31")  # 3 HP brick at 1 HP
-	I_BRICK_BOSS: Surface = li("game/brickBOSS")  # undestroyable brick
+	I_BRICK_LEVEL1 = li("game/brick11")  # 1 HP brick
+	I_BRICK_LEVEL2_2 = li("game/brick22")  # 2 HP brick at 2 HP
+	I_BRICK_LEVEL2_1 = li("game/brick21")  # 2 HP brick at 1 HP
+	I_BRICK_LEVEL3_3 = li("game/brick33")  # 3 HP brick at 3 HP
+	I_BRICK_LEVEL3_2 = li("game/brick32")  # 3 HP brick at 2 HP
+	I_BRICK_LEVEL3_1 = li("game/brick31")  # 3 HP brick at 1 HP
+	I_BRICK_BOSS = li("game/brickBOSS")  # undestroyable brick
 
 	###   IMAGE TEXT   ########################################################
-	I_TXT_SCORE: Surface = li("imgFont/score2")  # use any of score1 score2
-	I_TXT_LEVEL: Surface = li("imgFont/level3")  # use any of level1 level2 level3
-	I_TXT_TIME: Surface = li("imgFont/time2")  # use any of time1 time2
-	I_TXT_LIFE: Surface = li("imgFont/life")  # not really text, but still belong with imgFonts
+	I_TXT_SCORE = li("imgFont/score2")  # use any of score1 score2
+	I_TXT_LEVEL = li("imgFont/level3")  # use any of level1 level2 level3
+	I_TXT_TIME = li("imgFont/time2")  # use any of time1 time2
+	I_TXT_LIFE = li("imgFont/life")  # not really text, but still belong with imgFonts
+
+	###   BUTTONS   ###########################################################
+	# back and exit
+	I_BTN_BACK = li("buttons/back")
+	I_BTN_BACK_H = li("buttons/back_h")
+	I_BTN_EXIT = li("buttons/exit")
+	I_BTN_EXIT_H = li("buttons/exit_h")
+
+	# fullscreen toggling
+	I_BTN_FULLSCREEN = li("buttons/fullscreen")
+	I_BTN_UNFULLSCREEN = li("buttons/unfullscreen")
+	I_BTN_FULLSCREEN_H = li("buttons/fullscreen_h")
+	I_BTN_UNFULLSCREEN_H = li("buttons/unfullscreen_h")
+
+	# main menu screen
+	I_BTN_MAINMENU_BEGIN = li("mainMenu/btn_begin")
+	I_BTN_MAINMENU_BEGIN_H = li("mainMenu/btn_begin_h")
 
 
 class AssetLoaderHelper:

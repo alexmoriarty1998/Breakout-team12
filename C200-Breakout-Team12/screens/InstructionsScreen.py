@@ -1,20 +1,32 @@
-import pygame
-
 import Graphics
 import ScreenManager
 from Assets import Assets
+from GameConstants import *
+from game.gameClasses.PosRect import PosRect
+from screens.Button import Button
 from screens.Screen import Screen
 
 
 class InstructionsScreen(Screen):
+
+	def __init__(self):
+		self.buttons.append(
+			Button("back",
+				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
+				   Assets.I_BTN_BACK, Assets.I_BTN_BACK_H))
+
 	def update(self):
 		super().update()
+		for e in pygame.event.get():
+			if e.type == pygame.MOUSEBUTTONDOWN:
+				self.clickButtons(e.pos)
+
 		Graphics.clear()
 		Graphics.surface.blit(Assets.I_INSTRUCTIONS_BACKGROUND, (0, 0))
+		self.drawButtons(pygame.mouse.get_pos())
 		Graphics.flip()
 
-		pygame.event.clear()
-		if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-			# import here to avoid import loop
+	def buttonClicked(self, buttonName):
+		if buttonName == "back":
 			from screens.MainMenuScreen import MainMenuScreen
 			ScreenManager.setScreen(MainMenuScreen())

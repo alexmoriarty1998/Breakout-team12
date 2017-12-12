@@ -19,26 +19,21 @@ currentMode: int = None
 
 def blur() -> None:
 	# Importing Assets in this module causes issues with assets being
-	# loaded before this Graphics module is fully initialized. The solution
-	# is to not init the assets as static variables of the class Assets,
-	# but to have them as variables of the class (static or instance)
-	# and have a load() method which loads the images. However, this results
-	# in either each asset being listed twice (once declared in the class
-	# scope, then loaded in load()), or the IDE autocomplete not working well
-	# with them (which is important, because assets have long and hard to
-	# remember names). So we use unclean code in LoadingScreen.py to avoid
-	# this trap there, and here we have the draw code pass in Assets.I_BLUR
-	# as the image to blur with, instead of having a reference to it in this
-	# module.
+	# loaded before this Graphics module is fully initialized.
+	# However, we know that clear()/blur() will never be called before
+	# assets are loaded, so use getattr and sys.modules to load the
+	# blur image without actually importing it here.
 	img: pygame.Surface = getattr(sys.modules['Assets'], "I_BLUR")
 	surface.blit(img, (0, 0))
 
 
 def hardClear():
+	# Clear screen to black
 	surface.fill((0, 0, 0))
 
 
 def clear() -> None:
+	# Performs blur() or hardClear() depending on flag in game constants.
 	blur() if GC_MOTION_BLUR else hardClear()
 
 
@@ -98,8 +93,12 @@ def goWindowed() -> None:
 	currentMode = MODE_WINDOWED
 
 
+def isFullscreen():
+	return currentMode == MODE_FULLSCREEN
+
+
 def swapWindowMode():
-	goWindowed() if currentMode == MODE_FULLSCREEN else goFullscreen()
+	goWindowed() if isFullscreen() else goFullscreen()
 
 
 def unproject(pos):

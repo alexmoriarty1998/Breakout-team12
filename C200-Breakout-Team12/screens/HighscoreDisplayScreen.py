@@ -3,17 +3,24 @@ import ScreenManager
 from Assets import Assets
 from GameConstants import *
 from game.Highscores import Highscores
+from game.gameClasses.PosRect import PosRect
+from screens.Button import Button
 from screens.Screen import Screen
 
 
 class HighscoreDisplayScreen(Screen):
+
+	def __init__(self):
+		self.buttons.append(
+			Button("back",
+				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
+				   Assets.I_BTN_BACK, Assets.I_BTN_BACK_H))
+
 	def update(self):
 		super().update()
-		pygame.event.clear()
-		if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-			# import here to avoid import loop
-			from screens.MainMenuScreen import MainMenuScreen
-			ScreenManager.setScreen(MainMenuScreen())
+		for e in pygame.event.get():
+			if e.type == pygame.MOUSEBUTTONDOWN:
+				self.clickButtons(e.pos)
 
 		Graphics.clear()
 		Graphics.surface.fill((255, 255, 255))  # font is black, so need white background
@@ -62,4 +69,11 @@ class HighscoreDisplayScreen(Screen):
 
 			height += GC_IMGFONT_SIZE
 
+		self.drawButtons(pygame.mouse.get_pos())
+
 		Graphics.flip()
+
+	def buttonClicked(self, buttonName):
+		if buttonName == "back":
+			from screens.MainMenuScreen import MainMenuScreen
+			ScreenManager.setScreen(MainMenuScreen())

@@ -45,3 +45,6 @@ class PosRect(PosPoint):
 		# convert negative angle to positive
 		# noinspection PyRedundantParentheses
 		return (angle if angle > 0 else 360 + angle)
+
+	def intersectsPoint(self, x, y):
+		return self.x <= x <= self.x + self.width and self.y <= y <= self.y + self.height

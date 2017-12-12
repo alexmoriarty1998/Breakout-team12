@@ -39,9 +39,16 @@ BUGS:
 ball loses speed
 
 TODO:
-Say press escape to exit on highscore and help screens
+Add buttons:
+	Main Menu:
+		highscores, instructions
+	Instructions:
+		back
+	Highscore Entry:
+		submit, don't save highscore
+	Between Levels:
+		continue
 Show stats on between levels screen
-Increase par time?
 Add more levels
 
 ###############################################################################

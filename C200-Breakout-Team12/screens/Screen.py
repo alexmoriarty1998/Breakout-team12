@@ -3,10 +3,13 @@ import pygame
 
 import Graphics
 import ScreenManager
+from screens.Button import Button
+from typing import List, Tuple
 
 
 class Screen:
 	frame: int = 0
+	buttons: List[Button] = []
 
 	def update(self):
 		# screen is not cleared here to allow for motion blur effects
@@ -30,3 +33,21 @@ class Screen:
 			Graphics.resizeWindow(e.size)
 
 		self.frame += 1  # advance frame number, for animations
+
+	def clickButtons(self, pos: Tuple[int]):
+		pos = Graphics.unproject(pos)
+		for b in self.buttons:
+			if b.hovered(pos[0], pos[1]):
+				self.buttonClicked(b.name)
+
+	def drawButtons(self, mousePos: Tuple[int]):
+		pos = Graphics.unproject(mousePos)
+		for b in self.buttons:
+			image = b.image
+			if b.hovered(pos[0], pos[1]):
+				image = b.hoverImage
+			Graphics.surface.blit(image, (b.rect.x, b.rect.y))
+
+	def buttonClicked(self, buttonName):
+		# to be implemented in subclasses
+		pass
