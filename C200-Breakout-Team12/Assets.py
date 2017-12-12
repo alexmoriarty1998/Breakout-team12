@@ -19,7 +19,7 @@ class Assets:
 
 	###   SCREEN BACKGROUNDS   ################################################
 	I_MAINMENU_BACKGROUND = li("mainMenu/background")
-	I_BETWEEN_LEVELS_BACKGROUND = li("betweenLevels/background")
+	I_BETWEENLEVELS_BACKGROUND = li("betweenLevels/background")
 	I_INSTRUCTIONS_BACKGROUND = li("instructions/background")
 	I_HIGHSCORE_ENTRY_BACKGROUND = li("highscoreEntry/background")
 	I_PAUSE_BACKGROUND = li("pause/background")
@@ -59,12 +59,28 @@ class Assets:
 	# main menu screen
 	I_BTN_MAINMENU_BEGIN = li("mainMenu/btn_begin")
 	I_BTN_MAINMENU_BEGIN_H = li("mainMenu/btn_begin_h")
+	I_BTN_MAINMENU_HELP = li("mainMenu/btn_help")
+	I_BTN_MAINMENU_HELP_H = li("mainMenu/btn_help_h")
+	I_BTN_MAINMENU_HIGHSCORES = li("mainMenu/btn_highscores")
+	I_BTN_MAINMENU_HIGHSCORES_H = li("mainMenu/btn_highscores_h")
 
 	# pause screen
 	I_BTN_PAUSE_RESUME = li("pause/btn_resume")
 	I_BTN_PAUSE_RESUME_H = li("pause/btn_resume_h")
-	I_BTN_PAUSE_QUIT = li("pause/btn_quit")
-	I_BTN_PAUSE_QUIT_H = li("pause/btn_quit_h")
+
+	# between levels screen
+	I_BTN_BETWEENLEVELS_CONTINUE = li("betweenLevels/btn_continue")
+	I_BTN_BETWEENLEVELS_CONTINUE_H = li("betweenLevels/btn_continue_h")
+
+	# pause & between levels
+	I_BTN_QUIT_TO_MENU = li("pause/btn_quit")
+	I_BTN_QUIT_TO_MENU_H = li("pause/btn_quit_h")
+
+	# highscore entry
+	I_BTN_HIGHSCORES_SUBMIT = li("highscoreEntry/btn_submit")
+	I_BTN_HIGHSCORES_SUBMIT_H = li("highscoreEntry/btn_submit_h")
+	I_BTN_HIGHSCORES_CANCEL = li("highscoreEntry/btn_cancel")
+	I_BTN_HIGHSCORES_CANCEL_H = li("highscoreEntry/btn_cancel_h")
 
 
 class AssetLoaderHelper:

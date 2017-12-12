@@ -23,10 +23,11 @@ class GameRenderer:
 		# heart icons also have GC_WALL_SIZE as their height
 
 		wall_font_offset = GC_WALL_SIZE // 2 - GC_IMGFONT_SIZE // 2
+
 		# score
 		Graphics.surface.blit(Assets.I_TXT_SCORE, (0, 0))
 		height = Assets.I_TXT_SCORE.get_height()
-		for i in str(state.score):
+		for i in str(state.score + state.oldScore):
 			# get image (stored as I_TXT_N, where N is an integer 0-9) from the number in the string
 			image: pygame.Surface = getattr(Assets, "I_TXT_" + str(i))
 			Graphics.surface.blit(image, (wall_font_offset, height))

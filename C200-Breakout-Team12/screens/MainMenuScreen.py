@@ -11,10 +11,16 @@ from screens.Screen import Screen
 
 
 class MainMenuScreen(Screen):
-	begin: bool = False
 
 	def __init__(self):
 		super().__init__()
+
+		beginCoords = 0.5, 0.57
+		helpCoords = 0.3, 0.8
+		highscoresCoords = 0.7, 0.8
+
+		self.begin: bool = False
+
 		self.buttons.append(
 			Button("exit",
 				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
@@ -29,11 +35,14 @@ class MainMenuScreen(Screen):
 										   GC_SMALL_BUTTON_SIZE),
 								   fullscreenImg, fullscreenImgH))
 		self.buttons.append(Button("begin",
-								   PosRect(GC_WORLD_WIDTH // 2 - Assets.I_BTN_MAINMENU_BEGIN.get_width() // 2,
-										   GC_WORLD_HEIGHT // 2 - Assets.I_BTN_MAINMENU_BEGIN.get_height() // 2 + 80,
-										   Assets.I_BTN_MAINMENU_BEGIN.get_width(),
-										   Assets.I_BTN_MAINMENU_BEGIN.get_height()),
+								   self.getButtonRect(beginCoords, Assets.I_BTN_MAINMENU_BEGIN),
 								   Assets.I_BTN_MAINMENU_BEGIN, Assets.I_BTN_MAINMENU_BEGIN_H))
+		self.buttons.append(Button("help",
+								   self.getButtonRect(helpCoords, Assets.I_BTN_MAINMENU_HELP),
+								   Assets.I_BTN_MAINMENU_HELP, Assets.I_BTN_MAINMENU_HELP_H))
+		self.buttons.append(Button("highscores",
+								   self.getButtonRect(highscoresCoords, Assets.I_BTN_MAINMENU_HIGHSCORES),
+								   Assets.I_BTN_MAINMENU_HIGHSCORES, Assets.I_BTN_MAINMENU_HIGHSCORES_H))
 
 	def update(self):
 		super().update()
@@ -41,16 +50,6 @@ class MainMenuScreen(Screen):
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEBUTTONDOWN:
 				self.clickButtons(e.pos)
-		# gamePosition = Graphics.unproject(e.pos)
-		# if gamePosition[0] <= GC_WORLD_WIDTH // 2 and gamePosition[1] >= GC_WORLD_HEIGHT // 2:
-		# 	# pressed lower left quarter of screen
-		# 	# import here to avoid import loop
-		# 	from screens.InstructionsScreen import InstructionsScreen
-		# 	ScreenManager.setScreen(InstructionsScreen())
-		# if gamePosition[0] >= GC_WORLD_WIDTH // 2 and gamePosition[1] >= GC_WORLD_HEIGHT // 2:
-		# 	# mouse clicked in bottom right corner of main screen
-		# 	from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
-		# 	ScreenManager.setScreen(HighscoreDisplayScreen())
 
 		Graphics.clear()
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))
@@ -65,7 +64,7 @@ class MainMenuScreen(Screen):
 		if buttonName == "highscores":
 			from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
 			ScreenManager.setScreen(HighscoreDisplayScreen())
-		if buttonName == "instructions":
+		if buttonName == "help":
 			from screens.InstructionsScreen import InstructionsScreen
 			ScreenManager.setScreen(InstructionsScreen())
 		if buttonName == "fullscreen":

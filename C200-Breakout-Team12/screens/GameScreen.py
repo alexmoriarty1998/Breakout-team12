@@ -36,7 +36,7 @@ class GameScreen(Screen):
 		###   GO TO WIN/LOSS SCREENS   ########################################
 		if self.state.won == 1:
 			if self.state.level == 5:
-				if Highscores.isHighScore(self.state.score):
+				if Highscores.isHighScore(self.state.oldScore + self.state.score):
 					ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore + self.state.score))
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 			else:
@@ -44,19 +44,17 @@ class GameScreen(Screen):
 					BetweenLevelsScreen(self.state.level, self.state.oldScore, self.state.score, self.state.numLives))
 
 		elif self.state.won == -1:
-			if Highscores.isHighScore(self.state.score):
+			if Highscores.isHighScore(self.state.oldScore):
 				ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore))
 			else:
 				ScreenManager.setScreen(HighscoreDisplayScreen())
 
 		###   GO TO PAUSE SCREEN   ############################################
-		if pygame.key.get_pressed()[GC_KEY_PAUSE]:
-			ScreenManager.setScreen(PauseScreen(self))
-
-		# TODO: remove this debug feature
-		if pygame.key.get_pressed()[pygame.K_r]:
-			from screens.NewGameLoaderScreen import NewGameLoaderScreen
-			ScreenManager.setScreen(NewGameLoaderScreen())
+		# need to use event loop so it doesn't get repaused if user presses
+		# escape to exit from the pause menu
+		for e in pygame.event.get():
+			if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+				ScreenManager.setScreen(PauseScreen(self))
 
 		# debug print
 		if GC_PRINT_BALL_SPEED:

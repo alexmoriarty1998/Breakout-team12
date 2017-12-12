@@ -35,6 +35,7 @@ class GameController:
 		if self.state.paused:
 			# let the paddle move even if the game hasn't started
 			self.movePaddle()
+			# but don't let it go off the screen
 			self.collidePaddleWall()
 			# start the game when started
 			# cant use pygame.mouse.get_pressed() because the user has to click to begin the game
@@ -43,10 +44,6 @@ class GameController:
 			#  would be too complex to put the event loop here
 			if pygame.key.get_pressed()[GC_KEY_BEGIN]:
 				self.state.paused = False
-			# Don't do anything to the game state if the game hasn't begun
-			# But still need to deal with event loop
-			# (quit events caught by Screen class, so clear is safe)
-			pygame.event.clear()
 			return
 
 		self.state.time += GC_FRAME_TIME_SECONDS
@@ -68,9 +65,12 @@ class GameController:
 			if e.type == pygame.KEYDOWN:
 				if e.key == pygame.K_LEFT:
 					self.moveDir = -1
-
 				if e.key == pygame.K_RIGHT:
 					self.moveDir = 1
+				# The GameScreen class needs to use event-driven input for the pause key
+				# and can't poll for it, so post escape key down events back onto the queue.
+				if e.key == pygame.K_ESCAPE:
+					pygame.event.post(pygame.event.Event(pygame.KEYDOWN, {"key": pygame.K_ESCAPE}))
 			if e.type == pygame.KEYUP:
 				if e.key == pygame.K_LEFT:
 					if self.moveDir == -1:

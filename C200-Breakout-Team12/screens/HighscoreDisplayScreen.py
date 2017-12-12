@@ -12,6 +12,7 @@ class HighscoreDisplayScreen(Screen):
 
 	def __init__(self):
 		super().__init__()
+		pygame.event.set_grab(False)
 		self.buttons.append(
 			Button("back",
 				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),

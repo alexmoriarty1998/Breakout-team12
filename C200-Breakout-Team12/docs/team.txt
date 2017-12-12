@@ -28,23 +28,14 @@ Add 3 features & documentation
 ###############################################################################
 BUGS:
 ball loses speed
+ball initial position should be fixed
 
 TODO:
 Select a visual theme, redesign assets
-Add buttons:
-	Main Menu:
-		highscores, instructions
-	Instructions:
-		back
-	Highscore Entry:
-		submit, don't save highscore
-	Between Levels:
-		continue
 
 Add more levels
 Update instructions screen
 
-0) Add buttons listed above
 1) Main menu has game in background
 2) Show stats on between levels screen
 3) Powerup brick
@@ -55,7 +46,7 @@ TODO Before final submission:
 Complete any remaining TODOs
 Cleanup and comment code
 
-
 Executive Summary:
 Scoring is nonlinear
 Didn't use pygame.font
+Ball initial position was fixed to one point instead of random
