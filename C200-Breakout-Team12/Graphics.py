@@ -105,8 +105,20 @@ def swapWindowMode():
 def unproject(pos):
 	x = pos[0]
 	y = pos[1]
-	xLoc = x / windowSurface.get_width()
-	x = xLoc * GC_WORLD_WIDTH
-	yLoc = y / windowSurface.get_height()
-	y = yLoc * GC_WORLD_HEIGHT
-	return x, y
+
+	widthDiffHalf, heightDiffHalf = getARScaling()[1]
+	startX = widthDiffHalf
+	endX = windowSurface.get_width() - widthDiffHalf
+	startY = heightDiffHalf
+	endY = windowSurface.get_height() - heightDiffHalf
+	# if the mouse is in the black border bars (when window AR doesn't match game AR), return -1 so it is ignored
+	if x < startX or x > endX:
+		returnX = -1
+	else:
+		returnX = (x - startX) / (endX - startX)
+	if y < startY or y > endY:
+		returnY = -1
+	else:
+		returnY = (y - startY) / (endY - startY)
+
+	return returnX * GC_WORLD_WIDTH, returnY * GC_WORLD_HEIGHT

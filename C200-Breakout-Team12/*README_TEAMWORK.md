@@ -1,5 +1,35 @@
 ## This is a list of commits that were performed while the team was working as a group
 
+12/13
+-
+`ff3d9e3` by Sub: `edited levels`
+
+`c1f4775` by Sub: `updated assets`
+
+`cd4fe40` by Sub: `moved icon file`
+
+`f1aa599` by Sub: `updated paddle picture`
+
+`7eba26a` by Sub: `updated paddle picture`
+
+`2269d3d` by Sub: `added bg flash effect`
+
+`9dc6050` by Sub: `added files to previous commit`
+
+`701cd09` by Kevin: `edited levels`
+
+`f252944` by Sub: `added wall collision animations`
+
+`bfa3f41` by Sub: `added animations support`
+
+`7ed3824` by Sub: `added animation`
+
+`bcc71e8` by Kevin: `new stuff`
+
+`117d948` by Sub: `working on animation`
+
+`a2efdd0` by Sub: `updated assets, goals & teamwork`
+
 12/12
 -
 `13253b6` by Sub: `updated goals`
