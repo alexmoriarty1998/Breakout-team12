@@ -124,7 +124,7 @@ class GameController:
 				# find the collision speed into the wall (dx only)
 				collisionSpeed = abs(ball.velocity.dx)
 				# get the right collision strength based on speed (S, M, or L)
-				if collisionSpeed <= 7:
+				if collisionSpeed <= 8:
 					collisionIntensity = 'S'
 				elif collisionSpeed <= 11:
 					collisionIntensity = 'M'
@@ -142,8 +142,7 @@ class GameController:
 					Velocity(0, 0),
 					Acceleration(0, 0),
 					getattr(Assets, "A_WALL_BOUNCE_" + collisionIntensity + "_" + collisionDirection),
-					ScreenManager.currentScreen.frame
-				))
+					ScreenManager.currentScreen.frame))
 
 			# set 'won'
 			if ball.circle.y - ball.circle.radius < 0:
