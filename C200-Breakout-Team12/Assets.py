@@ -13,12 +13,13 @@ import Graphics
 from game.gameClasses.Animation import Animation
 
 
-def li(path: str) -> Surface:
+def li(path: str, flipX: bool = False, flipY: bool = False) -> Surface:
 	# noinspection PyUnresolvedReferences
-	return pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+	image = pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+	return pygame.transform.flip(image, flipX, flipY)
 
 
-def la(path: str, name: str, frameTime: int) -> Animation:
+def la(path: str, name: str, frameTime: int, flipX: bool = False, flipY: bool = False) -> Animation:
 	files = listdir("assets/" + path)
 
 	# list is not necessarily alphabetical, so can't just add frames to the list of frames in the for loop
@@ -29,7 +30,7 @@ def la(path: str, name: str, frameTime: int) -> Animation:
 
 	imagesList = []
 	for i in range(numFrames):
-		imagesList.append(li(path + "/" + name + str(i)))
+		imagesList.append(li(path + "/" + name + str(i), flipX, flipY))
 
 	# the beginframe must be set when the animation is created in game
 	return Animation(imagesList, frameTime, 0)
@@ -111,7 +112,8 @@ class Assets:
 	I_BTN_HIGHSCORES_CANCEL_H = li("highscoreEntry/btn_cancel_h")
 
 	###   ANIMATIONS   ########################################################
-	A_WALL_BOUNCE_S = la("animations", "wallS", 5)
+	A_WALL_BOUNCE_S_LEFT = la("animations", "wallS", 5)
+	A_WALL_BOUNCE_S_RIGHT = la("animations", "wallS", 5, True)
 
 
 class AssetLoaderHelper:

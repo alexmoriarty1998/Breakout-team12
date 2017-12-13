@@ -116,13 +116,20 @@ class GameController:
 					PosPoint(GC_WALL_SIZE, ball.circle.y),
 					Velocity(0, 0),
 					Acceleration(0, 0),
-					Assets.A_WALL_BOUNCE_S,
+					Assets.A_WALL_BOUNCE_S_LEFT,
 					ScreenManager.currentScreen.frame
 				))
 			elif ball.circle.x + ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
 				ball.circle.x = GC_WORLD_WIDTH - ball.circle.radius - GC_WALL_SIZE
 				ball.velocity.dx *= -1
 				ball.circle.x = GC_WORLD_WIDTH - GC_WALL_SIZE - ball.circle.radius
+				self.state.displayables.append(Displayable(
+					PosPoint(GC_WORLD_WIDTH - GC_WALL_SIZE, ball.circle.y),
+					Velocity(0, 0),
+					Acceleration(0, 0),
+					Assets.A_WALL_BOUNCE_S_RIGHT,
+					ScreenManager.currentScreen.frame
+				))
 
 			# set 'won'
 			if ball.circle.y - ball.circle.radius < 0:
