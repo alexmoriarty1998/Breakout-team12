@@ -25,14 +25,16 @@ class Brick(Blittable):
 				return Assets.I_BRICK_LEVEL3_2
 			return Assets.I_BRICK_LEVEL3_3
 
+
 	def getImage(self, frame: int) -> Surface:
 		return self.getImageFromHP(self.maxHP, self.hp)
 
-	def __init__(self, pos: PosRect, maxHP: int):
+	def __init__(self, pos: PosRect, maxHP: int, powerUP):
 		self.rect: PosRect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
 		self.image: Surface = self.getImageFromHP(maxHP, maxHP)
 		self.maxHP: int = maxHP
 		self.hp: int = maxHP
+		self.powerUp = powerUP
 
 		# set brick score based on values in GameConstants
 		if maxHP == -1:

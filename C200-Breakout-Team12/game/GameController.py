@@ -9,6 +9,7 @@
 # GameRenderer to display the current game self.state.
 # Name derived from the model-view-controller separation that
 # is present here.
+import random
 import sys
 
 import Graphics
@@ -19,7 +20,9 @@ from game.LevelTools import makeBall
 from game.gameClasses.Acceleration import Acceleration
 from game.gameClasses.Ball import Ball
 from game.gameClasses.Paddle import Paddle
+from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosPoint import PosPoint
+from game.gameClasses.Velocity import Velocity
 
 
 class GameController:
@@ -192,6 +195,14 @@ class GameController:
 								ball.circle.y = brick.rect.y + brick.rect.height + ball.circle.radius
 							else:
 								ball.circle.y = brick.rect.y - ball.circle.radius
+					else:
+						if brick.powerUp == 'extraBall':
+							angle = random.randint(0,360)
+							xVelocity = math.cos(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY
+							yVelocity = math.sin(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY
+
+							self.state.balls.append(Ball(PosCircle(brick.rect.x + brick.rect.width / 2, brick.rect.y + brick.rect.height /2, GC_BALL_RADIUS),
+														 Velocity(xVelocity, yVelocity)))
 	
 			# add score for dead bricks
 			for brick in self.state.bricks:

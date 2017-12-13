@@ -79,7 +79,7 @@ GC_BALL_RADIUS: int = 13
 GC_BALL_INITIAL_ANGLE_VARIATION: int = 20  # degrees to either side of straight down
 GC_MAX_BOUNCE_ANGLE: int = 60  # offset from 270 degrees, this is at edge of paddle
 GC_BALL_INITIAL_VELOCITY: int = 14  # speed and gravity must be matched together
-GC_GRAVITY_ACCEL: float = 0.1
+GC_GRAVITY_ACCEL: float = 0.05
 
 ###   PADDLE   ################################################################
 GC_PADDLE_WIDTH: int = 225

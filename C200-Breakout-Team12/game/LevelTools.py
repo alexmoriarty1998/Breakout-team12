@@ -44,12 +44,20 @@ def makeBricks(level: int) -> List[Brick]:
 		for i in range(GC_BRICK_LAYERS):
 			line = f.readline()
 			for j in range(GC_BRICK_COLUMNS):
+				character = line[j:j + 1]
 				brickX = j * GC_BRICK_WIDTH + GC_WALL_SIZE
 				brickY = i * GC_BRICK_HEIGHT + GC_BRICK_TOP_HEIGHT
-				brickHP = int(line[j:j + 1])
-				if brickHP != 0:  # if shouldn't be empty, add a brick
-					if brickHP == 4: brickHP = -1  # convert invincible brick from 4 (in file) to -1 (in code)
-					bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP))
+				if character.isupper():
+					if character == 'A':
+						bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 2, 'extraBall'))
+
+
+
+				else:
+					brickHP = int(character)
+					if brickHP != 0:  # if shouldn't be empty, add a brick
+						if brickHP == 4: brickHP = -1  # convert invincible brick from 4 (in file) to -1 (in code)
+						bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP, ''))
 
 	return bricks
 
