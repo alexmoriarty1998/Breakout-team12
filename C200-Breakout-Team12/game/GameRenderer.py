@@ -13,6 +13,10 @@ class GameRenderer:
 
 		# don't change this render order
 
+		###   BG FLASH   ######################################################
+		if state.collidedLastFrame:
+			surface.blit(Assets.I_BG_FLASH, (0, 0))
+
 		###   WALL   ##########################################################
 		surface.blit(Assets.I_WALL, (0, 0))
 		surface.blit(Assets.I_WALL, (GC_WORLD_WIDTH - GC_WALL_SIZE, 0))

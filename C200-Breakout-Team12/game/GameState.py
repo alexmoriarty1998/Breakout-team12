@@ -46,3 +46,5 @@ class GameState:
 		for brick in bricks:
 			self.totalBrickScore += brick.score
 		self.totalBricksDestroyedScore = 0
+
+		self.collidedLastFrame = False

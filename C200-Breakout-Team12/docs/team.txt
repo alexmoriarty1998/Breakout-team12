@@ -27,15 +27,20 @@ Graphics.unproject() doesn't work when window aspect ratio doesn't match game AR
 TODO:
 Redesign assets:
 	betweenLevels/background
-	game/bricks, ball, paddle, wall?
+	game/damaged bricks, ball, paddle, wall?
 	imgFont letters
 	icon
 
 Fill in levels 6-10 (currently they are just copies of level 1)
 
 Show stats on between levels screen
-Animations and stuff
 Update instructions screen
+
+Animations:
+	brick dust & crack
+	lost explosion
+	paddle electric
+	screenshake
 
 Credit source for game icon and font
 
