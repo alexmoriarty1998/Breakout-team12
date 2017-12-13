@@ -8,7 +8,6 @@ from os import listdir
 
 import Graphics
 
-
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
 from game.gameClasses.Animation import Animation
 
@@ -115,10 +114,10 @@ class Assets:
 	###   ANIMATIONS   ########################################################
 	A_WALL_BOUNCE_S_LEFT = la("animations", "wallS", 5)
 	A_WALL_BOUNCE_S_RIGHT = la("animations", "wallS", 5, True)
-	A_WALL_BOUNCE_M_LEFT = la("animations", "wallM", 5)
-	A_WALL_BOUNCE_M_RIGHT = la("animations", "wallM", 5, True)
-	A_WALL_BOUNCE_L_LEFT = la("animations", "wallL", 5)
-	A_WALL_BOUNCE_L_RIGHT = la("animations", "wallL", 5, True)
+	A_WALL_BOUNCE_M_LEFT = la("animations", "wallM", 3)
+	A_WALL_BOUNCE_M_RIGHT = la("animations", "wallM", 3, True)
+	A_WALL_BOUNCE_L_LEFT = la("animations", "wallL", 3)
+	A_WALL_BOUNCE_L_RIGHT = la("animations", "wallL", 3, True)
 
 
 class AssetLoaderHelper:

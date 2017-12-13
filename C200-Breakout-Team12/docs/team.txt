@@ -26,11 +26,7 @@ Graphics.unproject() doesn't work when window aspect ratio doesn't match game AR
 
 TODO:
 Redesign assets:
-	game/damaged bricks, ball, paddle, wall?
-	imgFont letters
-	icon
-
-Fill in levels 6-10 (currently they are just copies of level 1)
+	game/ball, paddle, wall, damaged bricks
 
 Update instructions screen
 
