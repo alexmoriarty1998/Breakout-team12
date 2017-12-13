@@ -22,7 +22,7 @@ def makeBricks(level: int) -> List[Brick]:
 			brickX = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE - GC_BRICK_WIDTH)
 			brickY = random.randint(GC_BRICK_TOP_HEIGHT,
 									GC_BRICK_BOTTOM_HEIGHT - GC_BRICK_HEIGHT)  # top-down coordinates
-			bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), maxHP))
+			bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), maxHP, ''))
 			maxHP += 1
 			if maxHP == 4:
 				maxHP = -1
@@ -37,7 +37,7 @@ def makeBricks(level: int) -> List[Brick]:
 				brickHP = random.randint(1, 4)
 				if brickHP == 4:
 					brickHP = -1
-				bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP))
+				bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP, ''))
 
 	if GC_BRICK_GEN_MODE == "manual":
 		f = open("assets/levels/level" + str(level) + ".txt")
@@ -50,9 +50,8 @@ def makeBricks(level: int) -> List[Brick]:
 				if character.isupper():
 					if character == 'A':
 						bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 2, 'extraBall'))
-
-
-
+					if character == 'C':
+						bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), 2, 'clearRow'))
 				else:
 					brickHP = int(character)
 					if brickHP != 0:  # if shouldn't be empty, add a brick
@@ -63,8 +62,8 @@ def makeBricks(level: int) -> List[Brick]:
 
 
 def makeBall() -> Ball:
-	posY = random.randint(GC_BRICK_BOTTOM_HEIGHT + 50, GC_PADDLE_TOP_HEIGHT - 50)
-	ballCircle = PosCircle(GC_WORLD_WIDTH / 2, posY, GC_BALL_RADIUS)
+	# posY = random.randint(GC_BRICK_BOTTOM_HEIGHT + 50, GC_PADDLE_TOP_HEIGHT - 50)
+	ballCircle = PosCircle(GC_WORLD_WIDTH / 2, GC_PADDLE_TOP_HEIGHT - 150, GC_BALL_RADIUS)
 	# generate its velocity (magnitude and angle) randomly
 	initialVelocityMagnitude = GC_BALL_INITIAL_VELOCITY
 	initialVelocityAngle = random.randint(90 - GC_BALL_INITIAL_ANGLE_VARIATION,

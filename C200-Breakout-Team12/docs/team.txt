@@ -17,22 +17,30 @@ Add 3 features & documentation
 
 	Powerups
 		Yellow brick: adds additional ball to the game
-		Paddle charge mechanic?
+		Purple brick: clears that row of bricks
 
 ###############################################################################
 BUGS:
 ball loses speed
-ball initial position should be fixed
 
 TODO:
-Select a visual theme, redesign assets
+Redesign assets:
+	buttons/fullscreen, unfullscreen (make background transparent instead of black)
+	betweenLevels/background, continue_h
+	game/bricks, ball, paddle, wall?
+	highscoreEntry/background, submit_h, cancel_h
+	imgFont/*
+	instructions/background
+	loading/background
+	mainMenu/background, help_h, highscores_h, add transparent exit button
+	icon.png
 
-Add more levels
+Improve main menu level
+Fill in levels 6-10 (currently they are just copies of level 1)
+
+Show stats on between levels screen
+Animations and stuff
 Update instructions screen
-
-1) Show stats on between levels screen
-2) Powerup brick image
-3) Animations and stuff
 
 ###############################################################################
 TODO Before final submission:
@@ -44,4 +52,5 @@ Scoring is nonlinear
 Didn't use pygame.font
 Ball initial position was fixed to one point instead of random
 GameController needs to discard mouse motion events if in main menu screen (can't clear in MainMenuScreen code)
-Pause screen & motion blur bugged on mac (no input)
+Pause screen & motion blur disabled on mac (no paddle movement; lag) as well as low FPS in general on mac
+The paddle movement in the main menu screen can be improved

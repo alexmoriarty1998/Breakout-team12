@@ -14,7 +14,10 @@ class Brick(Blittable):
 			if currentHP == 1:
 				return Assets.I_BRICK_EXTRABALL_1
 			return Assets.I_BRICK_EXTRABALL_2
-
+		if powerUP == 'clearRow':
+			if currentHP == 1:
+				return Assets.I_BRICK_CLEARROW_1
+			return Assets.I_BRICK_CLEARROW_2
 		elif maxHP == -1:
 			return Assets.I_BRICK_BOSS
 		elif maxHP == 1:
@@ -29,7 +32,6 @@ class Brick(Blittable):
 			if currentHP == 2:
 				return Assets.I_BRICK_LEVEL3_2
 			return Assets.I_BRICK_LEVEL3_3
-
 
 	def getImage(self, frame: int) -> Surface:
 		return self.getImageFromHP(self.maxHP, self.hp, self.powerUp)

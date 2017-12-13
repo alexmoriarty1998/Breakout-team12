@@ -19,6 +19,7 @@ class LoadingScreen(Screen):
 
 	def __init__(self):
 		super().__init__()
+		# noinspection PyUnresolvedReferences
 		self.background = pygame.image.load("assets/loading/background.png")
 
 	def update(self):

@@ -2,9 +2,8 @@ import Graphics
 import ScreenManager
 from Assets import Assets
 from GameConstants import *
-from game.gameClasses.PosRect import PosRect
-from screens.Button import Button
 from game.GameRenderer import GameRenderer
+from screens.Button import Button
 from screens.Screen import Screen
 
 
@@ -32,8 +31,9 @@ class PauseScreen(Screen):
 		for e in pygame.event.get():
 			if e.type == pygame.MOUSEBUTTONDOWN:
 				self.clickButtons(e.pos)
-			if e.type == pygame.KEYDOWN:
-				if e.key == pygame.K_ESCAPE and not IS_MAC:
+			# Don't allow pressing escape to resume if on mac system; look at bottom of GameScreen class for info.
+			if e.type == pygame.KEYDOWN and not IS_MAC:
+				if e.key == pygame.K_ESCAPE:
 					self.buttonClicked("resume")  # pressing escape is same as pressing resume button...
 
 		Graphics.clear()

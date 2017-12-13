@@ -2,6 +2,7 @@
 
 from shutil import copyfile
 
+
 class Highscores:
 	scores = []
 	names = []
@@ -58,7 +59,7 @@ class Highscores:
 	@staticmethod
 	def flush():
 		# commits changes to highscore list into the highscores file
-		f = open("highscores.txt", "w").close()  # clears the existing highscores file
+		open("highscores.txt", "w").close()  # clears the existing highscores file
 		f = open("highscores.txt", "w")
 		for i in Highscores.scores:
 			f.write(str(i) + '\n')

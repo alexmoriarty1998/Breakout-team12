@@ -26,9 +26,9 @@ class MainMenuScreen(Screen):
 		self.gameController: GameController = GameController(self.gameState)
 		self.paddleTarget: int = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE)
 
-		beginCoords = 0.5, 0.57
-		helpCoords = 0.3, 0.8
-		highscoresCoords = 0.7, 0.8
+		beginCoords = 0.5, 0.72
+		helpCoords = 0.25, 0.86
+		highscoresCoords = 0.75, 0.86
 
 		self.begin: bool = False
 
