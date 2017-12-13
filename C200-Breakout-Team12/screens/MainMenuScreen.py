@@ -21,7 +21,7 @@ class MainMenuScreen(Screen):
 		super().__init__()
 
 		# embedded game
-		self.gameState: GameState = makeState(99, 0, 1)
+		self.gameState: GameState = makeState(99, 0, 2)
 		self.gameState.paused = False
 		self.gameController: GameController = GameController(self.gameState)
 		self.paddleTarget: int = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE)
@@ -35,7 +35,7 @@ class MainMenuScreen(Screen):
 		self.buttons.append(
 			Button("exit",
 				   PosRect(GC_WORLD_WIDTH - GC_SMALL_BUTTON_SIZE, 0, GC_SMALL_BUTTON_SIZE, GC_SMALL_BUTTON_SIZE),
-				   Assets.I_BTN_EXIT, Assets.I_BTN_EXIT_H))
+				   Assets.I_BTN_MAINMENU_EXIT, Assets.I_BTN_MAINMENU_EXIT_H))
 
 		fullscreenImg = Assets.I_BTN_UNFULLSCREEN if Graphics.isFullscreen() else Assets.I_BTN_FULLSCREEN
 		fullscreenImgH = Assets.I_BTN_UNFULLSCREEN_H if Graphics.isFullscreen() else Assets.I_BTN_FULLSCREEN_H
@@ -78,7 +78,7 @@ class MainMenuScreen(Screen):
 			self.paddleTarget = 0 if self.gameState.balls[0].circle.x < self.gameState.paddle.rect.x else GC_WORLD_WIDTH
 		# reset game if it's over
 		if self.gameState.won:  # also covers lost
-			self.gameState = makeState(99, 0, 1)
+			self.gameState = makeState(99, 0, 2)
 			self.gameState.paused = False
 			self.gameController = GameController(self.gameState)
 		pygame.event.clear()

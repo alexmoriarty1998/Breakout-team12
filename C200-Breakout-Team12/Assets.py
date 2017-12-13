@@ -55,19 +55,20 @@ class Assets:
 	I_BTN_EXIT = li("buttons/exit")
 	I_BTN_EXIT_H = li("buttons/exit_h")
 
-	# fullscreen toggling
-	I_BTN_FULLSCREEN = li("buttons/fullscreen")
-	I_BTN_UNFULLSCREEN = li("buttons/unfullscreen")
-	I_BTN_FULLSCREEN_H = li("buttons/fullscreen_h")
-	I_BTN_UNFULLSCREEN_H = li("buttons/unfullscreen_h")
-
 	# main menu screen
+	I_BTN_MAINMENU_EXIT = li("mainMenu/exit")
+	I_BTN_MAINMENU_EXIT_H = li("mainMenu/exit_h")
 	I_BTN_MAINMENU_BEGIN = li("mainMenu/btn_begin")
 	I_BTN_MAINMENU_BEGIN_H = li("mainMenu/btn_begin_h")
 	I_BTN_MAINMENU_HELP = li("mainMenu/btn_help")
 	I_BTN_MAINMENU_HELP_H = li("mainMenu/btn_help_h")
 	I_BTN_MAINMENU_HIGHSCORES = li("mainMenu/btn_highscores")
 	I_BTN_MAINMENU_HIGHSCORES_H = li("mainMenu/btn_highscores_h")
+	# fullscreen toggling
+	I_BTN_FULLSCREEN = li("mainMenu/fullscreen")
+	I_BTN_UNFULLSCREEN = li("mainMenu/unfullscreen")
+	I_BTN_FULLSCREEN_H = li("mainMenu/fullscreen_h")
+	I_BTN_UNFULLSCREEN_H = li("mainMenu/unfullscreen_h")
 
 	# pause screen
 	I_BTN_PAUSE_RESUME = li("pause/btn_resume")

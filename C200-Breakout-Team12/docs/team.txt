@@ -22,25 +22,23 @@ Add 3 features & documentation
 ###############################################################################
 BUGS:
 ball loses speed
+Graphics.unproject() doesn't work when window aspect ratio doesn't match game AR
 
 TODO:
 Redesign assets:
-	buttons/fullscreen, unfullscreen (make background transparent instead of black)
-	betweenLevels/background, continue_h
+	betweenLevels/background
 	game/bricks, ball, paddle, wall?
 	highscoreEntry/background, submit_h, cancel_h
 	imgFont/*
-	instructions/background
-	loading/background
-	mainMenu/background, help_h, highscores_h, add transparent exit button
 	icon.png
 
-Improve main menu level
 Fill in levels 6-10 (currently they are just copies of level 1)
 
 Show stats on between levels screen
 Animations and stuff
 Update instructions screen
+
+Credit source for game icon and font
 
 ###############################################################################
 TODO Before final submission:

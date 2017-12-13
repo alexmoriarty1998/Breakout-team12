@@ -18,7 +18,7 @@ def start():
 
 	# initialize display
 	pygame.display.set_caption("Breakout!")
-	pygame.display.set_icon(pygame.image.load("assets/icon.png"))
+	pygame.display.set_icon(pygame.image.load("assets/game/ICON1/I_ICON.png"))
 	# done initializing pygame, can import everything else now
 
 	import Graphics  # import this first so graphics system is set up
