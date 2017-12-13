@@ -25,7 +25,7 @@ def la(path: str, name: str, frameTime: int, flipX: bool = False, flipY: bool = 
 	# list is not necessarily alphabetical, so can't just add frames to the list of frames in the for loop
 	numFrames = 0
 	for f in files:
-		if f[0:len(name)] == name:  # if it is a frame of the desired animation
+		if f[0:len(name)] == name and f[-4:] == ".png":  # if it is a frame of the desired animation, also include .png
 			numFrames += 1
 
 	imagesList = []
@@ -114,6 +114,10 @@ class Assets:
 	###   ANIMATIONS   ########################################################
 	A_WALL_BOUNCE_S_LEFT = la("animations", "wallS", 5)
 	A_WALL_BOUNCE_S_RIGHT = la("animations", "wallS", 5, True)
+	A_WALL_BOUNCE_M_LEFT = la("animations", "wallM", 5)
+	A_WALL_BOUNCE_M_RIGHT = la("animations", "wallM", 5, True)
+	A_WALL_BOUNCE_L_LEFT = la("animations", "wallL", 5)
+	A_WALL_BOUNCE_L_RIGHT = la("animations", "wallL", 5, True)
 
 
 class AssetLoaderHelper:
