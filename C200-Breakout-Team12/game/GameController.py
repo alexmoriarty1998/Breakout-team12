@@ -90,9 +90,9 @@ class GameController:
 		self.paddle.velocity.apply(self.paddle.rect)
 
 	def updateBall(self):
+		self.state.lastPosBalls = []
 		for i in range(len(self.state.balls)):
 			# store last position
-			self.state.lastPosBalls = []
 			self.state.lastPosBalls.append(PosPoint(self.state.balls[i].circle.x, self.state.balls[i].circle.y))
 		for ball in self.state.balls:
 			# move; update velocity before position
@@ -118,12 +118,12 @@ class GameController:
 			elif ball.circle.y + ball.circle.radius > GC_WORLD_HEIGHT:
 				if self.state.numLives > 1:
 					if len(self.state.balls) == 1:
+						self.state.paused = True
 						self.state.balls = [makeBall()]
 						self.state.numLives -= 1
 					# b: if ball.circle.y < world height - radius
 					self.state.balls = list(
 						filter(lambda b: b.circle.y < GC_WORLD_HEIGHT - b.circle.radius, self.state.balls))
-					self.state.paused = True
 				else:
 					self.state.won = -1
 
