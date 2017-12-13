@@ -9,6 +9,7 @@ from screens.Screen import Screen
 
 
 class HighscoreDisplayScreen(Screen):
+	VERTICAL_SPACING = 25
 
 	def __init__(self):
 		super().__init__()
@@ -26,22 +27,14 @@ class HighscoreDisplayScreen(Screen):
 				self.clickButtons(e.pos)
 
 		Graphics.clear()
-		Graphics.surface.fill((255, 255, 255))  # font is black, so need white background
+		Graphics.surface.blit(Assets.I_HIGHSCORE_DISPLAY_BACKGROUND, (0, 0))
 
 		# calculate height to start drawing at
-		height = (1080 - 11 * GC_IMGFONT_SIZE - GC_HIGHSCORE_SPACING) // 2
-
-		# draw title
-		titleX = GC_WORLD_WIDTH // 2 - GC_IMGFONT_SIZE * 5  # 10 characters in "HIGHSCORES"
-		for i in "HIGHSCORES":
-			Graphics.surface.blit(getattr(Assets, "I_TXT_" + i), (titleX, height))
-			titleX += GC_IMGFONT_SIZE
-
-		height += GC_IMGFONT_SIZE + GC_HIGHSCORE_SPACING
+		height = (GC_WORLD_HEIGHT - 10 * (GC_IMGFONT_SIZE + HighscoreDisplayScreen.VERTICAL_SPACING)) // 2 + 5
 
 		# draw highscores
 		for i in range(10):
-			x = 300
+			x = 375
 
 			# draw highscore number (1-10)
 			if i == 9:
@@ -70,7 +63,7 @@ class HighscoreDisplayScreen(Screen):
 				Graphics.surface.blit(image, (x, height))
 				x += GC_IMGFONT_SIZE
 
-			height += GC_IMGFONT_SIZE
+			height += GC_IMGFONT_SIZE + HighscoreDisplayScreen.VERTICAL_SPACING
 
 		self.drawButtons()
 

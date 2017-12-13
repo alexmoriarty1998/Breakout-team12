@@ -22,6 +22,7 @@ class Assets:
 	I_MAINMENU_BACKGROUND = li("mainMenu/background")
 	I_BETWEENLEVELS_BACKGROUND = li("betweenLevels/background")
 	I_INSTRUCTIONS_BACKGROUND = li("instructions/background")
+	I_HIGHSCORE_DISPLAY_BACKGROUND = li("highscoreDisplay/background")
 	I_HIGHSCORE_ENTRY_BACKGROUND = li("highscoreEntry/background")
 	I_PAUSE_BACKGROUND = li("pause/background")
 
@@ -43,9 +44,9 @@ class Assets:
 	I_BRICK_CLEARROW_1 = li("game/brick_clearRow_1")
 
 	###   IMAGE TEXT   ########################################################
-	I_TXT_SCORE = li("imgFont/score2")  # use any of score1 score2
-	I_TXT_LEVEL = li("imgFont/level3")  # use any of level1 level2 level3
-	I_TXT_TIME = li("imgFont/time2")  # use any of time1 time2
+	I_TXT_SCORE = li("imgFont/score")  # use any of score1 score2
+	I_TXT_LEVEL = li("imgFont/level1")
+	I_TXT_TIME = li("imgFont/time")  # use any of time1 time2
 	I_TXT_LIFE = li("imgFont/life")  # not really text, but still belong with imgFonts
 
 	###   BUTTONS   ###########################################################

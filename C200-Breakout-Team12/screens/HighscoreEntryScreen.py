@@ -21,11 +21,11 @@ class HighscoreEntryScreen(Screen):
 		self.score = score
 
 		self.buttons.append(Button("submit",
-								   self.getButtonRect((0.5, 0.67), Assets.I_BTN_HIGHSCORES_SUBMIT),
+								   self.getButtonRect((0.5, 0.72), Assets.I_BTN_HIGHSCORES_SUBMIT),
 								   Assets.I_BTN_HIGHSCORES_SUBMIT, Assets.I_BTN_HIGHSCORES_SUBMIT_H))
 
 		self.buttons.append(Button("cancel",
-								   self.getButtonRect((0.5, 0.84), Assets.I_BTN_HIGHSCORES_CANCEL),
+								   self.getButtonRect((0.5, 0.88), Assets.I_BTN_HIGHSCORES_CANCEL),
 								   Assets.I_BTN_HIGHSCORES_CANCEL, Assets.I_BTN_HIGHSCORES_CANCEL_H))
 
 	def update(self):
@@ -44,9 +44,9 @@ class HighscoreEntryScreen(Screen):
 
 		Graphics.hardClear()
 		Graphics.surface.blit(Assets.I_HIGHSCORE_ENTRY_BACKGROUND, (0, 0))
-		x = GC_HIGHSCORE_ENTRY_BEGIN_X
+		x = int(GC_WORLD_WIDTH // 2 - 1.5 * GC_IMGFONT_SIZE)
 		for s in self.inputStr:
-			Graphics.surface.blit(getattr(Assets, "I_TXT_" + s.upper()), (x, GC_HIGHSCORE_ENTRY_HEIGHT))
+			Graphics.surface.blit(getattr(Assets, "I_TXT_" + s.upper()), (x, 460))
 			x += GC_IMGFONT_SIZE
 		self.drawButtons()
 		Graphics.flip()

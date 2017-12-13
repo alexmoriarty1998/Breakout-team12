@@ -1,5 +1,25 @@
 ## This is a list of commits that were performed while the team was working as a group
 
+12/12
+-
+`13253b6` by Sub: `updated goals`
+
+`74d7318` by Alex: `extra ball power up`
+
+`f627235` by Sub: `added placeholder assets`
+
+`56be097` by Sub: `added placeholder assets`
+
+`0c0dd32` by Alex: `extra ball power up`
+
+`baf3c14` by Alex: `bug`
+
+`94a874b` by Kevin: `new stuff`
+
+`9e283c1` by Sub: `working on powerups`
+
+`c4bf5f4` by Kevin: `new stuff`
+
 12/05
 -
 `05a3d1b` by Sub: `added highscores display screen & placeholder assets`

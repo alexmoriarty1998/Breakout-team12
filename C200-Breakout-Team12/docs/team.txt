@@ -28,9 +28,11 @@ TODO:
 Redesign assets:
 	betweenLevels/background
 	game/bricks, ball, paddle, wall?
-	highscoreEntry/background, submit_h, cancel_h
-	imgFont/*
-	icon.png
+	imgFont letters
+	icon
+
+A/B test assets:
+	level 1 vs 2
 
 Fill in levels 6-10 (currently they are just copies of level 1)
 
