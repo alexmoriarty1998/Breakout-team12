@@ -1,12 +1,12 @@
 # Screen 'abstract' class
-import pygame
+
+from typing import List
 
 import Graphics
 import ScreenManager
 from GameConstants import *
 from game.gameClasses.PosRect import PosRect
 from screens.Button import Button
-from typing import List, Tuple
 
 
 class Screen:
@@ -56,7 +56,8 @@ class Screen:
 		# to be implemented in subclasses
 		pass
 
-	def getButtonRect(self, locationPercentage: tuple, image: pygame.Surface) -> PosRect:
+	@staticmethod
+	def getButtonRect(locationPercentage: tuple, image: pygame.Surface) -> PosRect:
 		xPercent = locationPercentage[0]
 		yPercent = locationPercentage[1]
 		return PosRect((GC_WORLD_WIDTH * xPercent - image.get_width() / 2),

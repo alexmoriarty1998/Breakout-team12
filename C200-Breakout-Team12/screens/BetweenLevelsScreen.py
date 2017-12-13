@@ -1,4 +1,3 @@
-import GameConstants
 import Graphics
 import ScreenManager
 from Assets import Assets

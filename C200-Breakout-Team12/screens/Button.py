@@ -1,5 +1,6 @@
-from game.gameClasses.PosRect import PosRect
 from pygame import Surface
+
+from game.gameClasses.PosRect import PosRect
 
 
 class Button:

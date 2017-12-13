@@ -9,9 +9,8 @@
 # IDE will show types in parameters popup when calling functions
 # IDE will often generate warnings on using incorrect type
 
-# This class initializes pygame and graphics, then
-# starts the screen manager with the loading screen.
 
+# The code starts below, where it says 'game starts here'
 def start():
 	# init pygame before importing/doing anything else
 	import pygame
@@ -20,9 +19,9 @@ def start():
 	# initialize display
 	pygame.display.set_caption("Breakout!")
 	pygame.display.set_icon(pygame.image.load("assets/icon.png"))
-	# done initializing pygame
+	# done initializing pygame, can import everything else now
 
-	import Graphics
+	import Graphics  # import this first so graphics system is set up
 	import ScreenManager
 	from screens.LoadingScreen import LoadingScreen
 	from GameConstants import GC_FULLSCREEN
@@ -34,6 +33,7 @@ def start():
 	ScreenManager.start()
 
 
+###   GAME STARTS HERE   ######################################################
 from GameConstants import GC_PROFILE
 
 if GC_PROFILE:

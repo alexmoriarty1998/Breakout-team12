@@ -26,12 +26,11 @@ ball initial position should be fixed
 
 TODO:
 Select a visual theme, redesign assets
-
-Add more levels
-Update instructions screen
+Fill in levels 6-10 (currently they are just copies of level 1)
 
 Show stats on between levels screen
 Animations and stuff
+Update instructions screen
 
 ###############################################################################
 TODO Before final submission:
@@ -44,3 +43,4 @@ Didn't use pygame.font
 Ball initial position was fixed to one point instead of random
 GameController needs to discard mouse motion events if in main menu screen (can't clear in MainMenuScreen code)
 Pause screen & motion blur disabled on mac (no paddle movement; lag) as well as low FPS in general on mac
+The paddle movement in the main menu screen can be improved

@@ -10,7 +10,6 @@
 # Name derived from the model-view-controller separation that
 # is present here.
 import random
-import sys
 
 import Graphics
 import ScreenManager
@@ -181,7 +180,7 @@ class GameController:
 					if brick.hp != 0:  # don't bounce the ball when it destroys a brick
 						angle = brick.rect.findAngle(ball.circle)
 						if (angle >= GC_BRICK_UR_ANGLE or angle < GC_BRICK_BR_ANGLE or
-										GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
+								GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):
 							# hit side of brick
 							ball.velocity.dx *= -1
 							if ball.circle.x > brick.rect.x + .5 * GC_BRICK_WIDTH:
@@ -197,12 +196,14 @@ class GameController:
 								ball.circle.y = brick.rect.y - ball.circle.radius
 					else:  # killed a brick, apply power up effects
 						if brick.powerUp == 'extraBall':
-							angle = random.randint(0,360)
+							angle = random.randint(0, 360)
 							xVelocity = math.cos(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY
 							yVelocity = math.sin(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY
 
-							self.state.balls.append(Ball(PosCircle(brick.rect.x + brick.rect.width / 2, brick.rect.y + brick.rect.height /2, GC_BALL_RADIUS),
-														 Velocity(xVelocity, yVelocity)))
+							self.state.balls.append(Ball(
+								PosCircle(brick.rect.x + brick.rect.width / 2, brick.rect.y + brick.rect.height / 2,
+										  GC_BALL_RADIUS),
+								Velocity(xVelocity, yVelocity)))
 						if brick.powerUp == 'clearRow':
 							rowHeight = brick.rect.y
 							self.state.bricks = list(filter(lambda b: b.rect.y != rowHeight, self.state.bricks))
@@ -210,7 +211,7 @@ class GameController:
 			for brick in self.state.bricks:
 				if brick.hp == 0:
 					self.state.totalBricksDestroyedScore += brick.score
-	
+
 			# noinspection PyShadowingNames
 			# remove dead bricks
 			self.state.bricks = list(filter(lambda brick: brick.hp != 0, self.state.bricks))

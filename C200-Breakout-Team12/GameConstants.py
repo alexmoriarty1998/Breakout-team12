@@ -7,24 +7,20 @@
 
 import sys
 
-IS_MAC = "darwin" in sys.platform
-# darwin means mac computer
+IS_MAC = "darwin" in sys.platform # mac == darwin, enables workarounds to run properly on mac
 
 ###############################################################################
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
 GC_PRINT_FPS: bool = False
 GC_PROFILE: bool = False  # profile game via cProfile module
-GC_PRINT_BALL_SPEED: bool = False
-# TODO: remove this once it's shown in the GUI
-GC_PRINT_GAME_TIME: bool = False
 
-GC_BRICK_GEN_MODE: str = "manual"  # "empty", "random", "filled", "manual"
+GC_BRICK_GEN_MODE: str = "manual"	# "empty", "random", "filled", "manual"
 
-GC_RESET_HIGHSCORES = False # enable this, start the game, then disable it
+GC_RESET_HIGHSCORES = False			# reset highscores: enable this, start the game and quit, then disable it
 
-GC_MOTION_BLUR: bool = not IS_MAC # TODO: enable this for final product
-GC_FULLSCREEN: bool = False  # TODO: enable this for final product
+GC_MOTION_BLUR: bool = not IS_MAC
+GC_FULLSCREEN: bool = False			# TODO: enable this for final product
 
 ###############################################################################
 import math
@@ -65,7 +61,7 @@ GC_SMALL_BUTTON_SIZE = 65
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES = 3
 GC_PAR_TIME = 180
-GC_DEFAULT_LEVELS = 5
+GC_NUM_LEVELS = 10
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen

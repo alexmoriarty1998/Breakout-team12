@@ -1,7 +1,6 @@
 # Graphics class
 # Stores pygame surface, manages windowed/fullscreen and display scaling / abstraction
 
-import sys
 from typing import List
 
 from GameConstants import *

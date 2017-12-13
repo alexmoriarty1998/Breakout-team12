@@ -22,7 +22,7 @@ def makeBricks(level: int) -> List[Brick]:
 			brickX = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE - GC_BRICK_WIDTH)
 			brickY = random.randint(GC_BRICK_TOP_HEIGHT,
 									GC_BRICK_BOTTOM_HEIGHT - GC_BRICK_HEIGHT)  # top-down coordinates
-			bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), maxHP))
+			bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), maxHP, ''))
 			maxHP += 1
 			if maxHP == 4:
 				maxHP = -1
@@ -37,7 +37,7 @@ def makeBricks(level: int) -> List[Brick]:
 				brickHP = random.randint(1, 4)
 				if brickHP == 4:
 					brickHP = -1
-				bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP))
+				bricks.append(Brick(PosRect(brickX, brickY, GC_BRICK_WIDTH, GC_BRICK_HEIGHT), brickHP, ''))
 
 	if GC_BRICK_GEN_MODE == "manual":
 		f = open("assets/levels/level" + str(level) + ".txt")
