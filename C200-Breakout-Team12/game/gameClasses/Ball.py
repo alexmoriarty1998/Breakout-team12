@@ -10,8 +10,8 @@ from game.gameClasses.Velocity import Velocity
 
 class Ball(Blittable):
 	def __init__(self, circle: PosCircle, velocity: Velocity):
+		super().__init__(Assets.I_BALL)
 		self.circle: PosCircle = circle
 		self.velocity: Velocity = velocity
 
 		self.acceleration: Acceleration = Acceleration(0, GC_GRAVITY_ACCEL)
-		self.image: Surface = Assets.I_BALL

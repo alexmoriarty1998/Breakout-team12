@@ -31,9 +31,6 @@ Redesign assets:
 	imgFont letters
 	icon
 
-A/B test assets:
-	level 1 vs 2
-
 Fill in levels 6-10 (currently they are just copies of level 1)
 
 Show stats on between levels screen

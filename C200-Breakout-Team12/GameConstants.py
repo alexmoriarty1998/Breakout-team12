@@ -15,7 +15,7 @@ IS_MAC = "darwin" in sys.platform # mac == darwin, enables workarounds to run pr
 GC_PRINT_FPS: bool = False
 GC_PROFILE: bool = False  # profile game via cProfile module
 
-GC_BRICK_GEN_MODE: str = "empty"	# "empty", "random", "filled", "manual"
+GC_BRICK_GEN_MODE: str = "manual"	# "empty", "random", "filled", "manual"
 GC_GRAB_MOUSE: bool = True
 
 GC_RESET_HIGHSCORES = False			# reset highscores: enable this, start the game and quit, then disable it

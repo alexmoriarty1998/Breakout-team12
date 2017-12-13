@@ -11,7 +11,8 @@ from pygame import Surface
 # number.
 
 class Blittable:
-	image: Surface
+	def __init__(self, image):
+		self.image = image
 
-	def getImage(self, frame: int) -> Surface:
+	def getImage(self, frame: int):
 		return self.image

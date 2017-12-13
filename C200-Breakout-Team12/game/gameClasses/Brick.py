@@ -38,7 +38,7 @@ class Brick(Blittable):
 
 	def __init__(self, pos: PosRect, maxHP: int, powerUP):
 		self.rect: PosRect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
-		self.image: Surface = self.getImageFromHP(maxHP, maxHP, powerUP)
+		super().__init__(self.getImageFromHP(maxHP, maxHP, powerUP))
 		self.maxHP: int = maxHP
 		self.hp: int = maxHP
 		self.powerUp = powerUP
