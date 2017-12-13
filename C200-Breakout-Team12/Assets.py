@@ -97,14 +97,14 @@ class Assets:
 	# pause screen
 	I_BTN_PAUSE_RESUME = li("pause/btn_resume")
 	I_BTN_PAUSE_RESUME_H = li("pause/btn_resume_h")
+	I_BTN_QUIT_TO_MENU_PAUSESCREEN = li("pause/btn_quit")
+	I_BTN_QUIT_TO_MENU_PAUSESCREEN_H = li("pause/btn_quit_h")
 
 	# between levels screen
 	I_BTN_BETWEENLEVELS_CONTINUE = li("betweenLevels/btn_continue")
 	I_BTN_BETWEENLEVELS_CONTINUE_H = li("betweenLevels/btn_continue_h")
-
-	# pause & between levels
-	I_BTN_QUIT_TO_MENU = li("pause/btn_quit")
-	I_BTN_QUIT_TO_MENU_H = li("pause/btn_quit_h")
+	I_BTN_QUIT_TO_MENU_BETWEENLVLSCREEN = li("betweenLevels/btn_quit")
+	I_BTN_QUIT_TO_MENU_BETWEENLVLSCREEN_H = li("betweenLevels/btn_quit_h")
 
 	# highscore entry
 	I_BTN_HIGHSCORES_SUBMIT = li("highscoreEntry/btn_submit")
