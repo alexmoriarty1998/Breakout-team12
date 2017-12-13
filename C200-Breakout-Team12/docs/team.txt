@@ -22,16 +22,13 @@ Add 3 features & documentation
 ###############################################################################
 BUGS:
 ball loses speed
-Graphics.unproject() doesn't work when window aspect ratio doesn't match game AR
 
 TODO:
-Update instructions screen
-
 Animations:
 	brick dust & crack
-	lost explosion
 	paddle electric
 	screenshake
+	lost explosion - need to delay going to highscores screen to show this
 
 ###############################################################################
 TODO Before final submission:
