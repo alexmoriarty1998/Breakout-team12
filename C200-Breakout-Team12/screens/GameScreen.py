@@ -37,7 +37,8 @@ class GameScreen(Screen):
 			if self.state.level == GC_NUM_LEVELS:
 				if Highscores.isHighScore(self.state.oldScore + self.state.score):
 					ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore + self.state.score))
-				ScreenManager.setScreen(HighscoreDisplayScreen())
+				else:
+					ScreenManager.setScreen(HighscoreDisplayScreen())
 			else:
 				ScreenManager.setScreen(
 					BetweenLevelsScreen(self.state.level, self.state.oldScore, self.state.score, self.state.numLives))

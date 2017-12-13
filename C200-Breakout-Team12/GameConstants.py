@@ -16,6 +16,7 @@ GC_PRINT_FPS: bool = False
 GC_PROFILE: bool = False  # profile game via cProfile module
 
 GC_BRICK_GEN_MODE: str = "manual"	# "empty", "random", "filled", "manual"
+GC_GRAB_MOUSE: bool = True
 
 GC_RESET_HIGHSCORES = False			# reset highscores: enable this, start the game and quit, then disable it
 
@@ -61,7 +62,7 @@ GC_SMALL_BUTTON_SIZE = 65
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES = 3
 GC_PAR_TIME = 180
-GC_NUM_LEVELS = 10
+GC_NUM_LEVELS = 1
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen

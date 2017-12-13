@@ -11,5 +11,6 @@ from screens.Screen import Screen
 class NewGameLoaderScreen(Screen):
 	def update(self):
 		super().update()
-		pygame.event.set_grab(True)
+		if GC_GRAB_MOUSE:
+			pygame.event.set_grab(True)
 		ScreenManager.setScreen(GameScreen(makeState(1, 0, GC_DEFAULT_LIVES)))

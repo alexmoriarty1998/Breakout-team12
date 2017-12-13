@@ -15,7 +15,8 @@ class HighscoreEntryScreen(Screen):
 	def __init__(self, score):
 		super().__init__()
 
-		pygame.event.set_grab(False)
+		if GC_GRAB_MOUSE:
+			pygame.event.set_grab(False)
 		self.inputStr = ''
 		self.score = score
 

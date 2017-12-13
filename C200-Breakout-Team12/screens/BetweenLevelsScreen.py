@@ -11,7 +11,8 @@ class BetweenLevelsScreen(Screen):
 	def __init__(self, level, oldScore, score, numLives):
 		super().__init__()
 
-		pygame.event.set_grab(False)
+		if GC_GRAB_MOUSE:
+			pygame.event.set_grab(False)
 
 		# generate a new game state for the next level
 		lifeToAdd = 0
@@ -41,7 +42,8 @@ class BetweenLevelsScreen(Screen):
 
 	def buttonClicked(self, buttonName):
 		if buttonName == "continue":
-			pygame.event.set_grab(True)
+			if GC_GRAB_MOUSE:
+				pygame.event.set_grab(True)
 			from screens.GameScreen import GameScreen
 			ScreenManager.setScreen(GameScreen(self.state))
 		if buttonName == "quit":

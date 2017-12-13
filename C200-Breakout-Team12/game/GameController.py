@@ -143,21 +143,13 @@ class GameController:
 		for i in range(len(self.state.balls)):
 			ball = self.state.balls[i]
 			if self.paddle.rect.intersectsCircle(ball.circle):
-				# noinspection PyUnusedLocal
-				intersectPoint = None
-				if ball.circle.y == GC_PADDLE_TOP_HEIGHT:
-					# avoid divide by zero ??
-					# that's why this was added, not sure if it's actually needed
-					# TODO: is this if statement needed? does it do anything?
-					intersectPoint = ball.circle
-				else:
-					largeY = ball.circle.y - self.state.lastPosBalls[i].y
-					largeX = ball.circle.x - self.state.lastPosBalls[i].x
-					smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBalls[i].y
-					scale = smallY / largeY
-					smallX = scale * largeX
-					intersectX = smallX + self.state.lastPosBalls[i].x
-					intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
+				largeY = ball.circle.y - self.state.lastPosBalls[i].y
+				largeX = ball.circle.x - self.state.lastPosBalls[i].x
+				smallY = GC_PADDLE_TOP_HEIGHT - self.state.lastPosBalls[i].y
+				scale = smallY / largeY
+				smallX = scale * largeX
+				intersectX = smallX + self.state.lastPosBalls[i].x
+				intersectPoint = PosPoint(intersectX, GC_PADDLE_TOP_HEIGHT)
 
 				angle = self.paddle.rect.findAngle(intersectPoint)
 

@@ -11,7 +11,8 @@ class PauseScreen(Screen):
 	def __init__(self, gameScreen):
 		super().__init__()
 
-		pygame.event.set_grab(False)
+		if GC_GRAB_MOUSE:
+			pygame.event.set_grab(False)
 
 		self.gameScreen = gameScreen
 
@@ -44,7 +45,8 @@ class PauseScreen(Screen):
 
 	def buttonClicked(self, buttonName):
 		if buttonName == "resume":
-			pygame.event.set_grab(True)
+			if GC_GRAB_MOUSE:
+				pygame.event.set_grab(True)
 			ScreenManager.setScreen(self.gameScreen)
 		if buttonName == "quit":
 			from screens.MainMenuScreen import MainMenuScreen
