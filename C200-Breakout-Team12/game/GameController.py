@@ -115,16 +115,20 @@ class GameController:
 				self.state.won = 1
 			# decrement lives or set 'lost'
 			elif ball.circle.y + ball.circle.radius > GC_WORLD_HEIGHT:
-				if self.state.numLives > 1:
-					if len(self.state.balls) == 1:
+				# if this is the last ball...
+				# if you had one life left, set won == -1
+				# else, pause, regenerate the initial ball, decrement life
+				if len(self.state.balls) == 1:
+					if self.state.numLives == 1:
+						self.state.won = -1
+					else:
 						self.state.paused = True
 						self.state.balls = [makeBall()]
 						self.state.numLives -= 1
-					# b: if ball.circle.y < world height - radius
+				# but if this isn't the last ball, just remove it from the list of balls
+				else:
 					self.state.balls = list(
 						filter(lambda b: b.circle.y < GC_WORLD_HEIGHT - b.circle.radius, self.state.balls))
-				else:
-					self.state.won = -1
 
 	def collidePaddleWall(self):
 		if self.paddle.rect.x < GC_WALL_SIZE:
