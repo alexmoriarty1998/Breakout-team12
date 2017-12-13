@@ -38,6 +38,8 @@ class Assets:
 	I_BRICK_BOSS = li("game/brickBOSS")  # undestroyable brick
 	I_BRICK_EXTRABALL_2 = li("game/brick_extraBall_2") # powerup brick at 2 HP
 	I_BRICK_EXTRABALL_1 = li("game/brick_extraBall_1") # powerup brick at 1 HP
+	I_BRICK_CLEARROW_2 = li("game/brick_clearRow_2")
+	I_BRICK_CLEARROW_1 = li("game/brick_clearRow_1")
 
 	###   IMAGE TEXT   ########################################################
 	I_TXT_SCORE = li("imgFont/score2")  # use any of score1 score2

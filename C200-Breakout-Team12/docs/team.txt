@@ -17,7 +17,7 @@ Add 3 features & documentation
 
 	Powerups
 		Yellow brick: adds additional ball to the game
-		Paddle charge mechanic?
+		Purple brick: clears that row of bricks
 
 ###############################################################################
 BUGS:
@@ -43,4 +43,4 @@ Scoring is nonlinear
 Didn't use pygame.font
 Ball initial position was fixed to one point instead of random
 GameController needs to discard mouse motion events if in main menu screen (can't clear in MainMenuScreen code)
-Pause screen & motion blur bugged on mac (no input)
+Pause screen & motion blur disabled on mac (no paddle movement; lag) as well as low FPS in general on mac

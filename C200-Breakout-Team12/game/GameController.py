@@ -195,7 +195,7 @@ class GameController:
 								ball.circle.y = brick.rect.y + brick.rect.height + ball.circle.radius
 							else:
 								ball.circle.y = brick.rect.y - ball.circle.radius
-					else:
+					else:  # killed a brick, apply power up effects
 						if brick.powerUp == 'extraBall':
 							angle = random.randint(0,360)
 							xVelocity = math.cos(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY
@@ -203,7 +203,9 @@ class GameController:
 
 							self.state.balls.append(Ball(PosCircle(brick.rect.x + brick.rect.width / 2, brick.rect.y + brick.rect.height /2, GC_BALL_RADIUS),
 														 Velocity(xVelocity, yVelocity)))
-	
+						if brick.powerUp == 'clearRow':
+							rowHeight = brick.rect.y
+							self.state.bricks = list(filter(lambda b: b.rect.y != rowHeight, self.state.bricks))
 			# add score for dead bricks
 			for brick in self.state.bricks:
 				if brick.hp == 0:
