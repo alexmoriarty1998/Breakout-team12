@@ -9,6 +9,10 @@
 # IDE will show types in parameters popup when calling functions
 # IDE will often generate warnings on using incorrect type
 
+# Credits:
+# Icon (assets/icon.png) taken from: https://github.com/bozidarsevo/sprite-kit-breakout
+# The font used is Code Bold: http://www.fontfabric.com/code-free-font-3/
+
 
 # The code starts below, where it says 'game starts here'
 def start():

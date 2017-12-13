@@ -22,9 +22,9 @@ class PauseScreen(Screen):
 								   Assets.I_BTN_PAUSE_RESUME_H))
 
 		self.buttons.append(Button("quit",
-								   self.getButtonRect((0.5, 0.75), Assets.I_BTN_QUIT_TO_MENU),
-								   Assets.I_BTN_QUIT_TO_MENU,
-								   Assets.I_BTN_QUIT_TO_MENU_H))
+								   self.getButtonRect((0.5, 0.75), Assets.I_BTN_QUIT_TO_MENU_PAUSESCREEN),
+								   Assets.I_BTN_QUIT_TO_MENU_PAUSESCREEN,
+								   Assets.I_BTN_QUIT_TO_MENU_PAUSESCREEN_H))
 
 	def update(self):
 		super().update()
