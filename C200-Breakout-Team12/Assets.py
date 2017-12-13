@@ -4,14 +4,35 @@
 
 import pygame
 from pygame import Surface
+from os import listdir
 
 import Graphics
 
 
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
+from game.gameClasses.Animation import Animation
+
+
 def li(path: str) -> Surface:
 	# noinspection PyUnresolvedReferences
 	return pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+
+
+def la(path: str, name: str, frameTime: int) -> Animation:
+	files = listdir("assets/" + path)
+
+	# list is not necessarily alphabetical, so can't just add frames to the list of frames in the for loop
+	numFrames = 0
+	for f in files:
+		if f[0:len(name)] == name:  # if it is a frame of the desired animation
+			numFrames += 1
+
+	imagesList = []
+	for i in range(numFrames):
+		imagesList.append(li(path + "/" + name + str(i)))
+
+	# the beginframe must be set when the animation is created in game
+	return Animation(imagesList, frameTime, 0)
 
 
 class Assets:
@@ -88,6 +109,9 @@ class Assets:
 	I_BTN_HIGHSCORES_SUBMIT_H = li("highscoreEntry/btn_submit_h")
 	I_BTN_HIGHSCORES_CANCEL = li("highscoreEntry/btn_cancel")
 	I_BTN_HIGHSCORES_CANCEL_H = li("highscoreEntry/btn_cancel_h")
+
+	###   ANIMATIONS   ########################################################
+	A_WALL_BOUNCE_S = la("animations", "wallS", 5)
 
 
 class AssetLoaderHelper:

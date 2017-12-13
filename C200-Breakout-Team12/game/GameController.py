@@ -13,11 +13,13 @@ import random
 
 import Graphics
 import ScreenManager
+from Assets import Assets
 from GameConstants import *
 from game.GameState import GameState
 from game.LevelTools import makeBall
 from game.gameClasses.Acceleration import Acceleration
 from game.gameClasses.Ball import Ball
+from game.gameClasses.Displayable import Displayable
 from game.gameClasses.Paddle import Paddle
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosPoint import PosPoint
@@ -50,12 +52,17 @@ class GameController:
 			return
 
 		self.state.time += GC_FRAME_TIME_SECONDS
+		self.updateDisplayables()
 		self.updateBall()
 		self.movePaddle()
 		self.collidePaddleWall()
 		self.collideBrickBall()
 		self.collidePaddleBall()
 		self.score()
+
+	def updateDisplayables(self):
+		self.state.displayables = list(
+			filter(lambda d: ScreenManager.currentScreen.frame < d.beginFrame + d.lifespan, self.state.displayables))
 
 	def movePaddle(self):
 		for e in pygame.event.get():
@@ -105,6 +112,13 @@ class GameController:
 				ball.circle.x = GC_WALL_SIZE + ball.circle.radius
 				ball.velocity.dx *= -1
 				ball.circle.x = GC_WALL_SIZE + ball.circle.radius
+				self.state.displayables.append(Displayable(
+					PosPoint(GC_WALL_SIZE, ball.circle.y),
+					Velocity(0, 0),
+					Acceleration(0, 0),
+					Assets.A_WALL_BOUNCE_S,
+					ScreenManager.currentScreen.frame
+				))
 			elif ball.circle.x + ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
 				ball.circle.x = GC_WORLD_WIDTH - ball.circle.radius - GC_WALL_SIZE
 				ball.velocity.dx *= -1
