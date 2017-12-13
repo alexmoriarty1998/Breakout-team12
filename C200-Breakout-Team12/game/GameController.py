@@ -52,6 +52,7 @@ class GameController:
 			return
 
 		self.state.time += GC_FRAME_TIME_SECONDS
+		self.state.collidedLastFrame = False
 		self.updateDisplayables()
 		self.updateBall()
 		self.movePaddle()
@@ -120,7 +121,8 @@ class GameController:
 				ball.circle.x = GC_WORLD_WIDTH - GC_WALL_SIZE - ball.circle.radius
 				wallCollided = 1  # right
 
-			if wallCollided:  # add animation
+			if wallCollided:  # add animation and screenflash
+				self.state.collidedLastFrame = True
 				# find the collision speed into the wall (dx only)
 				collisionSpeed = abs(ball.velocity.dx)
 				# get the right collision strength based on speed (S, M, or L)
@@ -188,10 +190,12 @@ class GameController:
 				angle = self.paddle.rect.findAngle(intersectPoint)
 
 				if angle < GC_PADDLE_UL_ANGLE or angle > GC_PADDLE_UR_ANGLE:
+					self.state.collidedLastFrame = True
 					# hit side of paddle
 					ball.velocity.dx *= -1
 				else:
 					# hit top of paddle
+					self.state.collidedLastFrame = True
 					velocityMagnitude = (ball.velocity.dx ** 2 + ball.velocity.dy ** 2) ** 0.5
 					xDiff = intersectPoint.x - (self.paddle.rect.x + self.paddle.rect.width // 2)
 					xDiff /= self.paddle.rect.width // 2
@@ -206,6 +210,7 @@ class GameController:
 			# collision and HP removal
 			for brick in self.state.bricks:
 				if brick.rect.intersectsCircle(ball.circle):
+					self.state.collidedLastFrame = True
 					brick.hp -= 1
 					if brick.hp != 0:  # don't bounce the ball when it destroys a brick
 						angle = brick.rect.findAngle(ball.circle)

@@ -39,6 +39,7 @@ def la(path: str, name: str, frameTime: int, flipX: bool = False, flipY: bool = 
 class Assets:
 	###   GENERAL   ###########################################################
 	I_BLUR = li("blur")
+	I_BG_FLASH = li("bg_flash")
 
 	###   SCREEN BACKGROUNDS   ################################################
 	I_MAINMENU_BACKGROUND = li("mainMenu/background")
