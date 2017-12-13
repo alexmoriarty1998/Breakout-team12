@@ -30,9 +30,8 @@ Select a visual theme, redesign assets
 Add more levels
 Update instructions screen
 
-1) Show stats on between levels screen
-2) Powerup brick image
-3) Animations and stuff
+Show stats on between levels screen
+Animations and stuff
 
 ###############################################################################
 TODO Before final submission:
