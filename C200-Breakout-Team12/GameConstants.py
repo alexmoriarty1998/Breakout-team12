@@ -21,7 +21,7 @@ GC_GRAB_MOUSE: bool = True
 GC_RESET_HIGHSCORES = False			# reset highscores: enable this, start the game and quit, then disable it
 
 GC_MOTION_BLUR: bool = not IS_MAC
-GC_FULLSCREEN: bool = False			# TODO: enable this for final product
+GC_FULLSCREEN: bool = True
 
 ###############################################################################
 import math
