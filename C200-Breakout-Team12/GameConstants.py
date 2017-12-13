@@ -21,7 +21,7 @@ GC_GRAB_MOUSE: bool = True
 GC_RESET_HIGHSCORES = False			# reset highscores: enable this, start the game and quit, then disable it
 
 GC_MOTION_BLUR: bool = not IS_MAC
-GC_FULLSCREEN: bool = True
+GC_FULLSCREEN: bool = False # TODO swap to True before submitting final version
 
 ###############################################################################
 import math
@@ -62,7 +62,7 @@ GC_SMALL_BUTTON_SIZE = 65
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES = 3
 GC_PAR_TIME = 180
-GC_NUM_LEVELS = 10
+GC_NUM_LEVELS = 8
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen
