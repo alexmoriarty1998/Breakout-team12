@@ -31,7 +31,7 @@ Add more levels
 Update instructions screen
 
 1) Show stats on between levels screen
-2) Powerup brick
+2) Powerup brick image
 3) Animations and stuff
 
 ###############################################################################
@@ -44,3 +44,4 @@ Scoring is nonlinear
 Didn't use pygame.font
 Ball initial position was fixed to one point instead of random
 GameController needs to discard mouse motion events if in main menu screen (can't clear in MainMenuScreen code)
+Pause screen & motion blur bugged on mac (no input)
