@@ -9,9 +9,12 @@ from game.gameClasses.PosRect import PosRect
 class Brick(Blittable):
 	# get the brick image from its max HP and current HP
 	@staticmethod
-	def getImageFromHP(maxHP: int, currentHP: int) -> Surface:
+	def getImageFromHP(maxHP: int, currentHP: int, powerUP) -> Surface:
 		if powerUP == 'extraBall':
-			return Assets.I_BRICK_EXTRABALL
+			if currentHP == 1:
+				return Assets.I_BRICK_EXTRABALL_1
+			return Assets.I_BRICK_EXTRABALL_2
+
 		elif maxHP == -1:
 			return Assets.I_BRICK_BOSS
 		elif maxHP == 1:
@@ -29,11 +32,11 @@ class Brick(Blittable):
 
 
 	def getImage(self, frame: int) -> Surface:
-		return self.getImageFromHP(self.maxHP, self.hp)
+		return self.getImageFromHP(self.maxHP, self.hp, self.powerUp)
 
 	def __init__(self, pos: PosRect, maxHP: int, powerUP):
 		self.rect: PosRect = PosRect(pos.x, pos.y, GC_BRICK_WIDTH, GC_BRICK_HEIGHT)
-		self.image: Surface = self.getImageFromHP(maxHP, maxHP)
+		self.image: Surface = self.getImageFromHP(maxHP, maxHP, powerUP)
 		self.maxHP: int = maxHP
 		self.hp: int = maxHP
 		self.powerUp = powerUP
