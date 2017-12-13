@@ -4,14 +4,36 @@
 
 import pygame
 from pygame import Surface
+from os import listdir
 
 import Graphics
 
 
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
-def li(path: str) -> Surface:
+from game.gameClasses.Animation import Animation
+
+
+def li(path: str, flipX: bool = False, flipY: bool = False) -> Surface:
 	# noinspection PyUnresolvedReferences
-	return pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+	image = pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+	return pygame.transform.flip(image, flipX, flipY)
+
+
+def la(path: str, name: str, frameTime: int, flipX: bool = False, flipY: bool = False) -> Animation:
+	files = listdir("assets/" + path)
+
+	# list is not necessarily alphabetical, so can't just add frames to the list of frames in the for loop
+	numFrames = 0
+	for f in files:
+		if f[0:len(name)] == name and f[-4:] == ".png":  # if it is a frame of the desired animation, also include .png
+			numFrames += 1
+
+	imagesList = []
+	for i in range(numFrames):
+		imagesList.append(li(path + "/" + name + str(i), flipX, flipY))
+
+	# the beginframe must be set when the animation is created in game
+	return Animation(imagesList, frameTime, 0)
 
 
 class Assets:
@@ -88,6 +110,14 @@ class Assets:
 	I_BTN_HIGHSCORES_SUBMIT_H = li("highscoreEntry/btn_submit_h")
 	I_BTN_HIGHSCORES_CANCEL = li("highscoreEntry/btn_cancel")
 	I_BTN_HIGHSCORES_CANCEL_H = li("highscoreEntry/btn_cancel_h")
+
+	###   ANIMATIONS   ########################################################
+	A_WALL_BOUNCE_S_LEFT = la("animations", "wallS", 5)
+	A_WALL_BOUNCE_S_RIGHT = la("animations", "wallS", 5, True)
+	A_WALL_BOUNCE_M_LEFT = la("animations", "wallM", 5)
+	A_WALL_BOUNCE_M_RIGHT = la("animations", "wallM", 5, True)
+	A_WALL_BOUNCE_L_LEFT = la("animations", "wallL", 5)
+	A_WALL_BOUNCE_L_RIGHT = la("animations", "wallL", 5, True)
 
 
 class AssetLoaderHelper:

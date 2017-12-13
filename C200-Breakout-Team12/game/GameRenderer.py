@@ -82,4 +82,4 @@ class GameRenderer:
 		###   DISPLAYABLES   ##################################################
 		for d in state.displayables:
 			image: pygame.Surface = d.getImage(frame)
-			surface.blit(image, (d.pos.x - d.image.get_width() // 2, d.pos.y - d.image.get_height() // 2))
+			surface.blit(image, (d.pos.x - image.get_width() // 2, d.pos.y - image.get_height() // 2))

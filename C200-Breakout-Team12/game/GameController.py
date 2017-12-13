@@ -13,11 +13,13 @@ import random
 
 import Graphics
 import ScreenManager
+from Assets import Assets
 from GameConstants import *
 from game.GameState import GameState
 from game.LevelTools import makeBall
 from game.gameClasses.Acceleration import Acceleration
 from game.gameClasses.Ball import Ball
+from game.gameClasses.Displayable import Displayable
 from game.gameClasses.Paddle import Paddle
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosPoint import PosPoint
@@ -50,12 +52,17 @@ class GameController:
 			return
 
 		self.state.time += GC_FRAME_TIME_SECONDS
+		self.updateDisplayables()
 		self.updateBall()
 		self.movePaddle()
 		self.collidePaddleWall()
 		self.collideBrickBall()
 		self.collidePaddleBall()
 		self.score()
+
+	def updateDisplayables(self):
+		self.state.displayables = list(
+			filter(lambda d: ScreenManager.currentScreen.frame < d.beginFrame + d.lifespan, self.state.displayables))
 
 	def movePaddle(self):
 		for e in pygame.event.get():
@@ -101,14 +108,42 @@ class GameController:
 			halfAccel.apply(ball.velocity)
 
 			# collide with walls and top/bottom of world
+			wallCollided = 0
 			if ball.circle.x - ball.circle.radius < GC_WALL_SIZE:
 				ball.circle.x = GC_WALL_SIZE + ball.circle.radius
 				ball.velocity.dx *= -1
 				ball.circle.x = GC_WALL_SIZE + ball.circle.radius
+				wallCollided = -1  # left
 			elif ball.circle.x + ball.circle.radius > GC_WORLD_WIDTH - GC_WALL_SIZE:
 				ball.circle.x = GC_WORLD_WIDTH - ball.circle.radius - GC_WALL_SIZE
 				ball.velocity.dx *= -1
 				ball.circle.x = GC_WORLD_WIDTH - GC_WALL_SIZE - ball.circle.radius
+				wallCollided = 1  # right
+
+			if wallCollided:  # add animation
+				# find the collision speed into the wall (dx only)
+				collisionSpeed = abs(ball.velocity.dx)
+				# get the right collision strength based on speed (S, M, or L)
+				if collisionSpeed <= 7:
+					collisionIntensity = 'S'
+				elif collisionSpeed <= 11:
+					collisionIntensity = 'M'
+				else:
+					collisionIntensity = 'L'
+
+				if wallCollided == -1:
+					collisionDirection = "LEFT"
+					collisionX = GC_WALL_SIZE
+				else:
+					collisionDirection = "RIGHT"
+					collisionX = GC_WORLD_WIDTH - GC_WALL_SIZE
+				self.state.displayables.append(Displayable(
+					PosPoint(collisionX, ball.circle.y),
+					Velocity(0, 0),
+					Acceleration(0, 0),
+					getattr(Assets, "A_WALL_BOUNCE_" + collisionIntensity + "_" + collisionDirection),
+					ScreenManager.currentScreen.frame
+				))
 
 			# set 'won'
 			if ball.circle.y - ball.circle.radius < 0:
