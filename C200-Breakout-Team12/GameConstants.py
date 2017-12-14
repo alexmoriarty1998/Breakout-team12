@@ -7,21 +7,22 @@
 
 import sys
 
-IS_MAC = "darwin" in sys.platform # mac == darwin, enables workarounds to run properly on mac
+IS_MAC = "darwin" in sys.platform # mac == darwin, enables multiple workarounds to run better on mac
 
 ###############################################################################
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
+DEVELOPMENT = True						# TODO: turn this off before submitting final version
+# disables cursor grabbing, starts in windowed by default, may do some other stuff eventually
+GC_GRAB_MOUSE: bool = not DEVELOPMENT
+GC_FULLSCREEN: bool = not DEVELOPMENT
+GC_MOTION_BLUR: bool = not IS_MAC		# avoid even more slowdown on macs
+
 GC_PRINT_FPS: bool = False
-GC_PROFILE: bool = False  # profile game via cProfile module
 
-GC_BRICK_GEN_MODE: str = "manual"	# "empty", "random", "filled", "manual"
-GC_GRAB_MOUSE: bool = True
+GC_BRICK_GEN_MODE: str = "manual"		# "empty", "random", "filled", "manual"
 
-GC_RESET_HIGHSCORES = False			# reset highscores: enable this, start the game and quit, then disable it
-
-GC_MOTION_BLUR: bool = not IS_MAC
-GC_FULLSCREEN: bool = False # TODO swap to True before submitting final version
+GC_RESET_HIGHSCORES = False				# enable this, start the game and quit, then disable it
 
 ###############################################################################
 import math

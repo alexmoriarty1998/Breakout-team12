@@ -36,6 +36,18 @@ class Screen:
 		for e in pygame.event.get(pygame.VIDEORESIZE):
 			Graphics.resizeWindow(e.size)
 
+		# global keyboard shortcuts:
+		# 'S' to take screenshot
+		# 'F' to swap windowed/fullscreen
+		# noinspection PyArgumentList
+		for e in pygame.event.get(pygame.KEYDOWN):
+			if e.key == pygame.K_s:
+				pygame.image.save(Graphics.surface, "screenshot.png")
+			if e.key == pygame.K_f:
+				Graphics.swapWindowMode()
+			else:
+				pygame.event.post(e)
+
 		self.frame += 1  # advance frame number, for animations
 
 	def clickButtons(self, pos: Tuple[int]):

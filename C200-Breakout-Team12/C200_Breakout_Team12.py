@@ -14,35 +14,23 @@
 # The font used is Code Bold: http://www.fontfabric.com/code-free-font-3/
 
 
-# The code starts below, where it says 'game starts here'
-def start():
-	# init pygame before importing/doing anything else
-	import pygame
-	pygame.init()
+# init pygame before importing/doing anything else
+import pygame
 
-	# initialize display
-	pygame.display.set_caption("Breakout!")
-	pygame.display.set_icon(pygame.image.load("assets/icon.png"))
-	# done initializing pygame, can import everything else now
+pygame.init()
 
-	import Graphics  # import this first so graphics system is set up
-	import ScreenManager
-	from screens.LoadingScreen import LoadingScreen
-	from GameConstants import GC_FULLSCREEN
+# initialize display
+pygame.display.set_caption("Breakout!")
+pygame.display.set_icon(pygame.image.load("assets/icon.png"))
+# done initializing pygame, can import everything else now
 
-	Graphics.goFullscreen() if GC_FULLSCREEN else Graphics.goWindowed()
+import Graphics  # import this first so graphics system is set up
+import ScreenManager
+from screens.LoadingScreen import LoadingScreen
+from GameConstants import GC_FULLSCREEN
 
-	# start the game
-	ScreenManager.currentScreen = LoadingScreen()
-	ScreenManager.start()
+Graphics.goFullscreen() if GC_FULLSCREEN else Graphics.goWindowed()
 
-
-###   GAME STARTS HERE   ######################################################
-from GameConstants import GC_PROFILE
-
-if GC_PROFILE:
-	import cProfile
-
-	cProfile.run('start()')
-else:
-	start()
+# start the game
+ScreenManager.currentScreen = LoadingScreen()
+ScreenManager.start()

@@ -1,5 +1,3 @@
-from pygame.surface import Surface
-
 from game.gameClasses.Acceleration import Acceleration
 from game.gameClasses.Blittable import Blittable
 from game.gameClasses.PosPoint import PosPoint

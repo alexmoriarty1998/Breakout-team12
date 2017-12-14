@@ -2,13 +2,12 @@
 
 # images are prepended with I_, sounds with S_, music with M_
 
-import pygame
-from pygame import Surface
 from os import listdir
 
+import pygame
+from pygame import Surface
+
 import Graphics
-
-
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
 from game.gameClasses.Animation import Animation
 

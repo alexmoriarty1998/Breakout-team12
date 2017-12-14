@@ -1,5 +1,3 @@
-from pygame.surface import Surface
-
 from Assets import Assets
 from GameConstants import *
 from game.gameClasses.Blittable import Blittable

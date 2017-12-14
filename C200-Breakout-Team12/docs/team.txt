@@ -24,6 +24,8 @@ BUGS:
 ball loses speed
 
 TODO:
+Level 4 is too hard
+
 Animations:
 	brick dust & crack
 	paddle electric
