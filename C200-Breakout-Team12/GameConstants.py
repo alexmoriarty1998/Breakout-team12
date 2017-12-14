@@ -11,21 +11,20 @@ import sys
 IS_MAC = "darwin" in sys.platform
 
 # low performance mode: significantly speeds up game
-#						TRUE = FORCE ENABLE
+#  VALUE =	AUTO		TRUE = FORCE ENABLE
 LOW_PERF = IS_MAC or 		  False
 
 ###############################################################################
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
 ###   DEV OPTIONS   ###########################################################
-# dev mode disables cursor grabbing, starts in windowed by default
-DEVELOPMENT = True						# TODO: turn this off before submitting final version
-#							AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
+DEVELOPMENT = True # disables cursor grabbing & starts in windowed by default
+#	  VALUE			=		AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_GRAB_MOUSE: bool =	(not DEVELOPMENT)		or False			and True
 GC_FULLSCREEN: bool =	(not DEVELOPMENT)		or False			and True
 
 ###   PERFORMANCE ENHANCEMENTS   ##############################################
-#						  AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
+#	  VALUE			 =	  AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_MOTION_BLUR: bool =  (not LOW_PERF)		or False			and True
 GC_BRICK_FRAGS: bool =  (not LOW_PERF)		or False			and True
 GC_SCREENSHAKE: bool = True # shouldn't affect performance at all
@@ -92,7 +91,7 @@ GC_SCREENSHAKE_MAX_DISTANCE_REDUCTION = 0.75
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES: int = 3
 GC_NUM_LEVELS: int = 8
-GC_PAR_TIME: List[int] = [25, 50, 50, 90, 70, 70, 70, 70]
+GC_PAR_TIME: List[int] = [120, 50, 50, 90, 70, 70, 70, 70] # tuned for 600-1300 pts. per level
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen

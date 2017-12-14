@@ -21,8 +21,6 @@ BUGS:
 Paddle electric animation doesn't work on left side...
 
 TODO:
-Level 4 is too hard
-
 Animations:
 	brick fragments - add more types
 	lost explosion - need to delay going to highscores screen to show this
@@ -30,7 +28,7 @@ Animations:
 
 ###############################################################################
 TODO Before final submission:
-Complete any remaining TODOs
+Turn off dev mode in GameConstants
 Cleanup and comment code
 Check import into Visual Studio
 
