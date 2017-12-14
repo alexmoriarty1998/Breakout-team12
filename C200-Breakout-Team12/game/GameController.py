@@ -23,6 +23,7 @@ from game.gameClasses.Displayable import Displayable
 from game.gameClasses.Paddle import Paddle
 from game.gameClasses.PosCircle import PosCircle
 from game.gameClasses.PosPoint import PosPoint
+from game.gameClasses.Rotator import Rotator
 from game.gameClasses.Velocity import Velocity
 
 
@@ -42,6 +43,9 @@ class GameController:
 			self.movePaddle()
 			# but don't let it go off the screen
 			self.collidePaddleWall()
+			# and have the displayables continue moving
+			self.updateDisplayables()
+			self.state.collidedLastFrame = False
 			# start the game when started
 			# cant use pygame.mouse.get_pressed() because the user has to click to begin the game
 			#   and so the mouse button will still be held down when the game loads, and it will
@@ -142,12 +146,11 @@ class GameController:
 				else:
 					collisionDirection = "RIGHT"
 					collisionX = GC_WORLD_WIDTH - GC_WALL_SIZE
-				self.state.displayables.append(Displayable(
-					PosPoint(collisionX, ball.circle.y),
-					Velocity(0, 0),
-					Acceleration(0, 0),
-					getattr(Assets, "A_WALL_BOUNCE_" + collisionIntensity + "_" + collisionDirection),
-					ScreenManager.currentScreen.frame))
+				self.state.displayables.append(
+					Displayable(PosPoint(collisionX, ball.circle.y), Velocity(0, 0), Acceleration(0, 0),
+								Rotator(0, 0, 0),
+								getattr(Assets, "A_WALL_BOUNCE_" + collisionIntensity + "_" + collisionDirection),
+								ScreenManager.currentScreen.frame))
 
 			# set 'won'
 			if ball.circle.y - ball.circle.radius < 0:
@@ -212,7 +215,6 @@ class GameController:
 				# add paddle electric animation
 				# first, if ball hit paddle hard, do strong effect
 				if ball.velocity.dy <= -GC_BALL_INITIAL_VELOCITY:
-					print("strong hit")
 					self.state.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, ScreenManager.currentScreen.frame)
 				else:
 					# find angles to get left/middle/right starting point
@@ -245,8 +247,7 @@ class GameController:
 						self.state.displayables.append(Displayable(
 							PosPoint(brick.rect.x + brick.rect.width // 2, brick.rect.y + brick.rect.height // 2),
 							Velocity(ball.velocity.dx / 30, ball.velocity.dy / 15),
-							Acceleration(0, GC_GRAVITY_ACCEL / 2),
-							Assets.A_BRICK_DUST,
+							Acceleration(0, GC_GRAVITY_ACCEL / 2), Rotator(0, 0, 0), Assets.A_BRICK_DUST,
 							ScreenManager.currentScreen.frame))
 						# do the collision and bounce the ball
 						angle = brick.rect.findAngle(ball.circle)
@@ -266,6 +267,21 @@ class GameController:
 							else:
 								ball.circle.y = brick.rect.y - ball.circle.radius
 					else:  # killed a brick, apply power up effects
+						# add brick fragment animations:
+						for i in range(random.randint(GC_NUM_BRICK_FRAGMENTS[0], GC_NUM_BRICK_FRAGMENTS[1])):
+							brickFragAngle = random.randint(0, 359)
+							brickFragVelocity = random.randint(3, 6)
+							brickFragR = random.randint(0, 359)
+							brickFragDr = random.randint(20, 80)
+							brickFragDdr = random.randint(0, 10)
+							self.state.displayables.append(Displayable(
+								PosPoint(brick.rect.x + brick.rect.width // 2, brick.rect.y + brick.rect.height // 2),
+								Velocity(brickFragVelocity * math.cos(math.radians(brickFragAngle)),
+										 brickFragVelocity * math.sin(math.radians(brickFragAngle))),
+								Acceleration(0, GC_GRAVITY_ACCEL),
+								Rotator(brickFragR, brickFragDr, brickFragDdr),
+								Assets.A_BRICK_FRAG_1,
+								ScreenManager.currentScreen.frame))
 						if brick.powerUp == 'extraBall':
 							angle = random.randint(0, 360)
 							xVelocity = math.cos(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY

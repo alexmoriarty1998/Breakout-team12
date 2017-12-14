@@ -25,6 +25,7 @@ Paddle electric animation doesn't work on left side...
 
 TODO:
 Level 4 is too hard
+Par time for each level
 
 Animations:
 	brick fall apart

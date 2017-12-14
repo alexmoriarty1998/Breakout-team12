@@ -57,6 +57,7 @@ GC_KEY_BEGIN = pygame.K_SPACE  # for various begin functions: begin from main me
 ###############################################################################
 GC_IMGFONT_SIZE = 75
 GC_SMALL_BUTTON_SIZE = 65
+GC_NUM_BRICK_FRAGMENTS: Tuple[int] = (3, 6) # to be randomly selected
 
 ###############################################################################
 ###   GAME CONSTANTS   ########################################################

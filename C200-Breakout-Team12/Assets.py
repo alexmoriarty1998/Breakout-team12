@@ -115,6 +115,7 @@ class Assets:
 	I_BTN_HIGHSCORES_CANCEL_H = li("highscoreEntry/btn_cancel_h")
 
 	###   ANIMATIONS   ########################################################
+	# wall bounce dust
 	A_WALL_BOUNCE_S_LEFT = la("animations/wallBounce", "wallS", 5, '')			# bounce off l wall, weak
 	A_WALL_BOUNCE_S_RIGHT = la("animations/wallBounce", "wallS", 5, '', True)	# bounce off r wall, weak
 	A_WALL_BOUNCE_M_LEFT = la("animations/wallBounce", "wallM", 5, '')			# bounce off l wall, medium
@@ -122,9 +123,20 @@ class Assets:
 	A_WALL_BOUNCE_L_LEFT = la("animations/wallBounce", "wallL", 5, '')			# bounce off l wall, strong
 	A_WALL_BOUNCE_L_RIGHT = la("animations/wallBounce", "wallL", 5, '', True)	# bounce off r wall, strong
 
+	# brick collision dust
 	A_BRICK_DUST = la("animations/brickDust", "brickDust", 10) # dust when brick gets hit by ball
 
-	A_PADDLE = Animation([I_PADDLE], 1, 0) # default (just the one frame of the normal paddle)
+	# brick destruction fragments
+	NUM_BRICK_FRAG_TYPES = 3
+	A_BRICK_FRAG_1 = la("animations/brickFrags", "frag1", 10)
+	A_BRICK_FRAG_2 = la("animations/brickFrags", "frag1", 10)
+	A_BRICK_FRAG_3 = la("animations/brickFrags", "frag1", 10)
+
+	# ball
+	A_BALL = Animation([I_BALL], 1, 0) # just the one frame of the ball image
+
+	# paddle electric
+	A_PADDLE = Animation([I_PADDLE], 1, 0) # just the one frame of the paddle image
 	A_PADDLE_ELECTRIC_L = la("animations/paddle", "paddleElectricL", 2, 'A_PADDLE') # left
 	A_PADDLE_ELECTRIC_M = la("animations/paddle", "paddleElectricM", 2, 'A_PADDLE') # middle
 	A_PADDLE_ELECTRIC_R = la("animations/paddle", "paddleElectricR", 2, 'A_PADDLE') # right
