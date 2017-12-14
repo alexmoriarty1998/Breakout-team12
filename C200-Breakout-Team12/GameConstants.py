@@ -20,7 +20,7 @@ LOW_PERF = IS_MAC or 		  False
 ###   DEV OPTIONS   ###########################################################
 DEVELOPMENT = False # disables cursor grabbing & starts in windowed by default
 #	  VALUE			=		AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
-2GC_GRAB_MOUSE: bool =	((not DEVELOPMENT)		or False)			and True
+GC_GRAB_MOUSE: bool =	((not DEVELOPMENT)		or False)			and True
 GC_FULLSCREEN: bool =	((not DEVELOPMENT)		or False)			and True
 
 ###   PERFORMANCE ENHANCEMENTS   ##############################################
