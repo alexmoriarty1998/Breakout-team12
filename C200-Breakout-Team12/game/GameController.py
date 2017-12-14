@@ -70,7 +70,9 @@ class GameController:
 			d.acceleration.apply(d.velocity)
 			d.velocity.apply(d.pos)
 		self.state.displayables = list(
-			filter(lambda d: ScreenManager.currentScreen.frame < d.beginFrame + d.lifespan, self.state.displayables))
+			filter(
+				lambda displayable: ScreenManager.currentScreen.frame < displayable.beginFrame + displayable.lifespan,
+				self.state.displayables))
 
 	def movePaddle(self):
 		for e in pygame.event.get():
@@ -269,6 +271,7 @@ class GameController:
 					else:  # killed a brick, apply power up effects
 						# add brick fragment animations:
 						for i in range(random.randint(GC_NUM_BRICK_FRAGMENTS[0], GC_NUM_BRICK_FRAGMENTS[1])):
+							brickFragType = random.randint(1, Assets.NUM_BRICK_FRAG_TYPES)
 							brickFragAngle = random.randint(0, 359)
 							brickFragVelocity = random.randint(3, 6)
 							brickFragR = random.randint(0, 359)
@@ -280,7 +283,7 @@ class GameController:
 										 brickFragVelocity * math.sin(math.radians(brickFragAngle))),
 								Acceleration(0, GC_GRAVITY_ACCEL),
 								Rotator(brickFragR, brickFragDr, brickFragDdr),
-								Assets.A_BRICK_FRAG_1,
+								getattr(Assets, "A_BRICK_FRAG_" + str(brickFragType) + str(brick)),
 								ScreenManager.currentScreen.frame))
 						if brick.powerUp == 'extraBall':
 							angle = random.randint(0, 360)

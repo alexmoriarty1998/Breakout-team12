@@ -28,7 +28,6 @@ Level 4 is too hard
 Par time for each level
 
 Animations:
-	brick fall apart
 	screenshake
 	lost explosion - need to delay going to highscores screen to show this
 

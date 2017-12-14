@@ -48,3 +48,13 @@ class Brick(Blittable):
 			self.score: int = GC_BRICK_SCORES[3]
 		else:
 			self.score: int = GC_BRICK_SCORES[maxHP - 1]
+
+	# returns the one-character string of this brick's type as used in level files (0-4, or letter for powerup)
+	def __str__(self):
+		if self.powerUp == 'extraBall':
+			return 'A'
+		if self.powerUp == 'clearRow':
+			return 'C'
+		if self.maxHP == -1:
+			return '4'
+		return str(self.maxHP)
