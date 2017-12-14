@@ -28,6 +28,7 @@ GC_FULLSCREEN: bool =	(not DEVELOPMENT)		or False			and True
 #						  AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_MOTION_BLUR: bool =  (not LOW_PERF)		or False			and True
 GC_BRICK_FRAGS: bool =  (not LOW_PERF)		or False			and True
+GC_SCREENSHAKE: bool = True
 
 ###   PERFORMANCE MEASUREMENT   ###############################################
 GC_PRINT_FPS: bool = False
@@ -79,6 +80,11 @@ GC_KEY_BEGIN = pygame.K_SPACE  # for various begin functions: begin from main me
 GC_IMGFONT_SIZE = 75
 GC_SMALL_BUTTON_SIZE = 65
 GC_NUM_BRICK_FRAGMENTS: Tuple[int] = (2, 5) # number to be randomly selected for each brick
+###   SCREENSHAKE   ###########################################################
+GC_SCREENSHAKE_MIN_RADIUS = 2 # once radius is smaller than this, set screenshake to 0
+GC_SCREENSHAKE_ANGLE_VARIATION = 30 # each tick, new angle = previous angle += variation
+GC_SCREENSHAKE_MIN_DISTANCE_REDUCTION = 0.95
+GC_SCREENSHAKE_MAX_DISTANCE_REDUCTION = 0.75
 
 ###############################################################################
 ###   GAME CONSTANTS   ########################################################

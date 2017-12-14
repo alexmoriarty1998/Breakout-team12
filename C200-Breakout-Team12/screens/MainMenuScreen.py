@@ -26,6 +26,10 @@ class MainMenuScreen(Screen):
 		self.gameController: GameController = GameController(self.gameState)
 		self.paddleTarget: int = random.randint(GC_WALL_SIZE, GC_WORLD_WIDTH - GC_WALL_SIZE)
 
+		# enable screenshake
+		if GC_SCREENSHAKE:
+			Graphics.camera.enable()
+
 		beginCoords = 0.5, 0.72
 		helpCoords = 0.25, 0.86
 		highscoresCoords = 0.75, 0.86
@@ -101,11 +105,14 @@ class MainMenuScreen(Screen):
 		if buttonName == "exit":
 			ScreenManager.exit()
 		if buttonName == "begin":
+			Graphics.camera.reset()
 			ScreenManager.setScreen(NewGameLoaderScreen())
 		if buttonName == "highscores":
+			Graphics.camera.disable()
 			from screens.HighscoreDisplayScreen import HighscoreDisplayScreen
 			ScreenManager.setScreen(HighscoreDisplayScreen())
 		if buttonName == "help":
+			Graphics.camera.disable()
 			from screens.InstructionsScreen import InstructionsScreen
 			ScreenManager.setScreen(InstructionsScreen())
 		if buttonName == "fullscreen":

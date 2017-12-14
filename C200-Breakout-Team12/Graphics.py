@@ -4,6 +4,7 @@
 from typing import List
 
 from GameConstants import *
+from Camera import Camera
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
 MODE_WINDOWED: int = 1
@@ -14,6 +15,7 @@ GAME_ASPECT_RATIO: float = GC_WORLD_WIDTH / GC_WORLD_HEIGHT
 surface: pygame.Surface = pygame.Surface(GC_WORLD_SIZE)  # surface that the game draws on; in world coordinates
 windowSurface: pygame.Surface = None  # surface that appears on the screen
 currentMode: int = None
+camera: Camera = Camera()
 
 
 def blur() -> None:
@@ -78,7 +80,12 @@ def flip() -> None:
 	windowSurface.fill((0, 0, 0))  # leave black bars on borders in case of aspect ratio mismatch
 
 	arScaling = getARScaling()  # list of two tuples, first is size, 2nd is pos
-	windowSurface.blit(pygame.transform.scale(surface, arScaling[0]), arScaling[1])
+
+	# add screenshake offset (from camera) to arScaling's window offset
+	camera.update()
+	windowOffset = int(arScaling[1][0] + camera.offset[0]), int(arScaling[1][1] + camera.offset[1])
+
+	windowSurface.blit(pygame.transform.scale(surface, arScaling[0]), windowOffset)
 	pygame.display.flip()
 
 

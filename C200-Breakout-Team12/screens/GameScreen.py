@@ -34,6 +34,7 @@ class GameScreen(Screen):
 
 		###   GO TO WIN/LOSS SCREENS   ########################################
 		if self.state.won == 1:
+			Graphics.camera.reset()
 			if self.state.level == GC_NUM_LEVELS:
 				if Highscores.isHighScore(self.state.oldScore + self.state.score):
 					ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore + self.state.score))
@@ -44,6 +45,7 @@ class GameScreen(Screen):
 					BetweenLevelsScreen(self.state.level, self.state.oldScore, self.state.score, self.state.numLives))
 
 		elif self.state.won == -1:
+			Graphics.camera.reset()
 			if Highscores.isHighScore(self.state.oldScore):
 				ScreenManager.setScreen(HighscoreEntryScreen(self.state.oldScore))
 			else:
@@ -61,10 +63,12 @@ class GameScreen(Screen):
 		# pause menu, and disable the ability to exit the pause menu by pressing escape again.
 		if IS_MAC:
 			if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+				Graphics.camera.reset()
 				ScreenManager.setScreen(PauseScreen(self))
 		else:
 			for e in pygame.event.get():
 				if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+					Graphics.camera.reset()
 					ScreenManager.setScreen(PauseScreen(self))
 				else:
 					# this will gobble up some left/right key events if they aren't posted back

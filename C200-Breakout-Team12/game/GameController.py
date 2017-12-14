@@ -131,9 +131,12 @@ class GameController:
 				wallCollided = 1  # right
 
 			if wallCollided:  # add animation and screenflash
+				# add screenflash
 				self.state.collidedLastFrame = True
 				# find the collision speed into the wall (dx only)
 				collisionSpeed = abs(ball.velocity.dx)
+				# add screenshake
+				Graphics.camera.kick(collisionSpeed)
 				# get the right collision strength based on speed (S, M, or L)
 				if collisionSpeed <= 8:
 					collisionIntensity = 'S'
@@ -214,6 +217,8 @@ class GameController:
 					ball.velocity.dx = velocityX
 					ball.velocity.dy = velocityY
 
+				# add screenshake
+				Graphics.camera.kick(-ball.velocity.dy / 2)
 				# add paddle electric animation
 				# first, if ball hit paddle hard, do strong effect
 				if ball.velocity.dy <= -GC_BALL_INITIAL_VELOCITY:
@@ -245,6 +250,8 @@ class GameController:
 					self.state.collidedLastFrame = True
 					brick.hp -= 1
 					if brick.hp != 0:  # don't bounce the ball when it destroys a brick
+						# add screenshake
+						Graphics.camera.kick(((ball.velocity.dx ** 2 + ball.velocity.dy ** 2) ** 0.5) / 4)
 						# add dust animation
 						self.state.displayables.append(Displayable(
 							PosPoint(brick.rect.x + brick.rect.width // 2, brick.rect.y + brick.rect.height // 2),
@@ -269,6 +276,8 @@ class GameController:
 							else:
 								ball.circle.y = brick.rect.y - ball.circle.radius
 					else:  # killed a brick, apply power up effects
+						# add screenshake
+						Graphics.camera.kick(((ball.velocity.dx ** 2 + ball.velocity.dy ** 2) ** 0.5) / 2)
 						# add brick fragment animations:
 						if GC_BRICK_FRAGS:
 							for i in range(random.randint(GC_NUM_BRICK_FRAGMENTS[0], GC_NUM_BRICK_FRAGMENTS[1])):
