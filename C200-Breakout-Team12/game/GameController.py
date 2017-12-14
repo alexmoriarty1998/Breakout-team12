@@ -225,6 +225,7 @@ class GameController:
 				# first, if ball hit paddle hard, do strong effect
 				if ball.velocity.dy <= -GC_BALL_INITIAL_VELOCITY:
 					self.state.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, self.frame)
+					print("hit strong")
 				else:
 					# find angles to get left/middle/right starting point
 					angleL = GC_PADDLE_UL_ANGLE
@@ -234,15 +235,19 @@ class GameController:
 					if angleL <= angle < angleML:
 						# left
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_L, self.frame)
+						print("hit left")
 					elif angleML <= angle < angleMR:
 						# middle
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, self.frame)
+						print("hit middle")
 					elif angleMR <= angle <= angleR:
 						# right
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_R, self.frame)
+						print("hit right")
 					else:
 						# hit side of paddle, do center effect
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, self.frame)
+						print("hit side")
 
 	def collideBrickBall(self):
 		for ball in self.state.balls:

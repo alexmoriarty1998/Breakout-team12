@@ -91,7 +91,7 @@ GC_SCREENSHAKE_MAX_DISTANCE_REDUCTION = 0.75
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES: int = 3
 GC_NUM_LEVELS: int = 8
-GC_PAR_TIME: List[int] = [120, 50, 50, 90, 70, 70, 70, 70] # tuned for 600-1300 pts. per level
+GC_PAR_TIME: List[int] = [20, 50, 50, 90, 70, 70, 70, 70] # tuned for 600-1300 pts. per level
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen

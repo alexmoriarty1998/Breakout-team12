@@ -19,6 +19,7 @@ class Displayable(Blittable):
 		self.acceleration: Acceleration = acceleration
 		self.rotator = rotator
 		self.beginFrame = beginFrame
+		self.image.beginFrame = beginFrame
 		self.lifespan = lifespan if lifespan != -1 else anim.frameTime * len(anim.images)
 
 	def getImage(self, frame: int) -> Surface:

@@ -22,7 +22,6 @@ Paddle electric animation doesn't work on left side...
 
 TODO:
 Animations:
-	brick fragments - add more types
 	lost explosion - need to delay going to highscores screen to show this
 
 
