@@ -20,15 +20,6 @@ Add 3 features & documentation
 BUGS:
 Paddle electric animation doesn't work on left side...
 
-TODO:
-Animations:
-	lost explosion - need to delay going to highscores screen to show this
-
-
-###############################################################################
-TODO Before final submission:
-Turn off dev mode in GameConstants
-Cleanup and comment code
 Check import into Visual Studio
 
 Executive Summary:
@@ -40,3 +31,4 @@ Pause screen & motion blur disabled on mac (no paddle movement; lag) as well as 
 The paddle movement in the main menu screen can be improved
 Low performance mode (CPU bottlenecked)
 Ball slowing down & randomly fail to quit - fixed??
+Ball rarely goes through bricks

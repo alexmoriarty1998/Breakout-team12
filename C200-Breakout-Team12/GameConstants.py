@@ -18,7 +18,7 @@ LOW_PERF = IS_MAC or 		  False
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
 ###   DEV OPTIONS   ###########################################################
-DEVELOPMENT = True # disables cursor grabbing & starts in windowed by default
+DEVELOPMENT = False # disables cursor grabbing & starts in windowed by default
 #	  VALUE			=		AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_GRAB_MOUSE: bool =	(not DEVELOPMENT)		or False			and True
 GC_FULLSCREEN: bool =	(not DEVELOPMENT)		or False			and True
@@ -91,7 +91,7 @@ GC_SCREENSHAKE_MAX_DISTANCE_REDUCTION = 0.75
 ###   SCORING   ###############################################################
 GC_DEFAULT_LIVES: int = 3
 GC_NUM_LEVELS: int = 8
-GC_PAR_TIME: List[int] = [20, 50, 50, 90, 70, 70, 70, 70] # tuned for 600-1300 pts. per level
+GC_PAR_TIME: List[int] = [45, 50, 50, 90, 70, 70, 70, 70] # tuned for 600-1300 pts. per level
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen

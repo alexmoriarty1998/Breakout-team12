@@ -1,7 +1,5 @@
 # Screen 'abstract' class
 
-from typing import List
-
 import Graphics
 import ScreenManager
 from GameConstants import *

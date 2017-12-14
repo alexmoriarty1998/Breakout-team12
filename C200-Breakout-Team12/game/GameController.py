@@ -174,10 +174,21 @@ class GameController:
 						self.state.paused = True
 						self.state.balls = [makeBall()]
 						self.state.numLives -= 1
+
+				# add explosion animation, even if it wasn't the last ball
+				# also screenshake
+				Graphics.camera.kick(45)
+				self.state.displayables.append(Displayable(
+					PosPoint(ball.circle.x, GC_WORLD_HEIGHT),
+					Velocity(0, 0),
+					Acceleration(0, 0),
+					Rotator(0, 0, 0),
+					Assets.A_LOST_EXPLOSION,
+					self.frame))
 				# but if this isn't the last ball, just remove it from the list of balls
-				else:
-					self.state.balls = list(
-						filter(lambda b: b.circle.y < GC_WORLD_HEIGHT - b.circle.radius, self.state.balls))
+				# but remove it even if it is the last ball
+				self.state.balls = list(
+					filter(lambda b: b.circle.y < GC_WORLD_HEIGHT - b.circle.radius, self.state.balls))
 
 	def collidePaddleWall(self):
 		if self.paddle.rect.x < GC_WALL_SIZE:
@@ -225,7 +236,6 @@ class GameController:
 				# first, if ball hit paddle hard, do strong effect
 				if ball.velocity.dy <= -GC_BALL_INITIAL_VELOCITY:
 					self.state.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, self.frame)
-					print("hit strong")
 				else:
 					# find angles to get left/middle/right starting point
 					angleL = GC_PADDLE_UL_ANGLE
@@ -234,20 +244,19 @@ class GameController:
 					angleR = GC_PADDLE_UR_ANGLE
 					if angleL <= angle < angleML:
 						# left
+						# THIS DOESN'T WORK!!! no idea why
+						# The code does get executed, tested via print statements after all of these switchTo()s.
+						# Middle, right, and strong animations work just fine, it's just the left that fails.
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_L, self.frame)
-						print("hit left")
 					elif angleML <= angle < angleMR:
 						# middle
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, self.frame)
-						print("hit middle")
 					elif angleMR <= angle <= angleR:
 						# right
 						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_R, self.frame)
-						print("hit right")
 					else:
-						# hit side of paddle, do center effect
-						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, self.frame)
-						print("hit side")
+						# hit side of paddle, do strong effect
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, self.frame)
 
 	def collideBrickBall(self):
 		for ball in self.state.balls:
