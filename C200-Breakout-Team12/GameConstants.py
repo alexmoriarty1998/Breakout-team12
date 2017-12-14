@@ -20,13 +20,13 @@ LOW_PERF = IS_MAC or 		  False
 ###   DEV OPTIONS   ###########################################################
 DEVELOPMENT = False # disables cursor grabbing & starts in windowed by default
 #	  VALUE			=		AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
-GC_GRAB_MOUSE: bool =	(not DEVELOPMENT)		or False			and True
-GC_FULLSCREEN: bool =	(not DEVELOPMENT)		or False			and True
+2GC_GRAB_MOUSE: bool =	((not DEVELOPMENT)		or False)			and True
+GC_FULLSCREEN: bool =	((not DEVELOPMENT)		or False)			and True
 
 ###   PERFORMANCE ENHANCEMENTS   ##############################################
 #	  VALUE			 =	  AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
-GC_MOTION_BLUR: bool =  (not LOW_PERF)		or False			and True
-GC_BRICK_FRAGS: bool =  (not LOW_PERF)		or False			and True
+GC_MOTION_BLUR: bool =  ((not LOW_PERF)		or False)			and True
+GC_BRICK_FRAGS: bool =  ((not LOW_PERF)		or False)			and True
 GC_SCREENSHAKE: bool = True # shouldn't affect performance at all
 
 ###   PERFORMANCE MEASUREMENT   ###############################################
