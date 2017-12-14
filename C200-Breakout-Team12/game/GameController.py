@@ -62,6 +62,9 @@ class GameController:
 		self.score()
 
 	def updateDisplayables(self):
+		for d in self.state.displayables:
+			d.acceleration.apply(d.velocity)
+			d.velocity.apply(d.pos)
 		self.state.displayables = list(
 			filter(lambda d: ScreenManager.currentScreen.frame < d.beginFrame + d.lifespan, self.state.displayables))
 
@@ -213,6 +216,14 @@ class GameController:
 					self.state.collidedLastFrame = True
 					brick.hp -= 1
 					if brick.hp != 0:  # don't bounce the ball when it destroys a brick
+						# add dust animation
+						self.state.displayables.append(Displayable(
+							PosPoint(brick.rect.x + brick.rect.width // 2, brick.rect.y + brick.rect.height // 2),
+							Velocity(ball.velocity.dx / 30, ball.velocity.dy / 15),
+							Acceleration(0, GC_GRAVITY_ACCEL / 2),
+							Assets.A_BRICK_DUST,
+							ScreenManager.currentScreen.frame))
+						# do the collision and bounce the ball
 						angle = brick.rect.findAngle(ball.circle)
 						if (angle >= GC_BRICK_UR_ANGLE or angle < GC_BRICK_BR_ANGLE or
 								GC_BRICK_BL_ANGLE <= angle < GC_BRICK_UL_ANGLE):

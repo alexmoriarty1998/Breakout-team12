@@ -119,6 +119,8 @@ class Assets:
 	A_WALL_BOUNCE_L_LEFT = la("animations", "wallL", 5)
 	A_WALL_BOUNCE_L_RIGHT = la("animations", "wallL", 5, True)
 
+	A_BRICK_DUST = la("animations", "brickDust", 10)
+
 
 class AssetLoaderHelper:
 	# Initializes values in Assets using setattr.

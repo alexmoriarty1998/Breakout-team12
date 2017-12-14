@@ -63,6 +63,7 @@ class MainMenuScreen(Screen):
 				self.clickButtons(e.pos)
 
 		# tick the embedded game
+		self.gameState.paused = False
 		# Paddle needs to not be in the dead center, so the ball does interesting stuff.
 		# But generating a random offset each tick results in the paddle jerking around
 		# every frame, so limit how fast the offset can change.
