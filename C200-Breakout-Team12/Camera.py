@@ -3,7 +3,6 @@
 # Can get a (x, y) for current camera offset (from center of screen),
 # this is used by Graphics' flip() to move the final render.
 import random
-from typing import Tuple
 
 from GameConstants import *
 

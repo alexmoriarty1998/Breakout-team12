@@ -3,8 +3,8 @@
 
 from typing import List
 
-from GameConstants import *
 from Camera import Camera
+from GameConstants import *
 
 DEFAULT_WINDOW_RESOLUTION: Tuple[int, int] = (GC_WORLD_WIDTH // 2, GC_WORLD_HEIGHT // 2)
 MODE_WINDOWED: int = 1

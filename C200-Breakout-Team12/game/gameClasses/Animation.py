@@ -2,6 +2,7 @@ import sys
 
 
 class Animation:
+	# noinspection PyShadowingBuiltins
 	def __init__(self, images: list, frameTime: int, beginFrame: int, next: str = ''):
 		self.images = images
 		self.frameTime = frameTime

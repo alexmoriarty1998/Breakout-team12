@@ -28,7 +28,7 @@ GC_FULLSCREEN: bool =	(not DEVELOPMENT)		or False			and True
 #						  AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_MOTION_BLUR: bool =  (not LOW_PERF)		or False			and True
 GC_BRICK_FRAGS: bool =  (not LOW_PERF)		or False			and True
-GC_SCREENSHAKE: bool = True
+GC_SCREENSHAKE: bool = True # shouldn't affect performance at all
 
 ###   PERFORMANCE MEASUREMENT   ###############################################
 GC_PRINT_FPS: bool = False

@@ -22,6 +22,7 @@ def li(path: str, hasAlpha: bool = True, flipX: bool = False, flipY: bool = Fals
 
 
 # load animation (if animation name is "anim", loads "anim0" "anim1" "anim2" ... for all frame images present
+# noinspection PyShadowingBuiltins
 def la(path: str, name: str, frameTime: int, next: str = '', flipX: bool = False, flipY: bool = False) -> Animation:
 	files = listdir("assets/" + path)
 
