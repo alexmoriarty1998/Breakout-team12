@@ -11,7 +11,7 @@ import sys
 
 import pygame
 
-from GameConstants import GC_FRAME_TIME_MILLISECONDS, GC_PRINT_FPS
+from GameConstants import GC_FRAME_TIME_MILLISECONDS, GC_PRINT_FPS, GC_PROFILE
 from screens import Screen
 
 currentScreen: Screen = None

@@ -66,3 +66,6 @@ class GameScreen(Screen):
 			for e in pygame.event.get():
 				if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
 					ScreenManager.setScreen(PauseScreen(self))
+				else:
+					# this will gobble up some left/right key events if they aren't posted back
+					pygame.event.post(e)

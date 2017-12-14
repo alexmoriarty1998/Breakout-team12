@@ -14,23 +14,35 @@
 # The font used is Code Bold: http://www.fontfabric.com/code-free-font-3/
 
 
-# init pygame before importing/doing anything else
-import pygame
+# The code starts below, where it says 'game starts here'
+def start():
+	# init pygame before importing/doing anything else
+	import pygame
+	pygame.init()
 
-pygame.init()
+	# initialize display
+	pygame.display.set_caption("Breakout!")
+	pygame.display.set_icon(pygame.image.load("assets/icon.png"))
+	# done initializing pygame, can import everything else now
 
-# initialize display
-pygame.display.set_caption("Breakout!")
-pygame.display.set_icon(pygame.image.load("assets/icon.png"))
-# done initializing pygame, can import everything else now
+	import Graphics  # import this first so graphics system is set up
+	import ScreenManager
+	from screens.LoadingScreen import LoadingScreen
+	from GameConstants import GC_FULLSCREEN
 
-import Graphics  # import this first so graphics system is set up
-import ScreenManager
-from screens.LoadingScreen import LoadingScreen
-from GameConstants import GC_FULLSCREEN
+	Graphics.goFullscreen() if GC_FULLSCREEN else Graphics.goWindowed()
 
-Graphics.goFullscreen() if GC_FULLSCREEN else Graphics.goWindowed()
+	# start the game
+	ScreenManager.currentScreen = LoadingScreen()
+	ScreenManager.start()
 
-# start the game
-ScreenManager.currentScreen = LoadingScreen()
-ScreenManager.start()
+
+###   GAME STARTS HERE   ######################################################
+from GameConstants import GC_PROFILE
+
+if GC_PROFILE:
+	import cProfile
+
+	cProfile.run('start()', sort="time")
+else:
+	start()

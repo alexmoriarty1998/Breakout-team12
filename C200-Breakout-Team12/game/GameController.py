@@ -270,21 +270,23 @@ class GameController:
 								ball.circle.y = brick.rect.y - ball.circle.radius
 					else:  # killed a brick, apply power up effects
 						# add brick fragment animations:
-						for i in range(random.randint(GC_NUM_BRICK_FRAGMENTS[0], GC_NUM_BRICK_FRAGMENTS[1])):
-							brickFragType = random.randint(1, Assets.NUM_BRICK_FRAG_TYPES)
-							brickFragAngle = random.randint(0, 359)
-							brickFragVelocity = random.randint(3, 6)
-							brickFragR = random.randint(0, 359)
-							brickFragDr = random.randint(20, 80)
-							brickFragDdr = random.randint(0, 10)
-							self.state.displayables.append(Displayable(
-								PosPoint(brick.rect.x + brick.rect.width // 2, brick.rect.y + brick.rect.height // 2),
-								Velocity(brickFragVelocity * math.cos(math.radians(brickFragAngle)),
-										 brickFragVelocity * math.sin(math.radians(brickFragAngle))),
-								Acceleration(0, GC_GRAVITY_ACCEL),
-								Rotator(brickFragR, brickFragDr, brickFragDdr),
-								getattr(Assets, "A_BRICK_FRAG_" + str(brickFragType) + str(brick)),
-								ScreenManager.currentScreen.frame))
+						if GC_BRICK_FRAGS:
+							for i in range(random.randint(GC_NUM_BRICK_FRAGMENTS[0], GC_NUM_BRICK_FRAGMENTS[1])):
+								brickFragType = random.randint(1, Assets.NUM_BRICK_FRAG_TYPES)
+								brickFragAngle = random.randint(0, 359)
+								brickFragVelocity = random.randint(3, 6)
+								brickFragR = random.randint(0, 359)
+								brickFragDr = random.randint(20, 80)
+								brickFragDdr = random.randint(0, 10)
+								self.state.displayables.append(Displayable(
+									PosPoint(brick.rect.x + brick.rect.width // 2,
+											 brick.rect.y + brick.rect.height // 2),
+									Velocity(brickFragVelocity * math.cos(math.radians(brickFragAngle)),
+											 brickFragVelocity * math.sin(math.radians(brickFragAngle))),
+									Acceleration(0, GC_GRAVITY_ACCEL),
+									Rotator(brickFragR, brickFragDr, brickFragDdr),
+									getattr(Assets, "A_BRICK_FRAG_" + str(brickFragType) + str(brick)),
+									ScreenManager.currentScreen.frame))
 						if brick.powerUp == 'extraBall':
 							angle = random.randint(0, 360)
 							xVelocity = math.cos(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY

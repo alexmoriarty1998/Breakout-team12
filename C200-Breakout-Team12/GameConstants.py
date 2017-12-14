@@ -7,23 +7,42 @@
 
 import sys
 
-IS_MAC = "darwin" in sys.platform # mac == darwin, enables multiple workarounds to run better on mac
+# mac == darwin, enables multiple workarounds to run better on mac
+IS_MAC = "darwin" in sys.platform
+
+# low performance mode: significantly speeds up game
+#						TRUE = FORCE ENABLE
+LOW_PERF = IS_MAC or 		  False
 
 ###############################################################################
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
+###   DEV OPTIONS   ###########################################################
+# dev mode disables cursor grabbing, starts in windowed by default
 DEVELOPMENT = True						# TODO: turn this off before submitting final version
-# disables cursor grabbing, starts in windowed by default, may do some other stuff eventually
-GC_GRAB_MOUSE: bool = not DEVELOPMENT
-GC_FULLSCREEN: bool = not DEVELOPMENT
-GC_MOTION_BLUR: bool = not IS_MAC		# avoid even more slowdown on macs
+#							AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
+GC_GRAB_MOUSE: bool =	(not DEVELOPMENT)		or False			and True
+GC_FULLSCREEN: bool =	(not DEVELOPMENT)		or False			and True
 
+###   PERFORMANCE ENHANCEMENTS   ##############################################
+#						  AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
+GC_MOTION_BLUR: bool =  (not LOW_PERF)		or False			and True
+GC_BRICK_FRAGS: bool =  (not LOW_PERF)		or False			and True
+
+###   PERFORMANCE MEASUREMENT   ###############################################
 GC_PRINT_FPS: bool = False
+GC_PROFILE: bool = False
+# to profile from command line and open in KCacheGrind:
+# python -m cProfile -o profileData.pyprof C200_Breakout_Team12.py
+# pyprof2calltree -i profileData.pyprof -k
 
+###   GAME OPTIONS   ##########################################################
 GC_BRICK_GEN_MODE: str = "manual"		# "empty", "random", "filled", "manual"
-GC_STOP_MAINMENU_PADDLE = True			# don't move paddle in main menu screen
+GC_STOP_MAINMENU_PADDLE = False			# don't move paddle in main menu screen
 
 GC_RESET_HIGHSCORES = False				# enable this, start the game and quit, then disable it
+
+
 
 ###############################################################################
 import math
@@ -35,6 +54,8 @@ if GC_RESET_HIGHSCORES:
 	Highscores.reset()
 
 ###############################################################################
+
+
 
 ###############################################################################
 ###   SYSTEM SETTINGS   #######################################################
