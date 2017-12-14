@@ -179,6 +179,7 @@ class GameController:
 		# The ball's velocity (per frame) is a large percentage of the paddle height.
 		# So find where it actually would have hit the paddle, not where it is
 		# relative to the paddle on this frame.
+
 		for i in range(len(self.state.balls)):
 			ball = self.state.balls[i]
 			if self.paddle.rect.intersectsCircle(ball.circle):
@@ -207,6 +208,30 @@ class GameController:
 					velocityY = math.sin(math.radians(reflectAngle)) * velocityMagnitude
 					ball.velocity.dx = velocityX
 					ball.velocity.dy = velocityY
+
+				# add paddle electric animation
+				# first, if ball hit paddle hard, do strong effect
+				if ball.velocity.dy <= -GC_BALL_INITIAL_VELOCITY:
+					print("strong hit")
+					self.state.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, ScreenManager.currentScreen.frame)
+				else:
+					# find angles to get left/middle/right starting point
+					angleL = GC_PADDLE_UL_ANGLE
+					angleML = GC_PADDLE_UL_ANGLE + (GC_PADDLE_UR_ANGLE - GC_PADDLE_UL_ANGLE) * (1 / 16)
+					angleMR = GC_PADDLE_UL_ANGLE + (GC_PADDLE_UR_ANGLE - GC_PADDLE_UL_ANGLE) * (15 / 16)
+					angleR = GC_PADDLE_UR_ANGLE
+					if angleL <= angle < angleML:
+						# left
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_L, ScreenManager.currentScreen.frame)
+					elif angleML <= angle < angleMR:
+						# middle
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, ScreenManager.currentScreen.frame)
+					elif angleMR <= angle <= angleR:
+						# right
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_R, ScreenManager.currentScreen.frame)
+					else:
+						# hit side of paddle, do center effect
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, ScreenManager.currentScreen.frame)
 
 	def collideBrickBall(self):
 		for ball in self.state.balls:

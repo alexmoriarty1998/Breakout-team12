@@ -8,17 +8,18 @@ import pygame
 from pygame import Surface
 
 import Graphics
-# shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
 from game.gameClasses.Animation import Animation
 
 
+# shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
 def li(path: str, flipX: bool = False, flipY: bool = False) -> Surface:
 	# noinspection PyUnresolvedReferences
 	image = pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
 	return pygame.transform.flip(image, flipX, flipY)
 
 
-def la(path: str, name: str, frameTime: int, flipX: bool = False, flipY: bool = False) -> Animation:
+# load animation (if animation name is "anim", loads "anim0" "anim1" "anim2" ... for all frame images present
+def la(path: str, name: str, frameTime: int, next: str = '', flipX: bool = False, flipY: bool = False) -> Animation:
 	files = listdir("assets/" + path)
 
 	# list is not necessarily alphabetical, so can't just add frames to the list of frames in the for loop
@@ -32,10 +33,12 @@ def la(path: str, name: str, frameTime: int, flipX: bool = False, flipY: bool = 
 		imagesList.append(li(path + "/" + name + str(i), flipX, flipY))
 
 	# the beginframe must be set when the animation is created in game
-	return Animation(imagesList, frameTime, 0)
+	return Animation(imagesList, frameTime, 0, next)
 
 
 class Assets:
+	# @formatter:off
+
 	###   GENERAL   ###########################################################
 	I_BLUR = li("blur")
 	I_BG_FLASH = li("bg_flash")
@@ -66,10 +69,10 @@ class Assets:
 	I_BRICK_CLEARROW_1 = li("game/brick_clearRow_1")
 
 	###   IMAGE TEXT   ########################################################
-	I_TXT_SCORE = li("imgFont/score")  # use any of score1 score2
+	I_TXT_SCORE = li("imgFont/score")
 	I_TXT_LEVEL = li("imgFont/level1")
-	I_TXT_TIME = li("imgFont/time")  # use any of time1 time2
-	I_TXT_LIFE = li("imgFont/life")  # not really text, but still belong with imgFonts
+	I_TXT_TIME = li("imgFont/time")
+	I_TXT_LIFE = li("imgFont/life") # not really text, but still belong with imgFonts
 
 	###   BUTTONS   ###########################################################
 	# back and exit
@@ -112,14 +115,20 @@ class Assets:
 	I_BTN_HIGHSCORES_CANCEL_H = li("highscoreEntry/btn_cancel_h")
 
 	###   ANIMATIONS   ########################################################
-	A_WALL_BOUNCE_S_LEFT = la("animations", "wallS", 5)
-	A_WALL_BOUNCE_S_RIGHT = la("animations", "wallS", 5, True)
-	A_WALL_BOUNCE_M_LEFT = la("animations", "wallM", 5)
-	A_WALL_BOUNCE_M_RIGHT = la("animations", "wallM", 5, True)
-	A_WALL_BOUNCE_L_LEFT = la("animations", "wallL", 5)
-	A_WALL_BOUNCE_L_RIGHT = la("animations", "wallL", 5, True)
+	A_WALL_BOUNCE_S_LEFT = la("animations/wallBounce", "wallS", 5, '')			# bounce off l wall, weak
+	A_WALL_BOUNCE_S_RIGHT = la("animations/wallBounce", "wallS", 5, '', True)	# bounce off r wall, weak
+	A_WALL_BOUNCE_M_LEFT = la("animations/wallBounce", "wallM", 5, '')			# bounce off l wall, medium
+	A_WALL_BOUNCE_M_RIGHT = la("animations/wallBounce", "wallM", 5, '', True)	# bounce off r wall, medium
+	A_WALL_BOUNCE_L_LEFT = la("animations/wallBounce", "wallL", 5, '')			# bounce off l wall, strong
+	A_WALL_BOUNCE_L_RIGHT = la("animations/wallBounce", "wallL", 5, '', True)	# bounce off r wall, strong
 
-	A_BRICK_DUST = la("animations", "brickDust", 10)
+	A_BRICK_DUST = la("animations/brickDust", "brickDust", 10) # dust when brick gets hit by ball
+
+	A_PADDLE = Animation([I_PADDLE], 1, 0) # default (just the one frame of the normal paddle)
+	A_PADDLE_ELECTRIC_L = la("animations/paddle", "paddleElectricL", 2, 'A_PADDLE') # left
+	A_PADDLE_ELECTRIC_M = la("animations/paddle", "paddleElectricM", 2, 'A_PADDLE') # middle
+	A_PADDLE_ELECTRIC_R = la("animations/paddle", "paddleElectricR", 2, 'A_PADDLE') # right
+	A_PADDLE_ELECTRIC_S = la("animations/paddle", "paddleElectricS", 2, 'A_PADDLE') # strong
 
 
 class AssetLoaderHelper:

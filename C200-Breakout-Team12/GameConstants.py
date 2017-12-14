@@ -21,6 +21,7 @@ GC_MOTION_BLUR: bool = not IS_MAC		# avoid even more slowdown on macs
 GC_PRINT_FPS: bool = False
 
 GC_BRICK_GEN_MODE: str = "manual"		# "empty", "random", "filled", "manual"
+GC_STOP_MAINMENU_PADDLE = True			# don't move paddle in main menu screen
 
 GC_RESET_HIGHSCORES = False				# enable this, start the game and quit, then disable it
 

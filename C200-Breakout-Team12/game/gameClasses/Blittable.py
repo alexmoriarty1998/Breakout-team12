@@ -17,4 +17,4 @@ class Blittable:
 	def getImage(self, frame: int):
 		if isinstance(self.image, Surface):
 			return self.image
-		return self.image.getImage(frame)
+		return self.image.getFrame(frame)
