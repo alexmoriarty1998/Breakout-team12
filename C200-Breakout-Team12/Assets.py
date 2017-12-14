@@ -12,9 +12,12 @@ from game.gameClasses.Animation import Animation
 
 
 # shortcut for pygame.image.load; adds assets/ and .png to given path and does convert_alpha()
-def li(path: str, flipX: bool = False, flipY: bool = False) -> Surface:
-	# noinspection PyUnresolvedReferences
-	image = pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+def li(path: str, hasAlpha: bool = True, flipX: bool = False, flipY: bool = False) -> Surface:
+	# use convert() instead of convert_alpha() for performance improvements
+	if hasAlpha:
+		image = pygame.image.load("assets/" + path + ".png").convert_alpha(Graphics.surface)
+	else:
+		image = pygame.image.load("assets/" + path + ".png").convert(Graphics.surface)
 	return pygame.transform.flip(image, flipX, flipY)
 
 
@@ -30,7 +33,7 @@ def la(path: str, name: str, frameTime: int, next: str = '', flipX: bool = False
 
 	imagesList = []
 	for i in range(numFrames):
-		imagesList.append(li(path + "/" + name + str(i), flipX, flipY))
+		imagesList.append(li(path + "/" + name + str(i), flipX=flipX, flipY=flipY))
 
 	# the beginframe must be set when the animation is created in game
 	return Animation(imagesList, frameTime, 0, next)
@@ -44,28 +47,28 @@ class Assets:
 
 	###   SCREEN BACKGROUNDS   ################################################
 	I_MAINMENU_BACKGROUND = li("mainMenu/background")
-	I_BETWEENLEVELS_BACKGROUND = li("betweenLevels/background")
-	I_INSTRUCTIONS_BACKGROUND = li("instructions/background")
-	I_HIGHSCORE_DISPLAY_BACKGROUND = li("highscoreDisplay/background")
-	I_HIGHSCORE_ENTRY_BACKGROUND = li("highscoreEntry/background")
+	I_BETWEENLEVELS_BACKGROUND = li("betweenLevels/background", False)
+	I_INSTRUCTIONS_BACKGROUND = li("instructions/background", False)
+	I_HIGHSCORE_DISPLAY_BACKGROUND = li("highscoreDisplay/background", False)
+	I_HIGHSCORE_ENTRY_BACKGROUND = li("highscoreEntry/background", False)
 	I_PAUSE_BACKGROUND = li("pause/background")
 
 	###   GAME SCREEN   #######################################################
 	I_BALL = li("game/ball")
 	I_PADDLE = li("game/paddle")
-	I_WALL = li("game/wall")
+	I_WALL = li("game/wall", False)
 
-	I_BRICK_LEVEL1 = li("game/brick11")		# 1 HP brick
-	I_BRICK_LEVEL2_2 = li("game/brick22")	# 2 HP brick at 2 HP
-	I_BRICK_LEVEL2_1 = li("game/brick21")	# 2 HP brick at 1 HP
-	I_BRICK_LEVEL3_3 = li("game/brick33")	# 3 HP brick at 3 HP
-	I_BRICK_LEVEL3_2 = li("game/brick32")	# 3 HP brick at 2 HP
-	I_BRICK_LEVEL3_1 = li("game/brick31")	# 3 HP brick at 1 HP
-	I_BRICK_BOSS = li("game/brickBOSS")		# undestroyable brick
-	I_BRICK_EXTRABALL_2 = li("game/brick_extraBall_2")	# extra ball powerup brick at 2 HP
-	I_BRICK_EXTRABALL_1 = li("game/brick_extraBall_1")	# extra ball powerup brick at 1 HP
-	I_BRICK_CLEARROW_2 = li("game/brick_clearRow_2")	# clear row powerup brick at 2 HP
-	I_BRICK_CLEARROW_1 = li("game/brick_clearRow_1")	# clear row powerup brick at 1 HP
+	I_BRICK_LEVEL1 = li("game/brick11", False)		# 1 HP brick
+	I_BRICK_LEVEL2_2 = li("game/brick22", False)	# 2 HP brick at 2 HP
+	I_BRICK_LEVEL2_1 = li("game/brick21", False)	# 2 HP brick at 1 HP
+	I_BRICK_LEVEL3_3 = li("game/brick33", False)	# 3 HP brick at 3 HP
+	I_BRICK_LEVEL3_2 = li("game/brick32", False)	# 3 HP brick at 2 HP
+	I_BRICK_LEVEL3_1 = li("game/brick31", False)	# 3 HP brick at 1 HP
+	I_BRICK_BOSS = li("game/brickBOSS", False)		# undestroyable brick
+	I_BRICK_EXTRABALL_2 = li("game/brick_extraBall_2", False)	# extra ball powerup brick at 2 HP
+	I_BRICK_EXTRABALL_1 = li("game/brick_extraBall_1", False)	# extra ball powerup brick at 1 HP
+	I_BRICK_CLEARROW_2 = li("game/brick_clearRow_2", False)	# clear row powerup brick at 2 HP
+	I_BRICK_CLEARROW_1 = li("game/brick_clearRow_1", False)	# clear row powerup brick at 1 HP
 
 	###   IMAGE TEXT   ########################################################
 	I_TXT_SCORE = li("imgFont/score")
@@ -75,10 +78,10 @@ class Assets:
 
 	###   BUTTONS   ###########################################################
 	# back and exit
-	I_BTN_BACK = li("buttons/back")
-	I_BTN_BACK_H = li("buttons/back_h")
-	I_BTN_EXIT = li("buttons/exit")
-	I_BTN_EXIT_H = li("buttons/exit_h")
+	I_BTN_BACK = li("buttons/back", False)
+	I_BTN_BACK_H = li("buttons/back_h", False)
+	I_BTN_EXIT = li("buttons/exit", False)
+	I_BTN_EXIT_H = li("buttons/exit_h", False)
 
 	# main menu screen
 	I_BTN_MAINMENU_EXIT = li("mainMenu/exit")
