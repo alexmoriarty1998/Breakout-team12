@@ -28,15 +28,17 @@ from game.gameClasses.Velocity import Velocity
 
 
 class GameController:
-	def __init__(self, state):
+	def __init__(self, state: GameState):
 		self.moveDir: int = 0
 		self.state: GameState = state
 		self.paddle: Paddle = state.paddle  # shortcut to avoid having to type self.state.paddle
+		self.frame = 0
 
-	def update(self):
+	def update(self, frame: int):
 
 		# update these in case they changed
 		self.paddle: Paddle = self.state.paddle  # shortcut to avoid having to type self.state.paddle
+		self.frame = frame
 
 		if self.state.paused:
 			# let the paddle move even if the game hasn't started
@@ -71,7 +73,7 @@ class GameController:
 			d.velocity.apply(d.pos)
 		self.state.displayables = list(
 			filter(
-				lambda displayable: ScreenManager.currentScreen.frame < displayable.beginFrame + displayable.lifespan,
+				lambda displayable: self.frame < displayable.beginFrame + displayable.lifespan,
 				self.state.displayables))
 
 	def movePaddle(self):
@@ -155,7 +157,7 @@ class GameController:
 					Displayable(PosPoint(collisionX, ball.circle.y), Velocity(0, 0), Acceleration(0, 0),
 								Rotator(0, 0, 0),
 								getattr(Assets, "A_WALL_BOUNCE_" + collisionIntensity + "_" + collisionDirection),
-								ScreenManager.currentScreen.frame))
+								self.frame))
 
 			# set 'won'
 			if ball.circle.y - ball.circle.radius < 0:
@@ -222,7 +224,7 @@ class GameController:
 				# add paddle electric animation
 				# first, if ball hit paddle hard, do strong effect
 				if ball.velocity.dy <= -GC_BALL_INITIAL_VELOCITY:
-					self.state.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, ScreenManager.currentScreen.frame)
+					self.state.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_S, self.frame)
 				else:
 					# find angles to get left/middle/right starting point
 					angleL = GC_PADDLE_UL_ANGLE
@@ -231,16 +233,16 @@ class GameController:
 					angleR = GC_PADDLE_UR_ANGLE
 					if angleL <= angle < angleML:
 						# left
-						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_L, ScreenManager.currentScreen.frame)
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_L, self.frame)
 					elif angleML <= angle < angleMR:
 						# middle
-						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, ScreenManager.currentScreen.frame)
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, self.frame)
 					elif angleMR <= angle <= angleR:
 						# right
-						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_R, ScreenManager.currentScreen.frame)
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_R, self.frame)
 					else:
 						# hit side of paddle, do center effect
-						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, ScreenManager.currentScreen.frame)
+						self.paddle.image.switchTo(Assets.A_PADDLE_ELECTRIC_M, self.frame)
 
 	def collideBrickBall(self):
 		for ball in self.state.balls:
@@ -257,7 +259,7 @@ class GameController:
 							PosPoint(brick.rect.x + brick.rect.width // 2, brick.rect.y + brick.rect.height // 2),
 							Velocity(ball.velocity.dx / 30, ball.velocity.dy / 15),
 							Acceleration(0, GC_GRAVITY_ACCEL / 2), Rotator(0, 0, 0), Assets.A_BRICK_DUST,
-							ScreenManager.currentScreen.frame))
+							self.frame))
 						# do the collision and bounce the ball
 						angle = brick.rect.findAngle(ball.circle)
 						if (angle >= GC_BRICK_UR_ANGLE or angle < GC_BRICK_BR_ANGLE or
@@ -295,7 +297,7 @@ class GameController:
 									Acceleration(0, GC_GRAVITY_ACCEL),
 									Rotator(brickFragR, brickFragDr, brickFragDdr),
 									getattr(Assets, "A_BRICK_FRAG_" + str(brickFragType) + str(brick)),
-									ScreenManager.currentScreen.frame))
+									self.frame))
 						if brick.powerUp == 'extraBall':
 							angle = random.randint(0, 360)
 							xVelocity = math.cos(math.radians(angle)) * GC_BALL_INITIAL_VELOCITY
@@ -318,7 +320,9 @@ class GameController:
 			self.state.bricks = list(filter(lambda brick: brick.hp != 0, self.state.bricks))
 
 	def score(self):  # the name of this method is a verb, not a noun
-		score = GC_PAR_TIME / self.state.time
+		if self.state.level == 99:  # main menu screen embedded level has no par time
+			return 0
+		score = GC_PAR_TIME[self.state.level - 1] / self.state.time
 		percentBricksDestroyed = 0
 		if not self.state.totalBrickScore == 0:  # don't divide by zero in case of 'empty' brick generation
 			percentBricksDestroyed = self.state.totalBricksDestroyedScore / self.state.totalBrickScore

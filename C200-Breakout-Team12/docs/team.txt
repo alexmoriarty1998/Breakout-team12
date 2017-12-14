@@ -22,7 +22,6 @@ Paddle electric animation doesn't work on left side...
 
 TODO:
 Level 4 is too hard
-Separate par time for each level
 
 Animations:
 	brick fragments - add more types
@@ -33,6 +32,7 @@ Animations:
 TODO Before final submission:
 Complete any remaining TODOs
 Cleanup and comment code
+Check import into Visual Studio
 
 Executive Summary:
 Scoring is nonlinear

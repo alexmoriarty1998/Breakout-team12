@@ -48,7 +48,7 @@ GC_RESET_HIGHSCORES = False				# enable this, start the game and quit, then disa
 ###############################################################################
 import math
 import pygame
-from typing import Tuple
+from typing import Tuple, List
 from game.Highscores import Highscores
 
 if GC_RESET_HIGHSCORES:
@@ -90,9 +90,9 @@ GC_SCREENSHAKE_MAX_DISTANCE_REDUCTION = 0.75
 ###   GAME CONSTANTS   ########################################################
 ###############################################################################
 ###   SCORING   ###############################################################
-GC_DEFAULT_LIVES = 3
-GC_PAR_TIME = 180
-GC_NUM_LEVELS = 8
+GC_DEFAULT_LIVES: int = 3
+GC_NUM_LEVELS: int = 8
+GC_PAR_TIME: List[int] = [25, 50, 50, 90, 70, 70, 70, 70]
 
 ###   MISC. VALUES   ##########################################################
 GC_WALL_SIZE: int = 100  # walls at left/right edges of screen

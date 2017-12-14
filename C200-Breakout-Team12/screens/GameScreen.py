@@ -25,7 +25,7 @@ class GameScreen(Screen):
 		super().update()
 
 		###   UPDATE GAME STATE   #############################################
-		self.controller.update()
+		self.controller.update(self.frame)
 
 		###   DRAW GAME STATE   ###############################################
 		Graphics.clear()

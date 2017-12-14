@@ -31,6 +31,8 @@ class Camera:
 		self.radius += amount
 
 	def update(self):
+		# credit for algorithm to:
+		# https://gamedev.stackexchange.com/questions/1828/realistic-camera-screen-shake-from-explosion
 		# generate new angle
 		if self.angle == -1:
 			newAngle = random.randint(0, 360)
