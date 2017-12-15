@@ -18,7 +18,7 @@ LOW_PERF = IS_MAC or 		  False
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
 ###   DEV OPTIONS   ###########################################################
-DEVELOPMENT = True # disables cursor grabbing & starts in windowed by default
+DEVELOPMENT = False # disables cursor grabbing & starts in windowed by default
 #	  VALUE			=		AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_GRAB_MOUSE: bool =	((not DEVELOPMENT)		or False)			and True
 GC_FULLSCREEN: bool =	((not DEVELOPMENT)		or False)			and True
