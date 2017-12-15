@@ -141,11 +141,12 @@ class Assets:
 	A_BALL = Animation([I_BALL], 1, 0) # just the one frame of the ball image
 
 	# paddle electric
-	A_PADDLE = Animation([I_PADDLE], 1, 0) # just the one frame of the paddle image
-	A_PADDLE_ELECTRIC_L = la("animations/paddle", "paddleElectricL", 4, 'A_PADDLE') # left
-	A_PADDLE_ELECTRIC_M = la("animations/paddle", "paddleElectricM", 4, 'A_PADDLE') # middle
-	A_PADDLE_ELECTRIC_R = la("animations/paddle", "paddleElectricR", 4, 'A_PADDLE') # right
-	A_PADDLE_ELECTRIC_S = la("animations/paddle", "paddleElectricS", 4, 'A_PADDLE') # strong
+	# A_PADDLE = Animation([I_PADDLE], 1, 0) # just the one frame of the paddle image
+	A_PADDLE = la("animations/paddle", "paddleBase", 1)
+	A_PADDLE_ELECTRIC_L = la("animations/paddle", "paddleElectricL", 4, 'A_PADDLE')			# left
+	A_PADDLE_ELECTRIC_M = la("animations/paddle", "paddleElectricM", 4, 'A_PADDLE')			# middle
+	A_PADDLE_ELECTRIC_R = la("animations/paddle", "paddleElectricL", 4, 'A_PADDLE', True)	# right
+	A_PADDLE_ELECTRIC_S = la("animations/paddle", "paddleElectricS", 4, 'A_PADDLE')			# strong
 
 	# lost game mushroom cloud explosion
 	A_LOST_EXPLOSION = la("animations/lostExplosion", "lost", 4)

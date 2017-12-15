@@ -7,7 +7,7 @@ from game.gameClasses.Velocity import Velocity
 
 class Paddle(Blittable):
 	def __init__(self):
-		super().__init__(Assets.A_PADDLE_ELECTRIC_L)
+		super().__init__(Assets.A_PADDLE)
 		self.velocity: Velocity = Velocity(0, 0)
 
 		x = GC_WORLD_WIDTH / 2 - GC_PADDLE_WIDTH // 2

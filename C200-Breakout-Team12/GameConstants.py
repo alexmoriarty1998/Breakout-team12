@@ -18,7 +18,7 @@ LOW_PERF = IS_MAC or 		  False
 ###   DEBUG SWITCHES   ########################################################
 ###############################################################################
 ###   DEV OPTIONS   ###########################################################
-DEVELOPMENT = False # disables cursor grabbing & starts in windowed by default
+DEVELOPMENT = True # disables cursor grabbing & starts in windowed by default
 #	  VALUE			=		AUTOMATIC		T = FORCE ENABLE	F = FORCE DISABLE
 GC_GRAB_MOUSE: bool =	((not DEVELOPMENT)		or False)			and True
 GC_FULLSCREEN: bool =	((not DEVELOPMENT)		or False)			and True
@@ -37,8 +37,9 @@ GC_PROFILE: bool = False
 # pyprof2calltree -i profileData.pyprof -k
 
 ###   GAME OPTIONS   ##########################################################
-GC_BRICK_GEN_MODE: str = "manual"		# "empty", "random", "filled", "manual"
-GC_STOP_MAINMENU_PADDLE = False			# don't move paddle in main menu screen
+GC_BRICK_GEN_MODE: str	= "manual"		# "empty", "random", "filled", "manual"
+GC_STOP_MAINMENU_GAME	= True			# don't have game in main menu screen
+GC_STOP_MAINMENU_PADDLE	= False			# don't move paddle in main menu screen
 
 GC_RESET_HIGHSCORES = False				# enable this, start the game and quit, then disable it
 

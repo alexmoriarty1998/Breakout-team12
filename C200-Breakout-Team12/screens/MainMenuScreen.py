@@ -91,11 +91,13 @@ class MainMenuScreen(Screen):
 			self.gameState.paused = False
 			self.gameController = GameController(self.gameState)
 		pygame.event.clear()
-		self.gameController.update(self.frame)
+		if not GC_STOP_MAINMENU_GAME:
+			self.gameController.update(self.frame)
 
 		Graphics.clear()
 		# draw the embedded game
-		GameRenderer.render(self.gameState, self.frame)
+		if not GC_STOP_MAINMENU_GAME:
+			GameRenderer.render(self.gameState, self.frame)
 
 		Graphics.surface.blit(Assets.I_MAINMENU_BACKGROUND, (0, 0))
 		self.drawButtons()

@@ -22,13 +22,4 @@ Paddle electric animation doesn't work on left side...
 
 Check import into Visual Studio
 
-Executive Summary:
-Scoring is nonlinear
-Didn't use pygame.font
-Ball initial position was fixed to one point instead of random
-GameController needs to discard mouse motion events if in main menu screen (can't clear in MainMenuScreen code)
-Pause screen & motion blur disabled on mac (no paddle movement; lag) as well as low FPS in general on mac
-The paddle movement in the main menu screen can be improved
-Low performance mode (CPU bottlenecked)
-Ball slowing down & randomly fail to quit - fixed??
-Ball rarely goes through bricks
+change dev mode to off

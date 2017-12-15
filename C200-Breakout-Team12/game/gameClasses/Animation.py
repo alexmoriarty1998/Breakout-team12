@@ -15,7 +15,7 @@ class Animation:
 		self.beginFrame = frame
 		self.next = newAnim.next
 
-	def getFrame(self, frame):
+	def getFrame(self, frame: int):
 		framesElapsed = (frame - self.beginFrame) % (len(self.images) * self.frameTime)
 
 		# An animation can switch to another animation, specified in the 'next' parameter of the constructor.
