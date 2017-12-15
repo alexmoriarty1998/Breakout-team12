@@ -38,7 +38,7 @@ GC_PROFILE: bool = False
 
 ###   GAME OPTIONS   ##########################################################
 GC_BRICK_GEN_MODE: str	= "manual"		# "empty", "random", "filled", "manual"
-GC_STOP_MAINMENU_GAME	= True			# don't have game in main menu screen
+GC_STOP_MAINMENU_GAME	= False			# don't have game in main menu screen
 GC_STOP_MAINMENU_PADDLE	= False			# don't move paddle in main menu screen
 
 GC_RESET_HIGHSCORES = False				# enable this, start the game and quit, then disable it
